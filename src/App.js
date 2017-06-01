@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Nav from './components/nav'
+import { Title, Heading1, Heading2, P, Small } from './components/text'
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Nav />
+        <Title>Trip Title</Title>
+        <Heading1>Some example text</Heading1>
+        <Heading2>Some example text</Heading2>
+        <P>Some example text</P>
+        <Small>Some example text</Small>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

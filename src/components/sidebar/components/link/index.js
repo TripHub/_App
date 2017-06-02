@@ -20,9 +20,8 @@ const Link = styled(NavLink, {
 
 export default (props) => (
   <Link exact activeStyle={{
-    background: 'rgba(0, 0, 0, 0.09)',
+    background: 'rgba(255, 255, 255, 0.45)',
     borderColor: 'white',
-    fontWeight: 'bold',
     pointerEvents: 'none'
   }} {...props} />
 )

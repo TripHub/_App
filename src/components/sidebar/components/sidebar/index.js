@@ -1,10 +1,10 @@
 import { styled } from 'styletron-react'
-import { breakpoint, color } from './../../../../common/style'
+import { breakpoint, gradient } from './../../../../common/style'
 
 
 export default styled('nav', {
   // base styled
-  background: color.green,
+  background: gradient.green,
   width: '100%',
 
   // small and up

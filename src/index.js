@@ -6,8 +6,10 @@ import Styletron from 'styletron'
 import { StyletronProvider } from 'styletron-react'
 import './index.css'
 
+const styletron = new Styletron()
+
 ReactDOM.render(
-  <StyletronProvider styletron={new Styletron()}>
+  <StyletronProvider styletron={styletron}>
     <App />
   </StyletronProvider>,
   document.getElementById('root')

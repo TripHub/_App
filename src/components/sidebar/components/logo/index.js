@@ -14,7 +14,6 @@ export default styled(Title, {
     fontSize: fontSize.title,
     textAlign: 'center',
     padding: `${spacing.lg} ${spacing.sm}`,
-    margin: `0 0 ${spacing.sd}`,
-    background: 'rgba(0, 0, 0, 0.04)'
+    margin: `0 0 ${spacing.sd}`
   }
 })

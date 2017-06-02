@@ -6,7 +6,7 @@
 
 **Welcome to TripHub, a unified place for groups to organise trips!**
 
-I am building TripHub, partly because I think it's a cool idea and I can't find anything else like it, and partly as a learning exercise for developing scalable and performant Single Page Applications (SPA's) by utilising awesome techniques like Server Side Rendering (SSR) and HTML caching.
+I am building TripHub, partly because I think it's a cool idea and I can't find anything else like it, and partly as a learning exercise for developing scalable and performant Single Page Applications (SPA's) by utilising awesome techniques like bundle splitting and atomic CSS.
 
 **Below is a running log of some of the packages I'm using, with my thoughts/notes** 📝
 

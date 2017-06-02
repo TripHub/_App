@@ -11,8 +11,7 @@ export default styled('nav', {
   [`@media (min-width: ${breakpoint.small}`]: {
     alignSelf: 'stretch',
     overflowX: 'hidden',
-    width: '190px',
-    padding: '10px'
+    width: '190px'
   },
 
   // medium and up

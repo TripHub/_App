@@ -4,6 +4,7 @@ import { fontFamily, fontSize, color, spacing } from '../../common/style'
 export const Title = styled('h1', ({light}) => ({
   fontFamily: fontFamily.heading,
   fontSize: fontSize.title,
+  fontWeight: 'bold',
   color: light ? 'white' : color.black,
   margin: `0 0 ${spacing.sd}`
 }))
@@ -11,12 +12,14 @@ export const Title = styled('h1', ({light}) => ({
 export const Heading1 = styled('h1', ({light}) => ({
   fontFamily: fontFamily.heading,
   fontSize: fontSize.heading1,
+  fontWeight: 'bold',
   color: light ? 'white' : color.black,
   margin: `0 0 ${spacing.sd}`
 }))
 
 export const Heading2 = styled('h2', ({light}) => ({
   fontFamily: fontFamily.heading,
+  fontWeight: 'normal',
   fontSize: fontSize.heading2,
   color: light ? 'white' : color.black,
   margin: `0 0 ${spacing.sd}`

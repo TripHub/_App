@@ -1,6 +1,6 @@
 # TripHub
 
-[![Build Status](https://travis-ci.org/TripHub/Client.svg?branch=master)](https://travis-ci.org/TripHub/Client)
+[![Build Status](https://travis-ci.org/TripHub/App.svg?branch=master)](https://travis-ci.org/TripHub/App)
 
 🛠 *This project is in the early stages of development*
 

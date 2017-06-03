@@ -19,7 +19,6 @@ class Renew extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('will receive props')
     if (Auth.isAuthenticated(nextProps.user)) {
       this.setState({ authenticated: true })
     } else {

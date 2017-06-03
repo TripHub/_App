@@ -5,5 +5,5 @@ export default styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   flexDirection: 'row',
-  padding: `${spacing.sd} 0 0 ${spacing.sd}`
+  padding: `0 0 0 ${spacing.sd}`
 })

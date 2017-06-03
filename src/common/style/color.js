@@ -6,6 +6,10 @@ export const color = {
   medGrey: '#e2e5e4'
 }
 
+export const colorDarker = {
+  blue: '#2C80D4'
+}
+
 export const gradient = {
   green: `linear-gradient(45deg, ${color.green}, #5DF5D5)`
 }

@@ -1,5 +1,6 @@
 import { styled } from 'styletron-react'
-import { fontFamily, fontSize, color, spacing } from '../../common/style'
+import { Link as _Link } from 'react-router-dom'
+import { fontFamily, fontSize, color, colorDarker, spacing } from '../../common/style'
 
 export const Title = styled('h1', ({light}) => ({
   fontFamily: fontFamily.heading,
@@ -38,3 +39,15 @@ export const Small = styled('small', ({light}) => ({
   color: light ? 'white' : color.black,
   margin: `0 0 ${spacing.sd}`
 }))
+
+export const Link = styled(_Link, {
+  fontFamily: fontFamily.body,
+  fontSize: fontSize.body,
+  color: color.blue,
+  textDecoration: 'none',
+
+  ':hover': {
+    color: colorDarker.blue,
+    textDecoration: 'underline'
+  }
+})

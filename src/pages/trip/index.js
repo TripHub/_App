@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withSidebar, withMenu } from '../../enhancers'
 import { getTrip } from '../../data/trip/current/actions'
-import { Link } from 'react-router-dom'
+import { Link } from '../../components/text'
 
 class Trip extends React.Component {
   componentDidMount () {

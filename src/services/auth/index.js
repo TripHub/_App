@@ -21,6 +21,35 @@ export default class Auth {
     return isValidExpiryTime && new Date().getTime() < expiryTime * 1000
   }
 
+  randomString = (length) => {
+    const bytes = new Uint8Array(length)
+    const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
+    const random = window.crypto.getRandomValues(bytes)
+    let result = []
+    random.forEach((c) => {
+      result.push(charset[c % charset.length])
+    })
+    return result.join('')
+  }
+
+  renewAuth = () => {
+    const nonce = this.randomString(16)
+    window.localStorage.setItem('nonce', nonce)
+    this.auth0.authorize({
+      nonce,
+      prompt: 'none',
+      audience: process.env.REACT_APP_AUTH0_API_AUD,
+      scope: 'openid profile',
+      responseType: 'id_token token',
+      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+      redirectUri: `${window.location.protocol}//${window.location.host}/auth/renew`
+    })
+  }
+
+  parseHash = (handle) => (
+    this.auth0.parseHash(window.location.hash, handle)
+  )
+
   getUserProfile = (accessToken, handle) => (
     this.auth0.client.userInfo(accessToken, handle)
   )

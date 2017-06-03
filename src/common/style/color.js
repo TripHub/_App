@@ -3,7 +3,8 @@ export const color = {
   green: '#21FFA9',
   black: '#00160a',
   lightGrey: '#f3f6f5',
-  medGrey: '#e2e5e4'
+  medGrey: '#e2e5e4',
+  darkGrey: '#c2c5c4'
 }
 
 export const colorDarker = {

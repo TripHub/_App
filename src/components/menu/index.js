@@ -1,10 +1,11 @@
 import React from 'react'
 import Container from './components/container'
 import ProfileMenu from './components/profileMenu'
+import LogoutButton from './components/logoutButton'
 
-export default ({ picture, children, ...props }) => (
+export default ({ loading, picture, onLogout, ...props }) => (
   <Container {...props}>
-    {children}
-    <ProfileMenu picture={picture} />
+    <LogoutButton onClick={onLogout}>Logout</LogoutButton>
+    <ProfileMenu loading={loading} picture={picture} />
   </Container>
 )

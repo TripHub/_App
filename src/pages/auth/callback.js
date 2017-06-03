@@ -1,28 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { loginWithAuth0AndGetProfile } from '../../data/user/actions'
 import { P } from '../../components/text'
 import Auth from '../../services/auth'
 
 class Callback extends React.Component {
   componentDidMount () {
-    if (window.location.hash) {
+    if (window.location.hash && !Auth.isAuthenticated(this.props.user)) {
       this.props.loginAndGetProfile()
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    // check if the user has been logged in successfully
-    if (Auth.isAuthenticated(nextProps.user)) {
-      // ...
+    } else {
+      window.location.replace('/')
     }
   }
 
   render () {
-    return window.location.hash && !Auth.isAuthenticated(this.props.user)
-      ? <P>Logging in...</P>
-      : <Link to='/'>Go to dashboard</Link>
+    return Auth.isAuthenticated(this.props.user)
+      ? <Redirect to='/' />
+      : <P>Logging in...</P>
   }
 }
 

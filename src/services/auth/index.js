@@ -65,4 +65,10 @@ export default class Auth {
   login = () => (
     this.auth0.authorize()
   )
+
+  logout = () => (
+    this.auth0.logout({
+      returnTo: `${window.location.protocol}//${window.location.host}/`
+    })
+  )
 }

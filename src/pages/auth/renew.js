@@ -23,7 +23,7 @@ class Renew extends React.Component {
     if (Auth.isAuthenticated(nextProps.user)) {
       this.setState({ authenticated: true })
     } else {
-      Auth().login()
+      new Auth().login()
     }
   }
 

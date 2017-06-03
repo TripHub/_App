@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Menu from '../components/menu'
+import Auth from '../services/auth'
 
 export default (Wrapped) => {
   const withMenu = class extends React.Component {
@@ -8,7 +9,9 @@ export default (Wrapped) => {
       const { user } = this.props
       return (
         <div>
-          <Menu picture={user.picture} />
+          <Menu picture={user.picture}>
+            <button onClick={new Auth().login}>Login</button>
+          </Menu>
           <Wrapped {...this.props} />
         </div>
       )

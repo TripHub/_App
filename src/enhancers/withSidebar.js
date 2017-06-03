@@ -1,8 +1,8 @@
 import React from 'react'
 import Sidebar from '../components/sidebar'
 
-export default (Wrapped) => () => (
+export default (Wrapped) => (props) => (
   <Sidebar>
-    <Wrapped {...this.props} />
+    <Wrapped {...props} />
   </Sidebar>
 )

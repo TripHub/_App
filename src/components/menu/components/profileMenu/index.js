@@ -3,9 +3,9 @@ import Container from './components/container'
 import Text from './components/text'
 import Image from './components/image'
 
-export default ({onClick, open, ...props}) => (
+export default ({ picture, onClick, open, ...props }) => (
   <Container onClick={onClick}>
-    <Image src='http://tinypost.co/wp-content/uploads/2016/09/cute-profile-pics-for-whatsapp-images.png' />
+    <Image src={picture} />
     <Text>Profile</Text>
   </Container>
 )

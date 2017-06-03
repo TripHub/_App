@@ -1,18 +1,22 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+import { render } from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
+import App from './App'
 import Styletron from 'styletron'
 import { StyletronProvider } from 'styletron-react'
+import { Provider } from 'react-redux'
+import createStore from './store'
 import './index.css'
 
+const store = createStore()
 const styletron = new Styletron()
 
-ReactDOM.render(
+render(
   <StyletronProvider styletron={styletron}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StyletronProvider>,
   document.getElementById('root')
 )
-
 registerServiceWorker()

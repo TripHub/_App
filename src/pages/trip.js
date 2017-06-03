@@ -1,10 +1,9 @@
 import React from 'react'
-import Sidebar from '../components/sidebar'
-import Menu from '../components/menu'
+import { withSidebar, withMenu } from '../enhancers'
+import Auth from '../services/auth'
 
-export default () => (
-  <Sidebar>
-    <Menu />
-    <p>{process.env.REACT_APP_AUTH0_CLIENT_ID}</p>
-  </Sidebar>
-)
+export default withSidebar(withMenu(() => (
+  <div>
+    <button onClick={new Auth().login}>Login</button>
+  </div>
+)))

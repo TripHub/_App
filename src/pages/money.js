@@ -1,12 +1,7 @@
 import React from 'react'
-import Sidebar from '../components/sidebar'
-import Menu from '../components/menu'
-import Auth from '../services/auth'
+import { withSidebar, withMenu } from '../enhancers'
+import { P } from '../components/text'
 
-export default () => (
-  <Sidebar>
-    <Menu />
-    <button onClick={new Auth().login}>Click</button>
-    Money
-  </Sidebar>
-)
+export default withSidebar(withMenu(() => (
+  <P>Money</P>
+)))

@@ -1,10 +1,7 @@
 import React from 'react'
-import Sidebar from '../components/sidebar'
-import Menu from '../components/menu'
+import { withSidebar, withMenu } from '../enhancers'
+import { P } from '../components/text'
 
-export default () => (
-  <Sidebar>
-    <Menu />
-    Tickets
-  </Sidebar>
-)
+export default withSidebar(withMenu(() => (
+  <P>Tickets</P>
+)))

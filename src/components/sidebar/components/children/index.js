@@ -1,6 +1,6 @@
 import { styled } from 'styletron-react'
 
 export default styled('div', {
-  flex: '1 1 auto',
+  flex: '1',
   overflowY: 'auto'
 })

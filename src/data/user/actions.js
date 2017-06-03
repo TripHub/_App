@@ -22,7 +22,7 @@ export const loginWithAuth0AndGetProfile = () => (dispatch) => {
   dispatch(loginAuth0Request())
   auth.handleAuthentication((error, authResult) => {
     // check the response from Auth0
-    if (authResult && authResult.accessToken && authResult.idTokenPayload) {
+    if (Auth.isValidAuthResult(authResult)) {
       // successful authentication :)
       dispatch(loginAuth0Success(authResult))
       // now we can get the profile details using the accessToken to identify the user
@@ -48,7 +48,7 @@ export const renewAuthRequest = () => (dispatch) => {
 
 export const renewAuthHandler = (error, authResult) => (dispatch) => {
   const auth = new Auth()
-  if (authResult && authResult.accessToken && authResult.idTokenPayload) {
+  if (Auth.isValidAuthResult(authResult)) {
     // successful authentication :)
     dispatch(loginAuth0Success(authResult))
     // now we can get the profile details using the accessToken to identify the user

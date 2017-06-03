@@ -21,7 +21,7 @@ export default class Auth {
     return isValidExpiryTime && new Date().getTime() < expiryTime * 1000
   }
 
-  randomString = (length) => {
+  static randomString = (length) => {
     const bytes = new Uint8Array(length)
     const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
     const random = window.crypto.getRandomValues(bytes)
@@ -32,8 +32,12 @@ export default class Auth {
     return result.join('')
   }
 
+  static isValidAuthResult = (authResult) => (
+    authResult && authResult.accessToken && authResult.idTokenPayload
+  )
+
   renewAuth = () => {
-    const nonce = this.randomString(16)
+    const nonce = Auth.randomString(16)
     window.localStorage.setItem('nonce', nonce)
     this.auth0.authorize({
       nonce,

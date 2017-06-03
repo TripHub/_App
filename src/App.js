@@ -12,7 +12,7 @@ import Auth0Callback from './pages/auth/callback'
 import NotFound from './pages/error/notFound'
 import { store } from './'
 
-const checkId = (props) => (
+const checkTripId = (props) => (
   store.getState().trip.list.trips
     .map(trip => trip.id)
     .includes(props.match.params.id)
@@ -28,7 +28,7 @@ class App extends Component {
           <Route path='/tickets' component={Tickets} />
           <Route path='/money' component={Money} />
           <Route path='/auth/callback' component={Auth0Callback} />
-          <Route path='/:id' render={checkId} />
+          <Route path='/:id' render={checkTripId} />
           <Route exact path='/' component={Trips} />
           <Route component={NotFound} />
         </Switch>

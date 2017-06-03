@@ -5,11 +5,11 @@ import Children from './components/children'
 import Logo from './components/logo'
 import Link from './components/link'
 
-export default ({children, ...props}) => (
+export default ({children, currentTrip, ...props}) => (
   <Container>
     <Sidebar>
       <Logo>TripHub</Logo>
-      <Link to='/'>Trip</Link>
+      <Link to={`/${currentTrip.id || ''}`}>Trip</Link>
       <Link to='/tickets'>Tickets</Link>
       <Link to='/money'>Money</Link>
     </Sidebar>

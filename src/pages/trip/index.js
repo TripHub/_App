@@ -1,36 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withSidebar, withMenu } from '../../enhancers'
-import { getTrips } from '../../data/trip/list/actions'
 import { getTrip } from '../../data/trip/current/actions'
-import { Trip as TripItem } from '../../components/list'
-import TripList from './components/tripList'
+import { Link } from 'react-router-dom'
 
 class Trip extends React.Component {
   componentDidMount () {
-    this.props.getTrips()
+    // only call API if the trip isn't already loaded
+    if (this.props.match.params.id !== this.props.id) {
+      this.props.getTrip(this.props.match.params.id)
+    }
   }
+
   render () {
-    const { list, current, getTrip } = this.props
+    const { loading, title } = this.props
     return (
-      <TripList> {
-        current.id
-          ? <p>{current.title} ({current.id})</p>
-          : list.trips.map(trip =>
-            <TripItem
-              key={trip.id}
-              children={trip.title}
-              onClick={() => getTrip(trip.id)} />
-          )
-      } </TripList>
+      <div>
+        <Link to='/'>Change trip</Link>
+        <p>{loading ? 'loading' : title}</p>
+      </div>
     )
   }
 }
 
-const mapStateToProps = ({ trip }) => ({ ...trip })
+const mapStateToProps = ({ trip }) => ({ ...trip.current })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTrips: () => dispatch(getTrips()),
   getTrip: (id) => dispatch(getTrip(id))
 })
 

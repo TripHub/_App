@@ -4,7 +4,7 @@ import Menu from '../components/menu'
 import Auth from '../services/auth'
 
 export default (Wrapped) => {
-  const withMenu = class extends React.Component {
+  class WithMenu extends React.Component {
     render () {
       const { user } = this.props
       return (
@@ -18,5 +18,5 @@ export default (Wrapped) => {
     }
   }
   const mapStateToProps = ({ user }) => ({ user })
-  return connect(mapStateToProps)(withMenu)
+  return connect(mapStateToProps)(WithMenu)
 }

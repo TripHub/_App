@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loginWithAuth0AndGetProfile } from '../../data/user/actions'
 import { P } from '../../components/text'
-import NotFound from '../error/notFound'
 import Auth from '../../services/auth'
 
 class Callback extends React.Component {

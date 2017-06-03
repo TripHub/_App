@@ -9,9 +9,6 @@ import Tickets from './pages/tickets'
 import Money from './pages/money'
 import Auth0Callback from './pages/auth/callback'
 import NotFound from './pages/error/notFound'
-import Auth from './services/auth'
-
-console.log(new Auth().auth0)
 
 class App extends Component {
   render () {

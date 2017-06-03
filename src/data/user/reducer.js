@@ -18,15 +18,18 @@ export default (state = initialState, action) => {
         loading: true
       }
     case actionTypes.LOGIN_AUTH0_SUCCESS:
+      // we're working in millis
+      const expiryTime = action.authResult.expiresIn * 1000 + new Date().getTime()
       return {
         ...state,
-        expiryTime: action.user.exp,
-        accessToken: action.accessToken,
+        expiryTime,
+        accessToken: action.authResult.accessToken,
         loading: false
       }
     case actionTypes.LOGIN_AUTH0_FAILURE:
       return {
         ...state,
+        accessToken: '',
         error: action.error.errorDescription,
         loading: false
       }

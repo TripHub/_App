@@ -10,7 +10,7 @@ export const GET_USER_PROFILE_FAILURE = 'GET_USER_PROFILE_FAILURE'
 
 // Action creators
 const loginAuth0Request = () => ({ type: LOGIN_AUTH0_REQUEST })
-const loginAuth0Success = (accessToken, user) => ({ type: LOGIN_AUTH0_SUCCESS, accessToken, user })
+const loginAuth0Success = (authResult) => ({ type: LOGIN_AUTH0_SUCCESS, authResult })
 const loginAuth0Failure = (error) => ({ type: LOGIN_AUTH0_FAILURE, error })
 const getUserProfileRequest = () => ({ type: GET_USER_PROFILE_REQUEST })
 const getUserProfileSuccess = (profile) => ({ type: GET_USER_PROFILE_SUCCESS, profile })
@@ -22,7 +22,7 @@ export const loginWithAuth0 = () => (dispatch) => {
   dispatch(loginAuth0Request())
   auth.handleAuthentication((error, authResult) => {
     authResult && authResult.accessToken && authResult.idTokenPayload
-      ? dispatch(loginAuth0Success(authResult.accessToken, authResult.idTokenPayload))
+      ? dispatch(loginAuth0Success(authResult))
       : dispatch(loginAuth0Failure(error))
   })
 }
@@ -46,7 +46,7 @@ export const loginWithAuth0AndGetProfile = () => (dispatch) => {
     // check the response from Auth0
     if (authResult && authResult.accessToken && authResult.idTokenPayload) {
       // successful authentication
-      dispatch(loginAuth0Success(authResult.accessToken, authResult.idTokenPayload))
+      dispatch(loginAuth0Success(authResult))
       // now we can get the profile details using the accessToken to identify the user
       dispatch(getUserProfileRequest())
       auth.getUserProfile(authResult.accessToken, (error, profile) => {

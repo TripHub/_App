@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withSidebar, withMenu } from '../../enhancers'
+import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrip } from '../../data/trip/current/actions'
 import { Link } from '../../components/text'
 
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch) => ({
   getTrip: (id) => dispatch(getTrip(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withSidebar(withMenu(Trip)))
+export default connect(mapStateToProps, mapDispatchToProps)(dashboardPageWithLogin(Trip))

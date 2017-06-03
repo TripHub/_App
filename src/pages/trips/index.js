@@ -1,20 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withSidebar, withMenu } from '../../enhancers'
+import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrips } from '../../data/trip/list/actions'
-import { renewAuthRequest } from '../../data/user/actions'
 import TripItem from './components/tripItem'
 import TripList from './components/tripList'
-import Auth from '../../services/auth'
 
-class Trip extends React.Component {
+class Trips extends React.Component {
   componentDidMount () {
-    if (Auth.isAuthenticated(this.props.user)) {
-      this.props.getTrips()
-    } else {
-      this.props.renewAuthRequest()
-    }
+    this.props.getTrips()
   }
+
   render () {
     const { loading, trips } = this.props
     return (
@@ -34,8 +29,7 @@ class Trip extends React.Component {
 const mapStateToProps = ({ trip }) => ({ ...trip.list })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTrips: () => dispatch(getTrips()),
-  renewAuthRequest: () => dispatch(renewAuthRequest())
+  getTrips: () => dispatch(getTrips())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withSidebar(withMenu(Trip)))
+export default connect(mapStateToProps, mapDispatchToProps)(dashboardPageWithLogin(Trips))

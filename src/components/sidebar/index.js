@@ -12,6 +12,7 @@ export default ({children, currentTrip, ...props}) => (
       <Link to={`/${currentTrip.id || ''}`}>Trip</Link>
       <Link to='/tickets'>Tickets</Link>
       <Link to='/money'>Money</Link>
+      <Link to='/trip_fhdwhywdw6dw'>???</Link>
     </Sidebar>
     <Children children={children} />
   </Container>

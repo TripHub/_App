@@ -13,17 +13,19 @@ class Trip extends React.Component {
   }
 
   render () {
-    const { loading, title } = this.props
-    return (
+    const { trip } = this.props
+    return trip.error.status
+      ? <p>Not found.</p>
+      : (
       <div>
-        <Title>{title}</Title>
+        <Title>{trip.title}</Title>
         <Link to='/'>Change trip</Link>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ trip }) => ({ ...trip.current })
+const mapStateToProps = ({ trip }) => ({ trip: trip.current })
 
 const mapDispatchToProps = (dispatch) => ({
   getTrip: (id) => dispatch(getTrip(id))

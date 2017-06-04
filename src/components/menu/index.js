@@ -5,7 +5,7 @@ import LogoutButton from './components/logoutButton'
 
 export default ({ loading, picture, onLogout, ...props }) => (
   <Container {...props}>
-    <LogoutButton onClick={onLogout}>Logout</LogoutButton>
+    <LogoutButton small onClick={onLogout}>Logout</LogoutButton>
     <ProfileMenu loading={loading} picture={picture} />
   </Container>
 )

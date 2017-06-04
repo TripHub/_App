@@ -1,16 +1,11 @@
-import React from 'react'
-import Form from './components/form'
-import Input from './components/input'
+import { styled } from 'styletron-react'
+import { Input } from '../../../../../components/form'
+import { fontFamily, fontSize } from '../../../../../common/style'
 
-export default class extends React.Component {
-  render () {
-    const { children } = this.props
-    return (
-      <Form>
-        <Input
-          value={children}
-          placeholder='Trip Title...' />
-      </Form>
-    )
-  }
-}
+export default styled(Input, {
+  fontFamily: fontFamily.heading,
+  fontSize: fontSize.title,
+  border: 0,
+  width: '100%',
+  boxSizing: 'border-box'
+})

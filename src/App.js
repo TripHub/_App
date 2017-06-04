@@ -12,15 +12,15 @@ import Money from './pages/trip/money'
 import Auth0Callback from './pages/auth/callback'
 import Auth0Renew from './pages/auth/renew'
 import NotFound from './pages/error/notFound'
-import { store } from './'
+// import { store } from './'
 
-const checkTripId = (props) => (
-  store.getState().trip.list.trips
-    .map(trip => trip.id)
-    .includes(props.match.params.id)
-    ? <Trip {...props} />
-    : <NotFound />
-)
+// const checkTripId = (props) => (
+//   store.getState().trip.list.trips
+//     .map(trip => trip.id)
+//     .includes(props.match.params.id)
+//     ? <Trip {...props} />
+//     : <NotFound />
+// )
 
 class App extends Component {
   render () {
@@ -32,7 +32,7 @@ class App extends Component {
           <Route path='/tickets' component={Tickets} />
           <Route path='/money' component={Money} />
           <Route path='/new' component={New} />
-          <Route path='/:id' render={checkTripId} />
+          <Route path='/:id' component={Trip} />
           <Route exact path='/' component={Trips} />
           <Route component={NotFound} />
         </Switch>

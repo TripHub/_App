@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Spinner from '../../components/spinner/'
 import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrips } from '../../data/trip/list/actions'
+import Spinner from '../../components/spinner/'
 import TripItem from './components/tripItem'
 import TripList from './components/tripList'
 
@@ -14,17 +14,18 @@ class Trips extends React.Component {
   render () {
     const { loading, trips } = this.props
     return (
-      <TripList>
-        {
-          loading
-            ? <Spinner />
-            : trips.map(trip =>
+      loading
+        ? <Spinner />
+        : <TripList>
+          <TripItem to='/new'>+ New</TripItem>
+          {
+            trips.map(trip =>
               <TripItem
                 key={trip.id}
                 to={`/${trip.id}`}
                 trip={trip} />)
-        }
-      </TripList>
+          }
+        </TripList>
     )
   }
 }

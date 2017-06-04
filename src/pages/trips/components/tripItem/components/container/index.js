@@ -1,22 +1,16 @@
 import { styled } from 'styletron-react'
-import { color, spacing } from '../../../../../../common/style'
-import { Link } from 'react-router-dom'
+import { breakpoint, spacing } from '../../../../../../common/style'
 
-export default styled(Link, {
-  // base styled
+export default styled('div', {
+  // base styles
   display: 'flex',
-  flex: 1,
-  flexDirection: 'column',
-  justifyContent: 'center',
-  textAlign: 'center',
+  margin: 0,
+  padding: `0 ${spacing.sd} ${spacing.sd} 0`,
+  width: '100%',
   boxSizing: 'border-box',
-  margin: `0 ${spacing.sd} ${spacing.sd} 0`,
-  padding: spacing.sd,
-  cursor: 'pointer',
-  border: `1px solid ${color.lightGrey}`,
-  textDecoration: 'none',
 
-  ':hover': {
-    borderColor: color.medGrey
+  // medium and up
+  [`@media screen and (min-width: ${breakpoint.medium})`]: {
+    width: '50%'
   }
 })

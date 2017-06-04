@@ -16,18 +16,20 @@ class Trips extends React.Component {
   render () {
     const { loading, trips } = this.props
     return (
-      loading
-        ? <Spinner />
-        : <TripList>
+      <div>
+        <TripList>
           <TripItem to='/new'>+ New</TripItem>
           {
-            trips.map(trip =>
-              <TripItem
-                key={trip.id}
-                to={`/${trip.id}`}
-                trip={trip} />)
+            loading
+              ? <Spinner />
+              : trips.map(trip =>
+                <TripItem
+                  key={trip.id}
+                  to={`/${trip.id}`}
+                  trip={trip} />)
           }
         </TripList>
+      </div>
     )
   }
 }

@@ -12,5 +12,10 @@ export default styled('div', {
   // medium and up
   [`@media screen and (min-width: ${breakpoint.medium})`]: {
     width: '50%'
+  },
+
+  // large and up
+  [`@media screen and (min-width: ${breakpoint.large})`]: {
+    width: '25%'
   }
 })

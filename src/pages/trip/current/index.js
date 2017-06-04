@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { dashboardPageWithLogin } from '../../enhancers'
-import { getTrip } from '../../data/trip/current/actions'
-import { Link } from '../../components/text'
+import { dashboardPageWithLogin } from '../../../enhancers'
+import { getTrip } from '../../../data/trip/current/actions'
+import { Title, Link } from '../../../components/text'
 
 class Trip extends React.Component {
   componentDidMount () {
@@ -16,8 +16,8 @@ class Trip extends React.Component {
     const { loading, title } = this.props
     return (
       <div>
+        <Title>{title}</Title>
         <Link to='/'>Change trip</Link>
-        <p>{loading ? 'loading' : title}</p>
       </div>
     )
   }

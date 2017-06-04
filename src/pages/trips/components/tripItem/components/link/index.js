@@ -12,10 +12,10 @@ export default styled(Link, {
   boxSizing: 'border-box',
   padding: spacing.sd,
   cursor: 'pointer',
-  border: `1px solid ${color.lightGrey}`,
+  border: `1px solid ${color.medGrey}`,
   textDecoration: 'none',
 
   ':hover': {
-    borderColor: color.medGrey
+    borderColor: color.darkGrey
   }
 })

@@ -7,13 +7,12 @@ export default styled(Title, {
   color: color.black,
   margin: '0',
   padding: spacing.sd,
-  fontSize: fontSize.heading1,
+  fontSize: fontSize.heading2,
 
   // small and up
   [`@media screen and (min-width: ${breakpoint.small}`]: {
     fontSize: fontSize.title,
     textAlign: 'center',
-    padding: `${spacing.lg} ${spacing.sm}`,
-    margin: `0 0 ${spacing.sd}`
+    padding: `${spacing.lg} ${spacing.sm}`
   }
 })

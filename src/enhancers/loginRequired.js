@@ -7,18 +7,20 @@ import { isUserAuthenticated } from '../data/user/selectors'
 export default (Wrapped) => {
   class LoginRequired extends React.Component {
     componentDidMount () {
-      if (!this.props.isAuthenticated) {
+      if (!this.props.isUserAuthenticated) {
         this.props.renewAuthRequest()
       }
     }
 
     render () {
-      return <Wrapped {...this.props} />
+      return this.props.isUserAuthenticated
+        ? <Wrapped {...this.props} />
+        : <div />
     }
   }
 
   const mapStateToProps = (state) => ({
-    isAuthenticated: isUserAuthenticated(state)
+    isUserAuthenticated: isUserAuthenticated(state)
   })
 
   const mapDispatchToProps = (dispatch) => ({

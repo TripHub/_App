@@ -50,6 +50,8 @@ export default (state = initialState, action) => {
         error: action.error,
         loading: false
       }
+    case actionTypes.LOGOUT:
+      return initialState
     default:
       return state
   }

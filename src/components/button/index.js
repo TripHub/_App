@@ -9,7 +9,7 @@ import {
   color
 } from '../../common/style'
 
-export const Button = styled('button', ({ primary, small }) => ({
+export default styled('button', ({ primary, small }) => ({
   boxSizing: 'border-box',
   padding: small ? '2px 5px' : `7px ${spacing.sd}`,
   background: primary ? gradient.green : 'white',

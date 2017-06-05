@@ -1,23 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { handleAuth0TokensAndGetProfile } from '../../data/user/actions'
+import { logout } from '../../data/user/actions'
 import { isUserAuthenticated } from '../../data/user/selectors'
 import { P } from '../../components/text'
 
 class Callback extends React.Component {
   componentDidMount () {
-    if (window.location.hash && !this.props.isUserAuthenticated) {
-      this.props.handleTokensAndGetProfile()
-    } else {
-      window.location.replace('/')
+    if (this.props.isUserAuthenticated) {
+      this.props.logout()
     }
   }
 
   render () {
     return this.props.isUserAuthenticated
-      ? <Redirect push={false} to='/' />
-      : <P>Logging in...</P>
+      ? <P>Logging out...</P>
+      : <Redirect push={false} to='/' />
   }
 }
 
@@ -26,7 +24,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  handleTokensAndGetProfile: () => dispatch(handleAuth0TokensAndGetProfile())
+  logout: () => dispatch(logout())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Callback)

@@ -7,6 +7,7 @@ export const LOGIN_AUTH0_FAILURE = 'LOGIN_AUTH0_FAILURE'
 export const GET_USER_PROFILE_REQUEST = 'GET_USER_PROFILE_REQUEST'
 export const GET_USER_PROFILE_SUCCESS = 'GET_USER_PROFILE_SUCCESS'
 export const GET_USER_PROFILE_FAILURE = 'GET_USER_PROFILE_FAILURE'
+export const LOGOUT = 'LOGOUT'
 
 // Action creators
 const loginAuth0Request = () => ({ type: LOGIN_AUTH0_REQUEST })
@@ -17,7 +18,7 @@ const getUserProfileSuccess = (profile) => ({ type: GET_USER_PROFILE_SUCCESS, pr
 const getUserProfileFailure = (error) => ({ type: GET_USER_PROFILE_FAILURE, error })
 
 // Action API
-export const loginWithAuth0AndGetProfile = () => (dispatch) => {
+export const handleAuth0TokensAndGetProfile = () => (dispatch) => {
   const auth = new Auth()
   dispatch(loginAuth0Request())
   auth.handleAuthentication((error, authResult) => {
@@ -41,9 +42,8 @@ export const loginWithAuth0AndGetProfile = () => (dispatch) => {
 }
 
 export const renewAuthRequest = () => (dispatch) => {
-  const auth = new Auth()
   dispatch(loginAuth0Request())
-  auth.renewAuth()
+  new Auth().renewAuth()
 }
 
 export const renewAuthHandler = (error, authResult) => (dispatch) => {
@@ -63,4 +63,8 @@ export const renewAuthHandler = (error, authResult) => (dispatch) => {
     // unsuccessful authentication :(
     dispatch(loginAuth0Failure(error))
   }
+}
+
+export const logout = () => {
+  new Auth().logout()
 }

@@ -12,15 +12,6 @@ export default class Auth {
     })
   }
 
-  static isAuthenticated = (user) => {
-    // convert expiry time to int
-    const expiryTime = parseInt(user.expiryTime, 10)
-    // check we have a valid number
-    const isValidExpiryTime = !Number.isNaN(expiryTime)
-    // perform the check (and convert expiry time to milliseconds)
-    return isValidExpiryTime && new Date().getTime() < expiryTime * 1000
-  }
-
   static randomString = (length) => {
     const bytes = new Uint8Array(length)
     const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'

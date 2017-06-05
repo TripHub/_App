@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { dashboardPageWithLogin } from '../../../enhancers'
 import { getTrip, deleteTrip } from '../../../data/trip/current/actions'
 import { Title, P, Link } from '../../../components/text'
-import { Button } from '../../../components/button'
+import Button from '../../../components/button'
 
 class Trip extends React.Component {
   componentDidMount () {

@@ -8,7 +8,8 @@ export const color = {
 }
 
 export const colorDarker = {
-  blue: '#2C80D4'
+  blue: '#2C80D4',
+  green: '#009F79'
 }
 
 export const gradient = {

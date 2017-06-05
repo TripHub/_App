@@ -1,7 +1,8 @@
 import React from 'react'
 import { styled } from 'styletron-react'
 import { NavLink } from 'react-router-dom'
-import { color, fontFamily, fontSize, spacing } from '../../../../common/style'
+import Icon from '../../../icon'
+import { color, colorDarker, fontFamily, fontSize, spacing } from '../../../../common/style'
 
 const Link = styled(NavLink, {
   display: 'block',
@@ -9,7 +10,7 @@ const Link = styled(NavLink, {
   color: color.black,
   fontSize: fontSize.body,
   textDecoration: 'none',
-  padding: `9px 12px 9px ${spacing.lg}`,
+  padding: `9px 12px 9px ${spacing.sd}`,
   background: 'rgba(0, 0, 0, 0)',
   borderLeft: '6px solid transparent',
 
@@ -18,10 +19,17 @@ const Link = styled(NavLink, {
   }
 })
 
-export default (props) => (
+const Text = styled('span', {
+  marginLeft: spacing.sd
+})
+
+export default ({ icon, children, ...props }) => (
   <Link exact activeStyle={{
-    background: 'rgba(255, 255, 255, 0.45)',
-    borderColor: 'white',
+    background: 'rgba(0, 0, 0, 0.1)',
+    borderColor: colorDarker.green,
     pointerEvents: 'none'
-  }} {...props} />
+  }} {...props}>
+    <Icon name={icon} />
+    <Text children={children} />
+  </Link>
 )

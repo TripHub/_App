@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { renewAuthRequest } from '../data/user/actions'
-import Auth from '../services/auth'
+import { isUserAuthenticated } from '../data/user/selectors'
 
 // checks the user is logged in, else send to the login screen
 export default (Wrapped) => {
   class LoginRequired extends React.Component {
     componentDidMount () {
-      if (!Auth.isAuthenticated(this.props.user)) {
+      if (!this.props.isAuthenticated) {
         this.props.renewAuthRequest()
       }
     }
@@ -16,7 +16,11 @@ export default (Wrapped) => {
       return <Wrapped {...this.props} />
     }
   }
-  const mapStateToProps = ({ user }) => ({ user })
+
+  const mapStateToProps = (state) => ({
+    isAuthenticated: isUserAuthenticated(state)
+  })
+
   const mapDispatchToProps = (dispatch) => ({
     renewAuthRequest: () => dispatch(renewAuthRequest())
   })

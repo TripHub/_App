@@ -14,6 +14,7 @@
     "redux-api-middleware": "next",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1",
     "standard": "^10.0.2",
     "styletron": "^2.5.7",
     "styletron-react": "^2.5.8"

@@ -14,15 +14,15 @@ class Trips extends React.Component {
   }
 
   render () {
-    const { loading, trips } = this.props
+    const { trips } = this.props
     return (
       <div>
         <TripList>
           <TripItem to='/new'>+ New</TripItem>
           {
-            loading
+            trips.loading
               ? <Spinner />
-              : trips.map(trip =>
+              : trips.trips.map(trip =>
                 <TripItem
                   key={trip.id}
                   to={`/${trip.id}`}
@@ -34,7 +34,9 @@ class Trips extends React.Component {
   }
 }
 
-const mapStateToProps = ({ trip }) => ({ ...trip.list })
+const mapStateToProps = (state) => ({
+  trips: state.trip.list
+})
 
 const mapDispatchToProps = (dispatch) => ({
   getTrips: () => dispatch(getTrips())

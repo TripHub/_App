@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { dashboardPageWithLogin } from '../../../enhancers'
 import { getTrip, deleteTrip } from '../../../data/trip/current/actions'
-import { Title, P, Link } from '../../../components/text'
+import { Link } from '../../../components/text'
 import Button from '../../../components/button'
+import NotFound from '../../error/notFound'
+import Title from './components/title'
 
 class Trip extends React.Component {
   componentDidMount () {
@@ -13,16 +15,21 @@ class Trip extends React.Component {
     }
   }
 
+  deleteTrip = () => {
+    console.log('!!', this.props)
+    this.props.deleteTrip(this.props.trip.id)
+    this.props.history.push('/')
+  }
+
   render () {
-    const { user, trip, deleteTrip } = this.props
+    const { trip } = this.props
     return trip.error.status
-      ? <p>Not found.</p>
+      ? <NotFound />
       : (
         <div>
-          <P>You are: { user.sub } | Owner is: { trip.owner }</P>
-          <Title>{trip.title}</Title>
+          <Title loading={trip.loading}>{trip.title}</Title>
           <Link to='/'>Change trip</Link>
-          <Button onClick={() => deleteTrip(trip.id)}>Delete trip</Button>
+          <Button onClick={this.deleteTrip}>Delete trip</Button>
         </div>
     )
   }

@@ -1,5 +1,9 @@
 import React from 'react'
+import { Heading1 } from '../../../components/text'
+import Container from './components/container'
 
 export default () => (
-  <div>Not found.</div>
+  <Container>
+    <Heading1>404 - Page not found.</Heading1>
+  </Container>
 )

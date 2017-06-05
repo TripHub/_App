@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrips } from '../../data/trip/list/actions'
+import { selectTrips } from '../../data/trip/list/selectors'
 import Spinner from '../../components/spinner/'
 import TripItem from './components/tripItem'
 import TripList from './components/tripList'
@@ -14,19 +15,20 @@ class Trips extends React.Component {
   }
 
   render () {
-    const { trips } = this.props
+    const { loading, trips } = this.props
     return (
       <div>
         <TripList>
           <TripItem to='/new'>+ New</TripItem>
           {
-            trips.loading
+            loading
               ? <Spinner />
-              : trips.trips.map(trip =>
+              : trips.map(trip =>
                 <TripItem
                   key={trip.id}
                   to={`/${trip.id}`}
-                  trip={trip} />)
+                  trip={trip}
+                  memberCount={trip.member_count} />)
           }
         </TripList>
       </div>
@@ -35,7 +37,8 @@ class Trips extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.trip.list
+  loading: state.trip.loading,
+  trips: selectTrips(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

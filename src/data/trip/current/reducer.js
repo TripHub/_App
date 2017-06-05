@@ -44,6 +44,19 @@ export default (state = initialState, action) => {
         error: action.payload,
         loading: false
       }
+    case actionTypes.DELETE_TRIP_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.DELETE_TRIP_SUCCESS:
+      return initialState
+    case actionTypes.DELETE_TRIP_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      }
     default:
       return state
   }

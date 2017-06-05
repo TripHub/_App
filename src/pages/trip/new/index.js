@@ -18,6 +18,7 @@ class New extends React.Component {
     }
   }
 
+  // TODO: this bit feels quite hacky... see if we can improve it
   componentWillReceiveProps (nextProps) {
     // check if we have a new trip id
     if (nextProps.trip.id && nextProps.trip.id !== this.props.trip.id) {

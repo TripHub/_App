@@ -1,5 +1,13 @@
 import { styled } from 'styletron-react'
-import { fontFamily, fontSize, spacing, gradient, gradientDarker, borderRadius, color, colorDarker } from '../../common/style'
+import {
+  fontFamily,
+  fontSize,
+  spacing,
+  gradient,
+  gradientDarker,
+  borderRadius,
+  color
+} from '../../common/style'
 
 export const Button = styled('button', ({ primary, small }) => ({
   boxSizing: 'border-box',

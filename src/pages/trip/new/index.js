@@ -5,9 +5,9 @@ import { createTrip } from '../../../data/trip/current/actions'
 import { getTrips } from '../../../data/trip/list/actions'
 import { loginRequired, withMenu } from '../../../enhancers'
 import Button from '../../../components/button'
-import { Heading1 } from '../../../components/text'
-import Form from './components/form'
-import TitleInput from './components/title'
+import { Input } from '../../../components/form'
+import Title from './components/title'
+import { Form, Header, Body, Footer, FooterLink } from './components/form'
 
 class New extends React.Component {
   constructor (props) {
@@ -44,14 +44,30 @@ class New extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         { this.state.created && <Redirect to={`/${trip.id}`} /> }
 
-        <Heading1>Create a New Trip</Heading1>
-        <TitleInput
-          placeholder='Trip Title'
-          onChange={this.handleChange} />
-        <Button disabled={trip.loading} primary type='submit'>
-          Create Trip
-        </Button>
-        <Link disabled={trip.loading} to='/'><Button>Cancel</Button></Link>
+        <Header>
+          <Title>Create a New Trip</Title>
+        </Header>
+
+        <Body>
+          <Input
+            disabled={trip.loading}
+            label={'Your Trip\'s Name'}
+            placeholder='Trip Title'
+            onChange={this.handleChange} />
+        </Body>
+
+        <Footer>
+          <FooterLink>
+            <Button disabled={trip.loading} primary type='submit'>
+              Create Trip
+            </Button>
+          </FooterLink>
+          <FooterLink>
+            <Link disabled={trip.loading} to='/'>
+              <Button>Cancel</Button>
+            </Link>
+          </FooterLink>
+        </Footer>
       </Form>
     )
   }

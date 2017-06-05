@@ -16,7 +16,7 @@ export default styled('button', ({ primary, small }) => ({
   border: primary ? 0 : '1px solid',
   borderColor: color.medGrey,
   borderRadius: borderRadius.sd,
-  fontFamily: primary ? fontFamily.heading : fontFamily.body,
+  fontFamily: fontFamily.body,
   fontSize: small ? fontSize.small : fontSize.body,
   cursor: 'pointer',
   color: color.black,

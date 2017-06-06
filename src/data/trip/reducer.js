@@ -71,7 +71,10 @@ export default (state = initialState, action) => {
         ...state,
         entities: {
           ...state.entities,
-          [action.payload.id]: action.payload
+          [action.payload.id]: {
+            ...state.entities[action.payload.id],
+            ...action.payload
+          }
         },
         fetchStatus: {
           ...state.fetchStatus,

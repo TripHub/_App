@@ -13,7 +13,7 @@ const initialState = {
   entitiesCount: 0,
   entities: {},  // object of trips
   fetchStatus: {},  // object of corresponding statuses,
-  activeTrip: ''  // maybe move this to another file?
+  activeTrip: 'trip_1lQts7Jx1xJFMovWzyFhdMEhDnP'  // maybe move this to another file?
 }
 
 export default (state = initialState, action) => {

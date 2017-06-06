@@ -10,6 +10,14 @@ I am building TripHub, partly because I think it's a cool idea and I can't find 
 
 **Below is a running log of some of the packages I'm using, with my thoughts/notes** 📝
 
+## [Redux]()
+
+*Global App State*
+
+[This](https://medium.com/statuscode/dissecting-twitters-redux-store-d7280b62c6b1) article on how
+[Twitter Lite](https://mobile.twitter.com) have structured
+their redux store is really interesting, and definitely an influencer in how the redux state is designed in TripHub.
+
 ## [Create React App](https://github.com/facebookincubator/create-react-app)
 
 *Bootstrapping*

@@ -7,9 +7,9 @@ export default (Wrapped) => {
     render () {
       const { trip } = this.props
       return (
-        <Sidebar currentTrip={trip}>
+        // <Sidebar currentTrip={trip}>
           <Wrapped {...this.props} />
-        </Sidebar>
+        // </Sidebar>
       )
     }
   }

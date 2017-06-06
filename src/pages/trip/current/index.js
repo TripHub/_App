@@ -2,11 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../../enhancers'
-import { getTrip } from '../../../data/trip/actions'
+import { getTrip, deleteTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import { Link } from '../../../components/text'
 import Button from '../../../components/button'
-import NotFound from '../../error/notFound'
 import Title from './components/title'
 
 class Trip extends React.Component {
@@ -20,13 +19,12 @@ class Trip extends React.Component {
   }
 
   deleteTrip = () => {
-    // this.props.deleteTrip(this.props.trip.id)
-    // this.props.history.push('/')
+    this.props.deleteTrip(this.props.trip.id)
+      .then(() => this.props.history.push('/'))
   }
 
   render () {
     const { trip, loading } = this.props
-    console.log('loading', loading)
     return loading
       ? <p>loading...</p>
       : (
@@ -46,8 +44,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTrip: (id) => dispatch(getTrip(id))
-  // deleteTrip: (id) => dispatch(deleteTrip(id))
+  getTrip: (id) => dispatch(getTrip(id)),
+  deleteTrip: (id) => dispatch(deleteTrip(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(dashboardPageWithLogin(Trip))

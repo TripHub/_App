@@ -14,7 +14,12 @@ class Trips extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    Object.entries(nextProps.trip.errors)
+    const errors = nextProps.trip.errors
+    errors && this.showErrors(errors)
+  }
+
+  showErrors = (errors) => {
+    Object.entries(errors)
       .map((error) => notify.show(error[1].message, 'error'))
   }
 

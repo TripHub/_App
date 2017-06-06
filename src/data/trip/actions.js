@@ -14,7 +14,7 @@ export const DELETE_TRIP_SUCCESS = 'DELETE_TRIP_SUCCESS'
 export const DELETE_TRIP_FAILURE = 'DELETE_TRIP_FAILURE'
 
 export const getTrips = () => apiRequest('/trip/', {
-  bailout: (state) => !!state.trip.entitiesCount,
+  bailout: (state) => state.trip.invalidate,
   types: [GET_TRIPS_REQUEST, GET_TRIPS_SUCCESS, GET_TRIPS_FAILURE]
 })
 
@@ -22,5 +22,25 @@ export const getTrip = (id) => apiRequest(`/trip/${id}/`, {
   types: [{
     type: GET_TRIP_REQUEST,
     meta: { id }
-  }, GET_TRIP_SUCCESS, GET_TRIP_FAILURE]
+  }, {
+    type: GET_TRIP_SUCCESS,
+    meta: { id }
+  }, {
+    type: GET_TRIP_FAILURE,
+    meta: { id }
+  }]
+})
+
+export const deleteTrip = (id) => apiRequest(`/trip/${id}/`, {
+  method: 'delete',
+  types: [{
+    type: DELETE_TRIP_REQUEST,
+    meta: { id }
+  }, {
+    type: DELETE_TRIP_SUCCESS,
+    meta: { id }
+  }, {
+    type: DELETE_TRIP_FAILURE,
+    meta: { id }
+  }]
 })

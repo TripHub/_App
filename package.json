@@ -2,6 +2,10 @@
   "name": "triphub",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/triphub/app.git"
+  },
   "dependencies": {
     "auth0-js": "^8.7.0",
     "axios": "^0.16.1",

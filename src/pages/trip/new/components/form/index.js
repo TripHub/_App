@@ -1,5 +1,4 @@
 import { styled } from 'styletron-react'
-import { Link } from 'react-router-dom'
 import { borderRadius, color, spacing } from '../../../../../common/style'
 
 export const Form = styled('form', {

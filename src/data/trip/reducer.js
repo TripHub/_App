@@ -10,7 +10,7 @@ import * as fetch from '../../common/fetch'
 const initialState = {
   loading: false,
   errors: {},
-  didInvalidate: false, // denotes whether to fetch from API
+  didInvalidate: true, // denotes whether to fetch from API
   entitiesCount: 0,
   entities: {},  // object of trips
   fetchStatus: {},  // object of corresponding statuses,
@@ -102,14 +102,7 @@ export default (state = initialState, action) => {
     case actionTypes.CREATE_TRIP_SUCCESS:
       return {
         ...state,
-        entities: {
-          ...state.entities,
-          [action.payload.id]: action.payload
-        },
-        fetchStatus: {
-          ...state.fetchStatus,
-          [action.payload.id]: fetch.LOADED
-        },
+        didInvalidate: true,
         loading: false
       }
     case actionTypes.CREATE_TRIP_FAILURE:

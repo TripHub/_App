@@ -13,9 +13,6 @@ export const colorDarker = {
 }
 
 export const gradient = {
-  green: `linear-gradient(45deg, ${color.green}, #5DF5D5)`
-}
-
-export const gradientDarker = {
-  green: `linear-gradient(45deg, ${colorDarker.green}, #5DF5D5)`
+  green: `linear-gradient(45deg, ${color.green}, #5DF5D5)`,
+  greenHover: `linear-gradient(45deg, #73FFC9, #5DF5D5)`
 }

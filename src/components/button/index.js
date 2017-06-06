@@ -4,7 +4,6 @@ import {
   fontSize,
   spacing,
   gradient,
-  gradientDarker,
   borderRadius,
   color
 } from '../../common/style'
@@ -22,7 +21,7 @@ export default styled('button', ({ primary, small }) => ({
   color: color.black,
 
   ':hover': {
-    background: primary ? gradientDarker.green : 'white',
+    background: primary ? gradient.greenHover : 'white',
     borderColor: color.darkGrey,
     boxShadow: '0 1px 1px rgba(0, 0, 0, .1)'
   },

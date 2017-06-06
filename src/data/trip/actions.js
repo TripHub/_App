@@ -14,6 +14,7 @@ export const DELETE_TRIP_SUCCESS = 'DELETE_TRIP_SUCCESS'
 export const DELETE_TRIP_FAILURE = 'DELETE_TRIP_FAILURE'
 
 export const getTrips = () => apiRequest('/trip/', {
+  bailout: (state) => !!state.trip.entitiesCount,
   types: [GET_TRIPS_REQUEST, GET_TRIPS_SUCCESS, GET_TRIPS_FAILURE]
 })
 

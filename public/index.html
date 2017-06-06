@@ -22,10 +22,11 @@
     -->
     <title>TripHub</title>
 
-    <!-- BugSnag for error reporting. -->
+    <!-- Sentry for error reporting. -->
     <script
-      src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js"
-      data-apikey="076c291ae83fd34baae2813e91c64798"></script>
+      src="//cdn.ravenjs.com/3.15.0/raven.min.js"
+      crossorigin="anonymous"></script>
+    <script>Raven.config('https://efce3816c7744b2d987b4e66f1d7a24a@sentry.io/176702').install();</script>
   </head>
   <body>
     <noscript>

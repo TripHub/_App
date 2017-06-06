@@ -16,8 +16,7 @@ export const activeTripSelector = createSelector(
 
 export const isActiveTripLoading = createSelector(
   [ _fetchStatusSelector, _activeTripSelector ],
-  (fetchStatus, activeTrip) => {
-    console.log('fetchStatus', fetchStatus, 'activeTrip', activeTrip, 'result', fetchStatus[activeTrip] === LOADING)
-    return fetchStatus[activeTrip] === LOADING
-  }
+  (fetchStatus, activeTrip) => (
+    fetchStatus[activeTrip] === LOADING
+  )
 )

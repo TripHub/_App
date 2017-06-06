@@ -31,6 +31,12 @@ export const getTrip = (id) => apiRequest(`/trip/${id}/`, {
   }]
 })
 
+export const createTrip = (title) => apiRequest(`/trip/`, {
+  method: 'post',
+  body: JSON.stringify({ title }),
+  types: [CREATE_TRIP_REQUEST, CREATE_TRIP_SUCCESS, CREATE_TRIP_FAILURE]
+})
+
 export const deleteTrip = (id) => apiRequest(`/trip/${id}/`, {
   method: 'delete',
   types: [{

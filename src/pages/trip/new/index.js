@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
-import { createTrip } from '../../../data/trip/current/actions'
-import { getTrips } from '../../../data/trip/list/actions'
+import { Link } from 'react-router-dom'
+import { createTrip } from '../../../data/trip/actions'
 import { loginRequired, withMenu } from '../../../enhancers'
 import Button from '../../../components/button'
 import { Input } from '../../../components/form'
@@ -13,25 +12,14 @@ class New extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      title: '',
-      created: false
-    }
-  }
-
-  // TODO: this bit feels quite hacky... see if we can improve it
-  componentWillReceiveProps (nextProps) {
-    // check if we have a new trip id
-    if (nextProps.trip.id && nextProps.trip.id !== this.props.trip.id) {
-      // update the trip list
-      this.props.getTrips()
-      // trigger the redirect to the new trip
-      this.setState({ created: true })
+      title: ''
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createTrip(this.state.title)
+      .then(() => this.props.history.push('/'))
   }
 
   handleChange = (e) => {
@@ -42,8 +30,6 @@ class New extends React.Component {
     const { trip } = this.props
     return (
       <Form onSubmit={this.handleSubmit}>
-        { this.state.created && <Redirect to={`/${trip.id}`} /> }
-
         <Header>
           <Title>Create a New Trip</Title>
         </Header>
@@ -73,11 +59,10 @@ class New extends React.Component {
   }
 }
 
-const mapStateToProps = ({ trip }) => ({ trip: trip.current })
+const mapStateToProps = ({ trip }) => ({ trip })
 
 const mapDispatchToProps = (dispatch) => ({
-  createTrip: (title) => dispatch(createTrip(title)),
-  getTrips: () => dispatch(getTrips())
+  createTrip: (title) => dispatch(createTrip(title))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(loginRequired(withMenu(New)))

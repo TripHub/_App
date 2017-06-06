@@ -90,6 +90,37 @@ export default (state = initialState, action) => {
           [new Date().getTime()]: action.payload
         }
       }
+    case actionTypes.CREATE_TRIP_REQUEST:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          ...action.error && { [new Date().getTime()]: action.payload }
+        },
+        loading: !action.error
+      }
+    case actionTypes.CREATE_TRIP_SUCCESS:
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          [action.payload.id]: action.payload
+        },
+        fetchStatus: {
+          ...state.fetchStatus,
+          [action.payload.id]: fetch.LOADED
+        },
+        loading: false
+      }
+    case actionTypes.CREATE_TRIP_FAILURE:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [new Date().getTime()]: action.payload
+        },
+        loading: false
+      }
     case actionTypes.DELETE_TRIP_REQUEST:
       return {
         ...state,

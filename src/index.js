@@ -5,6 +5,7 @@ import App from './App'
 import Styletron from 'styletron'
 import { StyletronProvider } from 'styletron-react'
 import { Provider } from 'react-redux'
+import Notifications from 'react-notify-toast'
 import createStore from './store'
 import './index.css'
 
@@ -14,7 +15,10 @@ const styletron = new Styletron()
 render(
   <StyletronProvider styletron={styletron}>
     <Provider store={store}>
-      <App />
+      <div>
+        <Notifications />
+        <App />
+      </div>
     </Provider>
   </StyletronProvider>,
   document.getElementById('root')

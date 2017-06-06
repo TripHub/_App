@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../../enhancers'
 import { getTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
@@ -13,6 +14,11 @@ class Trip extends React.Component {
     this.props.getTrip(this.props.match.params.id)
   }
 
+  componentWillReceiveProps (nextProps) {
+    Object.entries(nextProps.errors)
+      .map((error) => notify.show(error[1].message, 'error'))
+  }
+
   deleteTrip = () => {
     // this.props.deleteTrip(this.props.trip.id)
     // this.props.history.push('/')
@@ -20,7 +26,7 @@ class Trip extends React.Component {
 
   render () {
     const { trip, loading } = this.props
-    console.log('props: activeTripSelector, isActiveTripLoading', trip, loading)
+    console.log('loading', loading)
     return loading
       ? <p>loading...</p>
       : (
@@ -35,7 +41,8 @@ class Trip extends React.Component {
 
 const mapStateToProps = (state) => ({
   trip: activeTripSelector(state),
-  loading: isActiveTripLoading(state)
+  loading: isActiveTripLoading(state),
+  errors: state.trip.errors
 })
 
 const mapDispatchToProps = (dispatch) => ({

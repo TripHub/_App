@@ -5,9 +5,9 @@
   "dependencies": {
     "auth0-js": "^8.7.0",
     "axios": "^0.16.1",
-    "lodash": "^4.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-notify-toast": "^0.2.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-spinkit": "^3.0.0",

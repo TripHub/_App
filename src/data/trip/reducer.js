@@ -65,7 +65,8 @@ export default (state = initialState, action) => {
           ...state.fetchStatus,
           // if there's no request error then change status to loading
           [action.meta.id]: action.error ? fetch.ERROR : fetch.LOADING
-        }
+        },
+        activeTrip: action.meta.id
       }
     case actionTypes.GET_TRIP_SUCCESS:
       return {
@@ -77,8 +78,7 @@ export default (state = initialState, action) => {
         fetchStatus: {
           ...state.fetchStatus,
           [action.payload.id]: fetch.LOADED
-        },
-        activeTrip: action.payload.id
+        }
       }
     case actionTypes.GET_TRIP_FAILURE:
       return {

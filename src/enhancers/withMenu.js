@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Menu from '../components/menu'
 import { logout } from '../data/user/actions'
 
+// adds the menu bar and `user` to this.props
 export default (Wrapped) => {
   class WithMenu extends React.Component {
     render () {

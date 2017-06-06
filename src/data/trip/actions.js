@@ -20,6 +20,6 @@ export const getTrips = () => apiRequest('/trip/', {
 export const getTrip = (id) => apiRequest(`/trip/${id}/`, {
   types: [{
     type: GET_TRIP_REQUEST,
-    payload: (action) => ({ id })
+    meta: { id }
   }, GET_TRIP_SUCCESS, GET_TRIP_FAILURE]
 })

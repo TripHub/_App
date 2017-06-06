@@ -9,9 +9,7 @@ import TripList from './components/tripList'
 
 class Trips extends React.Component {
   componentDidMount () {
-    if (!this.props.state.trip.entitiesCount) {
-      this.props.getTrips()
-    }
+    this.props.getTrips()
   }
 
   render () {

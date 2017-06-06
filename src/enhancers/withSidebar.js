@@ -16,7 +16,9 @@ export default (Wrapped) => {
     }
   }
 
-  const mapStateToProps = (state) => ({ activeTrip: activeTripSelector(state) })
+  const mapStateToProps = (state) => ({
+    activeTrip: activeTripSelector(state)
+  })
 
   return connect(mapStateToProps)(WithSidebar)
 }

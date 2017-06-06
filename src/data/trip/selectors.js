@@ -1,9 +1,20 @@
 import { createSelector } from 'reselect'
+import { LOADING } from '../../common/fetch'
 
-const _tripsSelector = (state) => ({ entities: state.trip.entities })
-const _activeTripSelector = (state) => state.trip.activeTrip
+const _tripsSelector = ({ trip }) => trip.entities
+const _fetchStatusSelector = ({ trip }) => trip.fetchStatus
+const _activeTripSelector = ({ trip }) => trip.activeTrip
 
 export const activeTripSelector = createSelector(
   [ _tripsSelector, _activeTripSelector ],
-  (trips, activeTrip) => trips.entities[activeTrip] || {}
+  (entities, activeTrip) => (
+    activeTrip
+      ? entities[activeTrip]
+      : {}
+  )
+)
+
+export const isActiveTripLoading = createSelector(
+  [ _fetchStatusSelector, _activeTripSelector ],
+  (fetchStatus, activeTrip) => fetchStatus[activeTrip] === LOADING
 )

@@ -9,7 +9,7 @@ export default ({children, currentTrip, ...props}) => (
   <Container>
     <Sidebar>
       <Logo>TripHub</Logo>
-      <Link to={`/${currentTrip.id || ''}`} icon='globe'>Trip</Link>
+      <Link to='/' icon='globe'>Trips</Link>
       <Link to='/tickets' icon='ticket'>Tickets</Link>
       <Link to='/money' icon='gbp'>Money</Link>
     </Sidebar>

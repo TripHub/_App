@@ -1,4 +1,5 @@
 import { apiRequest } from '../../services/api'
+import { activeTripSelector } from './selectors'
 
 export const GET_TRIPS_REQUEST = 'GET_TRIPS_REQUEST'
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS'
@@ -19,6 +20,8 @@ export const getTrips = () => apiRequest('/trip/', {
 })
 
 export const getTrip = (id) => apiRequest(`/trip/${id}/`, {
+  // prevent requesting details of a trip we already have
+  bailout: (state) => activeTripSelector(state).is_complete,
   types: [{
     type: GET_TRIP_REQUEST,
     meta: { id }

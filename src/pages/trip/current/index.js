@@ -30,7 +30,6 @@ class Trip extends React.Component {
       : (
         <div>
           <Title loading={loading}>{trip.title}</Title>
-          <Link to='/'>Change trip</Link>
           <Button onClick={this.deleteTrip}>Delete trip</Button>
         </div>
       )

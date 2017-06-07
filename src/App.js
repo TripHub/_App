@@ -22,9 +22,9 @@ class App extends Component {
           <Route path='/auth/callback' component={Auth0Callback} />
           <Route path='/auth/renew' component={Auth0Renew} />
           <Route path='/auth/logout' component={Logout} />
-          <Route path='/tickets' component={Tickets} />
-          <Route path='/money' component={Money} />
           <Route path='/new' component={New} />
+          <Route path='/:id/tickets' component={Tickets} />
+          <Route path='/:id/money' component={Money} />
           <Route path='/:id' component={Trip} />
           <Route exact path='/' component={Trips} />
           <Route component={NotFound} />

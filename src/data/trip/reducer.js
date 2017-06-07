@@ -33,7 +33,10 @@ export default (state = initialState, action) => {
         ...state,
         entitiesCount: action.payload.count,
         entities: action.payload.results.reduce((acc, trip) => {
-          acc[trip.id] = trip
+          acc[trip.id] = {
+            ...trip,
+            is_complete: false  // we don't have all the details about this trip
+          }
           return acc
         }, {}),
         fetchStatus: action.payload.results.reduce((acc, trip) => {
@@ -73,7 +76,8 @@ export default (state = initialState, action) => {
           ...state.entities,
           [action.payload.id]: {
             ...state.entities[action.payload.id],
-            ...action.payload
+            ...action.payload,
+            is_complete: true  // we have full details about this trip
           }
         },
         fetchStatus: {

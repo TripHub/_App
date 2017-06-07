@@ -5,14 +5,18 @@ import Children from './components/children'
 import Logo from './components/logo'
 import Link from './components/link'
 
-export default ({children, currentTrip, ...props}) => (
-  <Container>
-    <Sidebar>
-      <Logo>TripHub</Logo>
-      <Link to='/' icon='globe'>Trips</Link>
-      <Link to='/tickets' icon='ticket'>Tickets</Link>
-      <Link to='/money' icon='gbp'>Money</Link>
-    </Sidebar>
-    <Children children={children} />
-  </Container>
-)
+export default ({children, currentTrip, ...props}) => {
+  const { id } = currentTrip
+  const disabled = !currentTrip.id
+  return (
+    <Container>
+      <Sidebar>
+        <Logo>TripHub</Logo>
+        <Link disabled={disabled} to={`/${id}`} icon='globe'>Trip</Link>
+        <Link disabled={disabled} to={`/${id}/tickets`} icon='ticket'>Tickets</Link>
+        <Link disabled={disabled} to={`/${id}/money`} icon='gbp'>Money</Link>
+      </Sidebar>
+      <Children children={children} />
+    </Container>
+  )
+}

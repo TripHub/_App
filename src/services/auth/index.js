@@ -27,11 +27,12 @@ export default class Auth {
     authResult && authResult.accessToken && authResult.idTokenPayload
   )
 
-  renewAuth = () => {
+  renewAuth = (config) => {
     const nonce = Auth.randomString(16)
     window.localStorage.setItem('nonce', nonce)
     this.auth0.authorize({
       nonce,
+      state: JSON.stringify(config),
       prompt: 'none',
       audience: process.env.REACT_APP_AUTH0_API_AUD,
       scope: 'openid profile',

@@ -15,6 +15,7 @@ export default ({children, currentTrip, ...props}) => {
         <Link disabled={disabled} to={`/${id}`} icon='globe'>Trip</Link>
         <Link disabled={disabled} to={`/${id}/tickets`} icon='ticket'>Tickets</Link>
         <Link disabled={disabled} to={`/${id}/money`} icon='gbp'>Money</Link>
+        <Link disabled={disabled} to={`/${id}nothere`} icon='gbp'>???</Link>
       </Sidebar>
       <Children children={children} />
     </Container>

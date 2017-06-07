@@ -8,7 +8,9 @@ export default (Wrapped) => {
   class LoginRequired extends React.Component {
     componentDidMount () {
       if (!this.props.isUserAuthenticated) {
-        this.props.renewAuthRequest()
+        this.props.renewAuthRequest({
+          returnTo: window.location.pathname
+        })
       }
     }
 
@@ -24,7 +26,7 @@ export default (Wrapped) => {
   })
 
   const mapDispatchToProps = (dispatch) => ({
-    renewAuthRequest: () => dispatch(renewAuthRequest())
+    renewAuthRequest: (config) => dispatch(renewAuthRequest(config))
   })
 
   return connect(mapStateToProps, mapDispatchToProps)(LoginRequired)

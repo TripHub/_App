@@ -41,9 +41,9 @@ export const handleAuth0TokensAndGetProfile = () => (dispatch) => {
   })
 }
 
-export const renewAuthRequest = () => (dispatch) => {
+export const renewAuthRequest = (config) => (dispatch) => {
   dispatch(loginAuth0Request())
-  new Auth().renewAuth()
+  new Auth().renewAuth(config)
 }
 
 export const renewAuthHandler = (error, authResult) => (dispatch) => {

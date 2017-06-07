@@ -4,6 +4,7 @@ import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrips } from '../../data/trip/actions'
 // import { selectTrips } from '../../data/trip/list/selectors'
+import { activeTripSelector } from '../../data/trip/selectors'
 import Spinner from '../../components/spinner/'
 import TripItem from './components/tripItem'
 import TripList from './components/tripList'
@@ -24,7 +25,7 @@ class Trips extends React.Component {
   }
 
   render () {
-    const { trip } = this.props
+    const { trip, activeTrip } = this.props
     return (
       <div>
         <TripList>
@@ -37,6 +38,7 @@ class Trips extends React.Component {
                   key={trip.id}
                   to={`/${trip.id}`}
                   trip={trip}
+                  active={activeTrip.id === trip.id}
                   memberCount={trip.member_count} />)
           }
         </TripList>
@@ -45,7 +47,10 @@ class Trips extends React.Component {
   }
 }
 
-const mapStateToProps = ({ trip }) => ({ trip })
+const mapStateToProps = (state) => ({
+  trip: state.trip,
+  activeTrip: activeTripSelector(state)
+})
 
 const mapDispatchToProps = (dispatch) => ({
   getTrips: () => dispatch(getTrips())

@@ -1,6 +1,7 @@
 export * from './border'
 export * from './breakpoint'
 export * from './color'
+export * from './shadow'
 export * from './spacing'
 export * from './transition'
 export * from './type'

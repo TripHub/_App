@@ -5,6 +5,6 @@ import Spinner from './components/spinner'
 
 export default (props) => (
   <Container>
-    <Spinner name='three-bounce' color={color.green} {...props} />
+    <Spinner name='three-bounce' color={color.black} {...props} />
   </Container>
 )

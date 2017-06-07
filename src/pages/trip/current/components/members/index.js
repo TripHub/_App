@@ -1,16 +1,20 @@
 import React from 'react'
 import { Heading2, P } from '../../../../../components/text'
 import Icon from '../../../../../components/icon'
+import Button from '../../../../../components/button'
 import Panel from '../../../../../components/panel'
 import Container from './components/container'
 
 export default ({ trip }) => (
   <div>
     <Heading2>{trip.members.length} members</Heading2>
+    <Button small>
+      <Icon name='plus' /> add member
+    </Button>
     <Container>
       <Panel>
         <P noMargin>
-          <Icon name='plus' /> add
+          James Firth
         </P>
       </Panel>
     </Container>

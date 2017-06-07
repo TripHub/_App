@@ -6,6 +6,7 @@ export default styled('div', {
   display: 'flex',
   padding: `0 ${spacing.sd} ${spacing.sd} 0`,
   boxSizing: 'border-box',
+  width: '100%',
 
   // medium and up
   [`@media screen and (min-width: ${breakpoint.medium})`]: {

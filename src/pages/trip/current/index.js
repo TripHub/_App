@@ -9,8 +9,9 @@ import Title from './components/title'
 
 class Trip extends React.Component {
   componentDidMount () {
-    this.props.getTrip(this.props.match.params.id)
-      .then(() => this.props.setActiveTrip(this.props.match.params.id))
+    const { match, setActiveTrip, getTrip } = this.props
+    setActiveTrip(match.params.id)
+      .then(() => getTrip(match.params.id))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -25,6 +26,7 @@ class Trip extends React.Component {
 
   render () {
     const { trip, loading } = this.props
+    console.log('loading', loading)
     return loading
       ? <p>loading...</p>
       : (

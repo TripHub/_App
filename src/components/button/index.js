@@ -6,6 +6,7 @@ import {
   gradient,
   borderRadius,
   color,
+  opacity,
   shadow
 } from '../../common/style'
 
@@ -28,6 +29,6 @@ export default styled('button', ({ primary, small }) => ({
   },
 
   ':disabled': {
-    opacity: 0.4
+    opacity: opacity.disabled
   }
 }))

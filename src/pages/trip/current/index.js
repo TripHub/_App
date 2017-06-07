@@ -4,8 +4,8 @@ import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../../enhancers'
 import { getTrip, deleteTrip, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
+import { Title } from '../../../components/text'
 import Button from '../../../components/button'
-import Title from './components/title'
 
 class Trip extends React.Component {
   componentDidMount () {
@@ -30,7 +30,7 @@ class Trip extends React.Component {
     return (
       <div>
         <Button small onClick={this.deleteTrip}>Delete trip</Button>
-        <Title loading={loading}>{trip.title}</Title>
+        <Title disabled={loading}>{trip.title}</Title>
       </div>
     )
   }

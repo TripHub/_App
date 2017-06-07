@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from '../../../icon'
 import Container from './components/container'
 import Text from './components/text'
 import Image from './components/image'
@@ -11,6 +12,6 @@ export default ({ loading, picture, onClick, open, ...props }) => (
         ? <ImagePlaceholder />
         : <Image src={picture} />
     }
-    <Text>Profile</Text>
+    <Text>Profile <Icon name='caret-down' /></Text>
   </Container>
 )

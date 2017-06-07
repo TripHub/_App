@@ -5,9 +5,9 @@ import Button from '../../../../../components/button'
 import Panel from '../../../../../components/panel'
 import Container from './components/container'
 
-export default ({ trip }) => (
+export default ({ members }) => (
   <div>
-    <Heading2>{trip.members.length} members</Heading2>
+    <Heading2>{members.length} members</Heading2>
     <Button small>
       <Icon name='plus' /> add member
     </Button>

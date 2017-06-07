@@ -4,10 +4,10 @@ import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../../enhancers'
 import { getTrip, deleteTrip, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
-import { Title, P } from '../../../components/text'
 import Spinner from '../../../components/spinner'
 import Button from '../../../components/button'
 // import Members from './components/members'
+import Title from './components/title'
 import Destinations from './components/destinations'
 
 class Trip extends React.Component {
@@ -32,13 +32,15 @@ class Trip extends React.Component {
     return (
       <div>
         <Button small onClick={this.deleteTrip}>Delete trip</Button>
-        <Title disabled={loading}>{trip.title}</Title>
-        <P>Trip description goes here...</P>
+        <Title
+          loading={loading}
+          title={trip.title}
+          description={trip.description} />
 
         {trip.is_complete ? (
           // these elements need a fully loaded trip object
           <div>
-            <Destinations trip={trip} />
+            <Destinations destinations={trip.destinations} />
           </div>
 
         ) : <Spinner />}

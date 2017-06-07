@@ -1,23 +1,23 @@
 import React from 'react'
+import { Row, OneTwoFour } from '../../../../../components/responsive'
 import { Heading2 } from '../../../../../components/text'
-import Icon from '../../../../../components/icon'
 import Button from '../../../../../components/button'
 import Panel from '../../../../../components/panel'
-import { Row, OneTwoFour } from '../../../../../components/responsive'
-import Toolbar from './components/toolbar'
+import Icon from '../../../../../components/icon'
+import Header from './components/header'
 
-export default ({ trip }) => (
+export default ({ destinations }) => (
   <div>
-    <Heading2>{trip.destinations.length} destinations</Heading2>
-    <Toolbar>
-      <Button small style={{marginBotton: '5px'}}>
+    <Header>
+      <Heading2>{destinations.length} destinations</Heading2>
+      <Button small>
         <Icon name='plus' /> add destination
       </Button>
-    </Toolbar>
+    </Header>
     <Row>
       {
-        trip.destinations.map((destination) => (
-          <OneTwoFour key={destination.id}>
+        destinations.map((destination) => (
+          <OneTwoFour smallGutter key={destination.id}>
             <Panel>{destination.title}</Panel>
           </OneTwoFour>
         ))

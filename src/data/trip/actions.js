@@ -1,5 +1,4 @@
 import { apiRequest } from '../../services/api'
-import { activeTripSelector } from './selectors'
 
 export const GET_TRIPS_REQUEST = 'GET_TRIPS_REQUEST'
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS'
@@ -7,6 +6,7 @@ export const GET_TRIPS_FAILURE = 'GET_TRIPS_FAILURE'
 export const GET_TRIP_REQUEST = 'GET_TRIP_REQUEST'
 export const GET_TRIP_SUCCESS = 'GET_TRIP_SUCCESS'
 export const GET_TRIP_FAILURE = 'GET_TRIP_FAILURE'
+export const SET_ACTIVE_TRIP = 'SET_ACTIVE_TRIP'
 export const CREATE_TRIP_REQUEST = 'CREATE_TRIP_REQUEST'
 export const CREATE_TRIP_SUCCESS = 'CREATE_TRIP_SUCCESS'
 export const CREATE_TRIP_FAILURE = 'CREATE_TRIP_FAILURE'
@@ -21,7 +21,7 @@ export const getTrips = () => apiRequest('/trip/', {
 
 export const getTrip = (id) => apiRequest(`/trip/${id}/`, {
   // prevent requesting details of a trip we already have
-  bailout: (state) => activeTripSelector(state).is_complete,
+  bailout: ({ trip }) => trip.entities[id].is_complete,
   types: [{
     type: GET_TRIP_REQUEST,
     meta: { id }
@@ -32,6 +32,11 @@ export const getTrip = (id) => apiRequest(`/trip/${id}/`, {
     type: GET_TRIP_FAILURE,
     meta: { id }
   }]
+})
+
+export const setActiveTrip = (id) => ({
+  type: SET_ACTIVE_TRIP,
+  payload: { id }
 })
 
 export const createTrip = (title) => apiRequest(`/trip/`, {

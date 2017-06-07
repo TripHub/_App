@@ -1,5 +1,5 @@
 export const fontSize = {
-  title: '26px',
+  title: '29px',
   heading1: '22px',
   heading2: '18px',
   body: '16px',

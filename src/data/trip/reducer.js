@@ -66,8 +66,7 @@ export default (state = initialState, action) => {
         fetchStatus: {
           ...state.fetchStatus,
           [action.meta.id]: action.error ? fetch.ERROR : fetch.LOADING
-        },
-        activeTrip: action.meta.id
+        }
       }
     case actionTypes.GET_TRIP_SUCCESS:
       return {
@@ -96,6 +95,11 @@ export default (state = initialState, action) => {
           ...state.errors,
           [new Date().getTime()]: action.payload
         }
+      }
+    case actionTypes.SET_ACTIVE_TRIP:
+      return {
+        ...state,
+        activeTrip: action.payload.id
       }
     case actionTypes.CREATE_TRIP_REQUEST:
       return {

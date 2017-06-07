@@ -1,17 +1,15 @@
 import { styled } from 'styletron-react'
-import { breakpoint, color, fontSize, spacing } from './../../../../common/style'
-import { Title } from '../../../text'
+import { breakpoint, color, spacing } from './../../../../common/style'
+import { Heading1 } from '../../../text'
 
-export default styled(Title, {
+export default styled(Heading1, {
   // base
   color: color.black,
   margin: '0',
   padding: spacing.sd,
-  fontSize: fontSize.heading2,
 
   // small and up
   [`@media screen and (min-width: ${breakpoint.small}`]: {
-    fontSize: fontSize.title,
     textAlign: 'center',
     padding: `${spacing.lg} ${spacing.sm}`
   }

@@ -5,7 +5,7 @@ import { dashboardPageWithLogin } from '../../../enhancers'
 import { getTrip, deleteTrip, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import PageContainer from '../../../components/pageContainer'
-import { Title } from '../../../components/text'
+import { Title, P } from '../../../components/text'
 import Button from '../../../components/button'
 import Members from './components/members'
 
@@ -32,6 +32,7 @@ class Trip extends React.Component {
       <PageContainer>
         <Button small onClick={this.deleteTrip}>Delete trip</Button>
         <Title disabled={loading}>{trip.title}</Title>
+        <P>Trip description goes here...</P>
 
         {trip.is_complete && (  // these elements need a fully loaded trip object
           <Members trip={trip} />

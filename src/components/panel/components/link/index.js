@@ -1,9 +1,8 @@
 import { styled } from 'styletron-react'
 import { spacing } from '../../../../common/style'
-import { Link } from 'react-router-dom'
+import { Link as _Link } from 'react-router-dom'
 
-export default styled(Link, {
-  // base styles
+const styles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -11,6 +10,19 @@ export default styled(Link, {
   textAlign: 'center',
   boxSizing: 'border-box',
   padding: spacing.sd,
-  cursor: 'pointer',
   textDecoration: 'none'
+}
+
+export const Link = styled(_Link, {
+  ...styles,
+  cursor: 'pointer'
+})
+
+export const Button = styled('button', {
+  ...styles,
+  cursor: 'pointer'
+})
+
+export const Div = styled('div', {
+  ...styles
 })

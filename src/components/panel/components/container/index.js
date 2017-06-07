@@ -1,5 +1,5 @@
 import { styled } from 'styletron-react'
-import { color, shadow } from '../../../../../../common/style'
+import { color, shadow } from '../../../../common/style'
 
 export default styled('div', ({ active }) => ({
   // base styles

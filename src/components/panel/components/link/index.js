@@ -1,5 +1,5 @@
 import { styled } from 'styletron-react'
-import { spacing } from '../../../../../../common/style'
+import { spacing } from '../../../../common/style'
 import { Link } from 'react-router-dom'
 
 export default styled(Link, {

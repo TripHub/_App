@@ -27,14 +27,12 @@ class Trip extends React.Component {
   render () {
     const { trip, loading } = this.props
     console.log('loading', loading)
-    return loading
-      ? <p>loading...</p>
-      : (
-        <div>
-          <Button small onClick={this.deleteTrip}>Delete trip</Button>
-          <Title loading={loading}>{trip.title}</Title>
-        </div>
-      )
+    return (
+      <div>
+        <Button small onClick={this.deleteTrip}>Delete trip</Button>
+        <Title loading={loading}>{trip.title}</Title>
+      </div>
+    )
   }
 }
 

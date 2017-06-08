@@ -53,7 +53,7 @@ class Trip extends React.Component {
 const mapStateToProps = (state) => ({
   trip: activeTripSelector(state),
   loading: isActiveTripLoading(state),
-  errors: state.trip.errors
+  errors: state.trip.active.errors
 })
 
 const mapDispatchToProps = (dispatch) => ({

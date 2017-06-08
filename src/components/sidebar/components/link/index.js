@@ -26,11 +26,11 @@ const Text = styled('span', {
 })
 
 export default ({ icon, children, ...props }) => (
-  <Link exact activeStyle={!props.disabled && {
+  <Link exact activeStyle={!props.disabled ? {
     background: 'rgba(0, 0, 0, 0.1)',
     borderColor: colorDarker.green,
     pointerEvents: 'none'
-  }} {...props}>
+  } : {}} {...props}>
     <Icon name={icon} />
     <Text children={children} />
   </Link>

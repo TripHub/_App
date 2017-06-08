@@ -24,6 +24,7 @@ class Trip extends React.Component {
 
   deleteTrip = () => {
     this.props.deleteTrip(this.props.trip.id)
+      .then(() => this.props.setActiveTrip(''))
       .then(() => this.props.history.push('/'))
   }
 

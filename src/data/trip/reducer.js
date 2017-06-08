@@ -140,8 +140,7 @@ export default (state = initialState, action) => {
     case actionTypes.DELETE_TRIP_SUCCESS:
       return {
         ...state,
-        didInvalidate: true,
-        activeTrip: ''
+        didInvalidate: true
       }
     case actionTypes.DELETE_TRIP_FAILURE:
       return {

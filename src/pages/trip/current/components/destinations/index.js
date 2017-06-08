@@ -17,7 +17,7 @@ export default ({ destinations }) => (
     <Row>
       {
         destinations.map((destination) => (
-          <OneTwoFour smallGutter key={destination.id}>
+          <OneTwoFour key={destination.id}>
             <Panel>{destination.title}</Panel>
           </OneTwoFour>
         ))

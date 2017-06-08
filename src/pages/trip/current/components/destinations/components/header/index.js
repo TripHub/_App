@@ -3,6 +3,6 @@ import { spacing } from '../../../../../../../common/style'
 
 export default styled('div', {
   display: 'block',
-  marginBottom: spacing.sm,
+  marginBottom: spacing.sd,
   padding: `0 ${spacing.sd}`
 })

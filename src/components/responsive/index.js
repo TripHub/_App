@@ -7,14 +7,12 @@ export const Row = styled('div', ({ noGutter }) => ({
   padding: noGutter ? 0 : `0 0 0 ${spacing.sd}`
 }))
 
-export const OneTwoFour = styled('div', ({ noGutter, smallGutter }) => ({
+export const OneTwoFour = styled('div', ({ noGutter }) => ({
   // base styles
   display: 'inline-flex',
   boxSizing: 'border-box',
   width: '100%',
-  padding: noGutter
-    ? 0
-    : `0 ${smallGutter ? spacing.sm : spacing.sd} ${smallGutter ? spacing.sm : spacing.sd} 0`,
+  padding: noGutter ? 0 : `0 ${spacing.sd} ${spacing.sd} 0`,
 
   // med and up
   [`@media screen and (min-width: ${breakpoint.medium})`]: {

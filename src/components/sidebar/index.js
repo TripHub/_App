@@ -12,9 +12,21 @@ export default ({children, currentTrip, ...props}) => {
     <Container>
       <Sidebar>
         <Logo>TripHub</Logo>
-        <Link disabled={disabled} to={!disabled ? `/${id}` : ''} icon='globe'>Trip</Link>
-        <Link disabled={disabled} to={!disabled ? `/${id}/tickets` : ''} icon='ticket'>Tickets</Link>
-        <Link disabled={disabled} to={!disabled ? `/${id}/money` : ''} icon='gbp'>Money</Link>
+        <Link
+          disabled={disabled}
+          to={!disabled ? `/${id}` : ''}
+          icon='globe'
+          children='Trip' />
+        <Link
+          disabled={disabled}
+          to={!disabled ? `/${id}/tickets` : ''}
+          icon='ticket'
+          children='Tickets' />
+        <Link
+          disabled={disabled}
+          to={!disabled ? `/${id}/money` : ''}
+          icon='gbp'
+          children='Money' />
       </Sidebar>
       <Children children={children} />
     </Container>

@@ -33,7 +33,7 @@ export default class Auth {
     this.auth0.authorize({
       nonce,
       state: JSON.stringify(config),
-      // prompt: 'none',
+      prompt: 'none',
       audience: process.env.REACT_APP_AUTH0_API_AUD,
       scope: 'openid profile',
       responseType: 'id_token token',

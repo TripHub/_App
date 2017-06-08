@@ -26,7 +26,7 @@ const Text = styled('span', {
 })
 
 export default ({ icon, children, ...props }) => (
-  <Link exact activeStyle={{
+  <Link exact activeStyle={!props.disabled && {
     background: 'rgba(0, 0, 0, 0.1)',
     borderColor: colorDarker.green,
     pointerEvents: 'none'

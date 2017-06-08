@@ -4,6 +4,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import Notifications from 'react-notify-toast'
 import { store } from '/'
 import Trips from './pages/trips'
 import New from './pages/trip/new'
@@ -27,19 +28,22 @@ const checkTripId = (props) => {
 class App extends Component {
   render () {
     return (
-      <Router>
-        <Switch>
-          <Route path='/auth/callback' component={Auth0Callback} />
-          <Route path='/auth/renew' component={Auth0Renew} />
-          <Route path='/auth/logout' component={Logout} />
-          <Route path='/new' component={New} />
-          <Route path='/:id/tickets' component={Tickets} />
-          <Route path='/:id/money' component={Money} />
-          <Route path='/:id' render={checkTripId} />
-          <Route exact path='/' component={Trips} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
+      <div>
+        <Notifications />
+        <Router>
+          <Switch>
+            <Route path='/auth/callback' component={Auth0Callback} />
+            <Route path='/auth/renew' component={Auth0Renew} />
+            <Route path='/auth/logout' component={Logout} />
+            <Route path='/new' component={New} />
+            <Route path='/:id/tickets' component={Tickets} />
+            <Route path='/:id/money' component={Money} />
+            <Route path='/:id' render={checkTripId} />
+            <Route exact path='/' component={Trips} />
+            <Route component={NotFound} />
+          </Switch>
+        </Router>
+      </div>
     )
   }
 }

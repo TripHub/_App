@@ -1,19 +1,18 @@
 import React from 'react'
 import Panel from '../../../../components/panel'
+import { Heading2, Small } from '../../../../components/text'
 import { OneTwoFour } from '../../../../components/responsive'
-import Title from './components/title'
-import Text from './components/text'
 
 export default ({ trip, children, memberCount, ...props }) => {
-  const totalMembers = memberCount + 1
-  const trippersText = totalMembers === 1 ? 'tripper' : 'trippers'
+  const totalMembers = memberCount + 1  // include the owner
+  const memberText = totalMembers === 1 ? 'member' : 'members'
   return (
     <OneTwoFour>
       <Panel {...props}>
-        <Title>{children || trip.title}</Title>
+        <Heading2 noMargin>{children || trip.title}</Heading2>
         {
           Number.isInteger(totalMembers)
-            ? <Text>{totalMembers} {trippersText}</Text>
+            ? <Small noMargin>{totalMembers} {memberText}</Small>
             : null
         }
       </Panel>

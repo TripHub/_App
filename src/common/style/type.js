@@ -1,7 +1,7 @@
 export const fontSize = {
   title: '29px',
-  heading1: '22px',
-  heading2: '18px',
+  heading1: '21px',
+  heading2: '17px',
   body: '16px',
   small: '13px'
 }

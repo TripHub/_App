@@ -7,7 +7,7 @@
 import * as actionTypes from './actions'
 import * as fetch from '../../../common/fetch'
 
-const initialState = {
+export const initialState = {
   loading: false,  // loading list
   errors: {},  // object of errors
   didInvalidate: true, // flags whether to fetch from API
@@ -16,7 +16,7 @@ const initialState = {
   fetchStatus: {}  // object matching entities, with item fetch statuses
 }
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.GET_TRIPS_REQUEST:
       return {

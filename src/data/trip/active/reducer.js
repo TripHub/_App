@@ -1,12 +1,12 @@
 import * as actionTypes from './actions'
 
-const initialState = {
+export const initialState = {
   loading: false,
   errors: {},
   id: ''
 }
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.SET_ACTIVE_TRIP:
       return {

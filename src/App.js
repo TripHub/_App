@@ -5,7 +5,7 @@ import {
   Switch
 } from 'react-router-dom'
 import Notifications from 'react-notify-toast'
-import { store } from '/'
+import { store } from './'
 import Trips from './pages/trips'
 import New from './pages/trip/new'
 import Trip from './pages/trip/current'
@@ -25,7 +25,7 @@ const checkTripId = (props) => {
     : <NotFound />
 }
 
-class App extends Component {
+export default class App extends Component {
   render () {
     return (
       <div>
@@ -47,5 +47,3 @@ class App extends Component {
     )
   }
 }
-
-export default App

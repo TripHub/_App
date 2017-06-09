@@ -6,7 +6,7 @@ import Styletron from 'styletron'
 import { StyletronProvider } from 'styletron-react'
 import { Provider } from 'react-redux'
 import createStore from './store'
-import './index.css'
+import './assets/index.css'
 
 export const store = createStore()
 const styletron = new Styletron()

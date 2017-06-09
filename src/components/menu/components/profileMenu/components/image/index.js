@@ -1,5 +1,5 @@
 import { styled } from 'styletron-react'
-import { color } from '../../../../../../common/style'
+import { color, spacing } from '../../../../../../common/style'
 
 export default styled('img', {
   objectFit: 'cover',
@@ -7,5 +7,6 @@ export default styled('img', {
   height: '32px',
   borderRadius: '50%',
   border: 0,
-  background: color.lightGrey
+  background: color.lightGrey,
+  marginRight: spacing.sm
 })

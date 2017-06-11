@@ -18,7 +18,7 @@ import NotFound from './pages/error/notFound'
 
 const checkTripId = (props) => {
   // show NotFound if trip id not in trips list
-  const trips = store.getState().trip.list.entities
+  const trips = store.getState().trip.entities
   const { params } = props.match
   return trips[params.id]
     ? <Trip {...props} />

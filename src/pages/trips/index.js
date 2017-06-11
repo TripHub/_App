@@ -15,7 +15,7 @@ class Trips extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const errors = nextProps.trips.errors
+    const errors = nextProps.trip.errors
     errors && this.showErrors(errors)
   }
 
@@ -25,16 +25,16 @@ class Trips extends React.Component {
   }
 
   render () {
-    const { trips, activeTrip } = this.props
+    const { trip, activeTrip } = this.props
     return (
       <Row>
         <TripItem to='/new'>
           <Icon name='plus' /> New Trip
         </TripItem>
         {
-          trips.loading
+          trip.loading
             ? <Spinner />
-            : Object.values(trips.entities).map(trip =>
+            : Object.values(trip.entities).map(trip =>
               <TripItem
                 key={trip.id}
                 to={`/${trip.id}`}
@@ -48,7 +48,7 @@ class Trips extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trips: tripsSelector(state),
+  trip: tripsSelector(state),
   activeTrip: activeTripSelector(state)
 })
 

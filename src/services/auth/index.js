@@ -5,8 +5,8 @@ export default class Auth {
     this.auth0 = new auth0.WebAuth({
       domain: process.env.REACT_APP_AUTH0_DOMAIN,
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-      redirectUri: `${window.location.protocol}//${window.location.host}/auth/callback`,
       audience: process.env.REACT_APP_AUTH0_API_AUD,
+      redirectUri: `${window.location.protocol}//${window.location.host}/auth/callback`,
       responseType: 'token id_token',
       scope: 'openid profile'
     })
@@ -27,17 +27,19 @@ export default class Auth {
     authResult && authResult.accessToken && authResult.idTokenPayload
   )
 
+  auth0 = this.auth0
+
   renewAuth = (config) => {
     const nonce = Auth.randomString(16)
     window.localStorage.setItem('nonce', nonce)
     this.auth0.authorize({
       nonce,
       state: JSON.stringify(config),
-      prompt: 'none',
+      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       audience: process.env.REACT_APP_AUTH0_API_AUD,
+      prompt: 'none',
       scope: 'openid profile',
       responseType: 'id_token token',
-      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       redirectUri: `${window.location.protocol}//${window.location.host}/auth/renew`
     })
   }

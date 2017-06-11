@@ -1,12 +1,12 @@
 import React from 'react'
 import { Row, OneTwoFour } from '../../../../../components/responsive'
-import { Heading1 } from '../../../../../components/text'
+import { Heading1, Heading2 } from '../../../../../components/text'
 import Button from '../../../../../components/button'
 import Panel from '../../../../../components/panel'
 import Icon from '../../../../../components/icon'
 import Header from './components/header'
 
-export default ({ destinations }) => (
+export default ({ destinations, onDelete }) => (
   <div>
     <Header>
       <Heading1>{destinations.length} destinations</Heading1>
@@ -18,7 +18,12 @@ export default ({ destinations }) => (
       {
         destinations.map((destination) => (
           <OneTwoFour key={destination.id}>
-            <Panel>{destination.title}</Panel>
+            <Panel>
+              <Heading2>{destination.title}</Heading2>
+              <Button small onClick={() => onDelete(destination.id)}>
+                Delete
+              </Button>
+            </Panel>
           </OneTwoFour>
         ))
       }

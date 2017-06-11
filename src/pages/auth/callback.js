@@ -7,7 +7,6 @@ import { P } from '../../components/text'
 
 class Callback extends React.Component {
   componentDidMount () {
-    console.log('redrect in DidMount?', window.location.hash && !this.props.isUserAuthenticated)
     if (window.location.hash && !this.props.isUserAuthenticated) {
       this.props.handleTokensAndGetProfile()
     } else {
@@ -15,12 +14,7 @@ class Callback extends React.Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log('nextProps', nextProps)
-  }
-
   render () {
-    console.log('render', this.props)
     return this.props.isUserAuthenticated
       ? <Redirect push={false} to='/' />
       : <P>Logging in...</P>

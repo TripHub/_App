@@ -10,6 +10,7 @@
   "dependencies": {
     "auth0-js": "^8.7.0",
     "axios": "^0.16.1",
+    "express": "^4.15.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-notify-toast": "^0.2.0",
@@ -32,10 +33,14 @@
     "react-test-renderer": "^15.5.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:client": "react-scripts start",
+    "start": "node ./server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "engines": {
+    "node": "6"
   },
   "standard": {
     "parser": "babel-eslint"

@@ -2,6 +2,7 @@
   "name": "triphub",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://triphub-app.herokuapp.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/triphub/app.git"

@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Notifications from 'react-notify-toast'
 import { store } from './'
 import Trips from './pages/trips'
@@ -30,19 +26,17 @@ export default class App extends Component {
     return (
       <div>
         <Notifications />
-        <Router>
-          <Switch>
-            <Route path='/auth/callback' component={Auth0Callback} />
-            <Route path='/auth/renew' component={Auth0Renew} />
-            <Route path='/auth/logout' component={Logout} />
-            <Route path='/new' component={New} />
-            <Route path='/:id/tickets' component={Tickets} />
-            <Route path='/:id/money' component={Money} />
-            <Route path='/:id' render={checkTripId} />
-            <Route exact path='/' component={Trips} />
-            <Route component={NotFound} />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route path='/auth/callback' component={Auth0Callback} />
+          <Route path='/auth/renew' component={Auth0Renew} />
+          <Route path='/auth/logout' component={Logout} />
+          <Route path='/new' component={New} />
+          <Route path='/:id/tickets' component={Tickets} />
+          <Route path='/:id/money' component={Money} />
+          <Route path='/:id' render={checkTripId} />
+          <Route exact path='/' component={Trips} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
     )
   }

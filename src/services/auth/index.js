@@ -6,7 +6,7 @@ export default class Auth {
       domain: process.env.REACT_APP_AUTH0_DOMAIN,
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       audience: process.env.REACT_APP_AUTH0_API_AUD,
-      redirectUri: `${window.location.protocol}//${window.location.host}/auth/callback`,
+      redirectUri: `${window.location.origin}/auth/callback`,
       responseType: 'token id_token',
       scope: 'openid profile',
       leeway: 30

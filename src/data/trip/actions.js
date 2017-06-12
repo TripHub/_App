@@ -13,6 +13,9 @@ export const CREATE_TRIP_FAILURE = 'CREATE_TRIP_FAILURE'
 export const DELETE_TRIP_REQUEST = 'DELETE_TRIP_REQUEST'
 export const DELETE_TRIP_SUCCESS = 'DELETE_TRIP_SUCCESS'
 export const DELETE_TRIP_FAILURE = 'DELETE_TRIP_FAILURE'
+export const CREATE_DESTINATION_REQUEST = 'CREATE_DESTINATION_REQUEST'
+export const CREATE_DESTINATION_SUCCESS = 'CREATE_DESTINATION_SUCCESS'
+export const CREATE_DESTINATION_FAILURE = 'CREATE_DESTINATION_FAILURE'
 export const DELETE_DESTINATION_REQUEST = 'DELETE_DESTINATION_REQUEST'
 export const DELETE_DESTINATION_SUCCESS = 'DELETE_DESTINATION_SUCCESS'
 export const DELETE_DESTINATION_FAILURE = 'DELETE_DESTINATION_FAILURE'
@@ -58,6 +61,21 @@ export const deleteTrip = (id) => apiRequest(`/trip/${id}/`, {
     meta: { id }
   }, {
     type: DELETE_TRIP_FAILURE,
+    meta: { id }
+  }]
+})
+
+export const createDestination = (id, title) => apiRequest('/destination/', {
+  method: 'post',
+  body: JSON.stringify({ trip: id, title: title }),
+  types: [{
+    type: CREATE_DESTINATION_REQUEST,
+    meta: { id }
+  }, {
+    type: CREATE_DESTINATION_SUCCESS,
+    meta: { id }
+  }, {
+    type: CREATE_DESTINATION_FAILURE,
     meta: { id }
   }]
 })

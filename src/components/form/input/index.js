@@ -2,12 +2,12 @@ import React from 'react'
 import { styled } from 'styletron-react'
 import { borderRadius, spacing, color, fontFamily, fontSize } from '../../../common/style'
 
-export const InputWithoutLabel = styled('input', {
+export const InputWithoutLabel = styled('input', ({ small }) => ({
   display: 'block',
   boxSizing: 'border-box',
-  padding: spacing.sd,
+  padding: small ? spacing.sm : spacing.sd,
   border: `1px solid ${color.medGrey}`,
-  fontSize: fontSize.heading2,
+  fontSize: small ? fontSize.body : fontSize.heading2,
   fontFamily: fontFamily.body,
   borderRadius: borderRadius.sd,
   width: '100%',
@@ -22,7 +22,7 @@ export const InputWithoutLabel = styled('input', {
     borderColor: color.medGrey,
     color: color.darkGrey
   }
-})
+}))
 
 export const Label = styled('label', {
   display: 'block',

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../../enhancers'
-import { getTrip, deleteTrip, deleteDestination, setActiveTrip } from '../../../data/trip/actions'
+import { getTrip, deleteTrip, createDestination, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import Spinner from '../../../components/spinner'
 import Button from '../../../components/button'
@@ -29,7 +29,7 @@ class Trip extends React.Component {
   }
 
   render () {
-    const { trip, loading, deleteDestination } = this.props
+    const { loading, trip, createDestination } = this.props
     return (
       <div>
         <Button small onClick={this.deleteTrip}>Delete trip</Button>
@@ -38,14 +38,14 @@ class Trip extends React.Component {
           title={trip.title}
           description={trip.description} />
 
-        {trip.is_complete ? ( // these elements need a fully loaded trip object
+        { trip.is_complete ? ( // these elements need a fully loaded trip object
           <div>
             <Destinations
-              onDelete={deleteDestination}
+              createDestination={createDestination(trip.id)}
               destinations={trip.destinations} />
           </div>
 
-        ) : <Spinner />}
+        ) : <Spinner /> }
       </div>
     )
   }
@@ -60,8 +60,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getTrip: (id) => dispatch(getTrip(id)),
   deleteTrip: (id) => dispatch(deleteTrip(id)),
-  deleteDestination: (id) => dispatch(deleteDestination(id)),
-  setActiveTrip: (id) => dispatch(setActiveTrip(id))
+  setActiveTrip: (id) => dispatch(setActiveTrip(id)),
+  createDestination: (id) => (title) => dispatch(createDestination(id, title))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(dashboardPageWithLogin(Trip))

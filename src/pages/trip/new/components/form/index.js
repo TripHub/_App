@@ -4,7 +4,7 @@ import { borderRadius, color, spacing } from '../../../../../common/style'
 export const Form = styled('form', {
   maxWidth: '720px',
   width: '84%',
-  margin: `${spacing.sd} auto 0`,
+  margin: `${spacing.sd} auto`,
   border: `1px solid ${color.medGrey}`,
   borderRadius: borderRadius.sd
 })

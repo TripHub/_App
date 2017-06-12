@@ -21,7 +21,7 @@ export const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     /**
-     * Get details for all Trips
+     * Get details for all trips
      */
 
     case actionTypes.GET_TRIPS_REQUEST:
@@ -64,7 +64,7 @@ export default (state = initialState, action = {}) => {
       }
 
     /**
-     * Get details for a Trip
+     * Get details for a trip
      */
 
     case actionTypes.GET_TRIP_REQUEST:
@@ -109,7 +109,7 @@ export default (state = initialState, action = {}) => {
       }
 
     /**
-     * Create a Trip
+     * Create a trip
      */
 
     case actionTypes.CREATE_TRIP_REQUEST:
@@ -138,7 +138,7 @@ export default (state = initialState, action = {}) => {
       }
 
     /**
-     * Delete a single Trip
+     * Delete a single trip
      */
 
     case actionTypes.DELETE_TRIP_REQUEST:
@@ -172,24 +172,46 @@ export default (state = initialState, action = {}) => {
       }
 
     /**
-     * Delete a Trip's destination
+     * Delete a single trip
      */
 
-    case actionTypes.DELETE_DESTINATION_REQUEST:
+    case actionTypes.CREATE_DESTINATION_REQUEST:
       return {
         ...state,
         errors: {
           ...state.errors,
           ...action.error && { [new Date().getTime()]: action.payload }
+        },
+        fetchStatus: {
+          ...state.fetchStatus,
+          [action.meta.id]: action.error ? fetch.ERROR : fetch.LOADING
         }
       }
-    case actionTypes.DELETE_DESTINATION_SUCCESS:
-      return {
-        ...state
-      }
-    case actionTypes.DELETE_DESTINATION_FAILURE:
+    case actionTypes.CREATE_DESTINATION_SUCCESS:
       return {
         ...state,
+        entities: {
+          ...state.entities,
+          [action.meta.id]: {
+            ...state.entities[action.meta.id],
+            destinations: [
+              ...state.entities[action.meta.id].destinations,
+              action.payload
+            ]
+          }
+        },
+        fetchStatus: {
+          ...state.fetchStatus,
+          [action.meta.id]: fetch.LOADED
+        }
+      }
+    case actionTypes.CREATE_DESTINATION_FAILURE:
+      return {
+        ...state,
+        fetchStatus: {
+          ...state.fetchStatus,
+          [action.meta.id]: fetch.ERROR
+        },
         errors: {
           ...state.errors,
           [new Date().getTime()]: action.payload

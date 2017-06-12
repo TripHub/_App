@@ -5,28 +5,65 @@ import Button from '../../../../../components/button'
 import Panel from '../../../../../components/panel'
 import Icon from '../../../../../components/icon'
 import Header from './components/header'
+import New from './components/new'
 
-export default ({ destinations, onDelete }) => (
-  <div>
-    <Header>
-      <Heading1>{destinations.length} destinations</Heading1>
-      <Button small>
-        <Icon name='plus' /> add destination
-      </Button>
-    </Header>
-    <Row>
-      {
-        destinations.map((destination) => (
-          <OneTwoFour key={destination.id}>
-            <Panel>
-              <Heading2>{destination.title}</Heading2>
-              <Button small onClick={() => onDelete(destination.id)}>
-                Delete
-              </Button>
-            </Panel>
-          </OneTwoFour>
-        ))
-      }
-    </Row>
-  </div>
-)
+export default class extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showForm: false,
+      input: ''
+    }
+  }
+
+  show = () => this.setState({ showForm: true })
+
+  hide = () => this.setState({ showForm: false })
+
+  handleChange = (e) => this.setState({ input: e.target.value })
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.createDestination(this.state.input)
+    this.hide()
+    this.setState({ input: '' })
+  }
+
+  render () {
+    const { destinations } = this.props
+    const { showForm, input } = this.state
+    return (
+      <div>
+        <Header>
+          <Heading1>Destinations</Heading1>
+          <Button small onClick={this.show}>
+            <Icon name='plus' /> add destination
+          </Button>
+        </Header>
+        <Row>
+          {
+            showForm && (
+              <OneTwoFour>
+                <Panel>
+                  <New
+                    onChange={this.handleChange}
+                    onSubmit={this.handleSubmit}
+                    input={input} />
+                </Panel>
+              </OneTwoFour>
+            )
+          }
+          {
+            destinations.map((destination) => (
+              <OneTwoFour key={destination.id}>
+                <Panel>
+                  <Heading2 noMargin>{destination.title}</Heading2>
+                </Panel>
+              </OneTwoFour>
+            ))
+          }
+        </Row>
+      </div>
+    )
+  }
+}

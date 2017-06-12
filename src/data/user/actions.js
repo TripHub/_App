@@ -21,7 +21,7 @@ const getUserProfileFailure = (error) => ({ type: GET_USER_PROFILE_FAILURE, erro
 export const handleAuth0TokensAndGetProfile = () => (dispatch) => {
   const auth = new Auth()
   dispatch(loginAuth0Request())
-  auth.handleAuthentication((error, authResult) => {
+  auth.auth0.parseHash((error, authResult) => {
     // check the response from Auth0
     if (Auth.isValidAuthResult(authResult)) {
       // successful authentication :)

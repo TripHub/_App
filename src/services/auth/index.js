@@ -8,7 +8,8 @@ export default class Auth {
       audience: process.env.REACT_APP_AUTH0_API_AUD,
       redirectUri: `${window.location.protocol}//${window.location.host}/auth/callback`,
       responseType: 'token id_token',
-      scope: 'openid profile'
+      scope: 'openid profile',
+      leeway: 30
     })
   }
 
@@ -40,7 +41,7 @@ export default class Auth {
       prompt: 'none',
       scope: 'openid profile',
       responseType: 'id_token token',
-      redirectUri: `${window.location.protocol}//${window.location.host}/auth/renew`
+      redirectUri: `${window.location.origin}/auth/renew`
     })
   }
 
@@ -62,7 +63,7 @@ export default class Auth {
 
   logout = () => (
     this.auth0.logout({
-      returnTo: `${window.location.protocol}//${window.location.host}/`
+      returnTo: window.location.origin
     })
   )
 }

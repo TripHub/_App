@@ -18,7 +18,7 @@ export default class extends React.Component {
 
   show = () => this.setState({ showForm: true })
 
-  hide = () => this.setState({ showForm: false })
+  hide = () => this.setState({ showForm: false, input: '' })
 
   handleChange = (e) => this.setState({ input: e.target.value })
 
@@ -48,6 +48,7 @@ export default class extends React.Component {
                   <New
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
+                    onCancel={this.hide}
                     input={input} />
                 </Panel>
               </OneTwoFour>

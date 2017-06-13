@@ -24,16 +24,27 @@ export const InputWithoutLabel = styled('input', ({ small }) => ({
   }
 }))
 
-export const Label = styled('label', {
+export const Label = styled('label', ({ small }) => ({
   display: 'block',
-  marginBottom: spacing.sd,
+  textAlign: 'left',
+  paddingBottom: small ? spacing.sm : spacing.sd,
   fontFamily: fontFamily.body,
   fontSize: fontSize.body
-})
+}))
 
-export const Input = ({ label, ...props }) => (
-  <div>
-    <Label>{label}</Label>
-    <InputWithoutLabel {...props} />
-  </div>
-)
+export const Input = ({ label, small, id, ...props }) => {
+  // if no ID is given, then generate a random one
+  const _id = id || Math.random().toString(36).replace(/[^a-z]+/gi, '')
+  return (
+    <div>
+      <Label
+        htmlFor={_id}
+        small={small}
+        children={label} />
+      <InputWithoutLabel
+        id={_id}
+        small={small}
+        {...props} />
+    </div>
+  )
+}

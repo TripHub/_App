@@ -23,7 +23,3 @@ export const Footer = styled('div', {
   padding: spacing.sd,
   borderTop: `1px solid ${color.medGrey}`
 })
-
-export const FooterLink = styled('span', {
-  marginRight: spacing.sd
-})

@@ -6,7 +6,7 @@ import { loginRequired, withMenu } from '../../../enhancers'
 import Button from '../../../components/button'
 import { Input } from '../../../components/form'
 import Title from './components/title'
-import { Form, Header, Body, Footer, FooterLink } from './components/form'
+import { Form, Header, Body, Footer } from './components/form'
 
 class New extends React.Component {
   constructor (props) {
@@ -43,16 +43,12 @@ class New extends React.Component {
         </Body>
 
         <Footer>
-          <FooterLink>
-            <Button disabled={trip.loading} primary type='submit'>
-              Create Trip
-            </Button>
-          </FooterLink>
-          <FooterLink>
-            <Link disabled={trip.loading} to='/'>
-              <Button>Cancel</Button>
-            </Link>
-          </FooterLink>
+          <Button disabled={trip.loading} primary type='submit'>
+            Create Trip
+          </Button>
+          <Link disabled={trip.loading} to='/'>
+            <Button>Cancel</Button>
+          </Link>
         </Footer>
       </Form>
     )

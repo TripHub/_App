@@ -10,12 +10,13 @@ import {
   shadow
 } from '../../common/style'
 
-export default styled('button', ({ primary, small }) => ({
+export default styled('button', ({ primary, small, noMargin }) => ({
   boxSizing: 'border-box',
+  marginRight: noMargin ? 0 : small ? spacing.sm : spacing.sd,
   padding: small ? '2px 5px' : `7px ${spacing.sd}`,
   background: primary ? gradient.green : 'white',
-  border: primary ? 0 : '1px solid',
-  borderColor: color.medGrey,
+  border: '1px solid',
+  borderColor: primary ? 'white' : color.medGrey,
   borderRadius: borderRadius.sd,
   fontFamily: fontFamily.body,
   fontSize: small ? fontSize.small : fontSize.body,
@@ -24,7 +25,7 @@ export default styled('button', ({ primary, small }) => ({
 
   ':hover': {
     background: primary ? gradient.greenHover : 'white',
-    borderColor: color.darkGrey,
+    borderColor: primary ? 'white' : color.darkGrey,
     boxShadow: shadow.sd
   },
 

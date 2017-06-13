@@ -2,15 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Container from './components/container'
 import ProfileMenu from './components/profileMenu'
-import MenuButton from './components/menuButton'
+import Button from '../button'
 
 export default ({ loading, picture, onLogout, ...props }) => (
   <Container {...props}>
     <Link to='/'>
-      <MenuButton small>All Trips</MenuButton>
+      <Button small>All Trips</Button>
     </Link>
     <Link to='/auth/logout'>
-      <MenuButton small>Logout</MenuButton>
+      <Button small>Logout</Button>
     </Link>
     <ProfileMenu loading={loading} picture={picture} />
   </Container>

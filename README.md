@@ -29,4 +29,4 @@ their redux store is really interesting, and definitely an influencer in how the
 
 I was drawn to this library because I like how it handles CSS class names. Styletron converts individual CSS rules into their own atomic classes, and then combines those classes to create the desired styles. In doing this, it hopes to limit CSS size, as future rules are likely to simply be a combination of pre-existing classes.
 
-A great explaination on how Styletron works along with it's limitations can be found [here](https://ryantsao.com/blog/virtual-css-with-styletron).
+A great explaination on how Styletron works, along with some limitations, can be found [here](https://ryantsao.com/blog/virtual-css-with-styletron).

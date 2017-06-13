@@ -1,9 +1,8 @@
 import { styled } from 'styletron-react'
 import { spacing } from '../../../../../../../../../common/style'
-import { Input } from '../../../../../../../../../components/form'
 
-export default styled(Input, {
+export default styled('div', {
   flex: 1,
   width: '100%',
-  marginRight: spacing.sd
+  marginRight: spacing.sm
 })

@@ -1,3 +1,5 @@
+<img align="left" width="190" src="https://cdn.rawgit.com/TripHub/App/5034f827/images/icon.svg" />
+
 # TripHub
 
 [![Build Status](https://travis-ci.org/TripHub/App.svg?branch=master)](https://travis-ci.org/TripHub/App)

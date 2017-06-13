@@ -1,6 +1,4 @@
-<img align="left" width="190" src="https://cdn.rawgit.com/TripHub/App/5034f827/images/icon.svg" />
-
-# TripHub
+<img width="210" alt="TripHub logo" src="https://cdn.rawgit.com/TripHub/App/5034f827/images/logo.svg" />
 
 [![Build Status](https://travis-ci.org/TripHub/App.svg?branch=master)](https://travis-ci.org/TripHub/App)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)

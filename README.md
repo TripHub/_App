@@ -1,4 +1,4 @@
-# <img width="312" alt="TripHub logo" src="https://cdn.rawgit.com/TripHub/App/5034f827/images/logo.svg" />
+# [<img width="312" alt="TripHub logo" src="https://cdn.rawgit.com/TripHub/App/5034f827/images/logo.svg" />](https://github.com/TripHub/App)
 
 [![Build Status](https://travis-ci.org/TripHub/App.svg?branch=master)](https://travis-ci.org/TripHub/App)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -11,7 +11,7 @@ I am building TripHub, partly because I think it's a cool idea and I can't find 
 
 **Below is a running log of some of the packages I'm using, with my thoughts/notes** 📝
 
-## [Redux]()
+## [Redux](http://redux.js.org/)
 
 *Global App State*
 

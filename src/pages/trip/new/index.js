@@ -22,6 +22,13 @@ class New extends React.Component {
       .then(() => this.props.history.push('/'))
   }
 
+  handleKeyDown = (e) => {
+    // clear state and leave route if esc key
+    if (e.keyCode === 27) {
+      this.props.history.push('/')
+    }
+  }
+
   handleChange = (e) => {
     this.setState({ title: e.target.value })
   }
@@ -36,9 +43,11 @@ class New extends React.Component {
 
         <Body>
           <Input
+            autoFocus
             disabled={trip.loading}
             label={'Your Trip\'s Name'}
             placeholder='Trip Title'
+            onKeyDown={this.handleKeyDown}
             onChange={this.handleChange} />
         </Body>
 

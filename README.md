@@ -1,4 +1,4 @@
-# [![TripHub Logo](https://github.com/TripHub/App/blob/master/images/triphub.svg)](https://github.com/TripHub/App)
+# TripHub
 
 [![Build Status](https://travis-ci.org/TripHub/App.svg?branch=master)](https://travis-ci.org/TripHub/App)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)

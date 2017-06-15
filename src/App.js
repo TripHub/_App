@@ -36,7 +36,7 @@ export default class App extends Component {
           <Route path='/:id/settings' component={Settings} />
           <Route path='/:id/tickets' component={Tickets} />
           <Route path='/:id/money' component={Money} />
-          <Route path='/:id' render={checkTripId} />
+          <Route path='/:id' component={Trip} />
 
           <Route exact path='/' component={Trips} />
           <Route component={NotFound} />

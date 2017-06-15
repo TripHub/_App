@@ -3,6 +3,7 @@ import { Link as _Link } from 'react-router-dom'
 import { fontFamily, fontSize, color, colorDarker, spacing, opacity } from '../../common/style'
 
 const baseStyles = ({ disabled = false, light = false, noMargin = false }) => ({
+  display: 'block',
   color: light ? 'white' : color.black,
   opacity: disabled ? opacity.disabled : 1,
   ...noMargin && { margin: 0 }

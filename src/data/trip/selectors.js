@@ -17,7 +17,7 @@ export const activeTripSelector = createSelector(
   [ getTripData ],
   ({ entities, activeTripId }) => (
     activeTripId
-      ? entities[activeTripId]
+      ? entities[activeTripId] ? entities[activeTripId] : {}
       : {}
   )
 )

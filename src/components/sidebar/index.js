@@ -6,7 +6,7 @@ import Logo from './components/logo'
 import Link from './components/link'
 
 export default ({children, currentTrip, ...props}) => {
-  const { id } = currentTrip
+  const { id } = currentTrip || {}
   const disabled = !id
   return (
     <Container>

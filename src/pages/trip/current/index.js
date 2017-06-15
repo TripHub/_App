@@ -2,17 +2,25 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../../enhancers'
-import { getTrip, deleteTrip, createDestination, setActiveTrip } from '../../../data/trip/actions'
+import { getTrip, getTrips, createDestination, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import Spinner from '../../../components/spinner'
+import NotFound from '../../error/notFound'
 import Title from './components/title'
 import Destinations from './components/destinations'
 
 class Trip extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { resolved: false }
+  }
+
   componentDidMount () {
-    const { match, setActiveTrip, getTrip } = this.props
-    setActiveTrip(match.params.id)
+    const { match, setActiveTrip, getTrip, getTrips } = this.props
+    getTrips()
       .then(() => getTrip(match.params.id))
+      .then(() => setActiveTrip(match.params.id))
+      .then(() => this.setState({ resolved: true }))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -20,15 +28,12 @@ class Trip extends React.Component {
       .map((error) => notify.show(error[1].message, 'error'))
   }
 
-  // deleteTrip = () => {
-  //   this.props.deleteTrip(this.props.trip.id)
-  //     .then(() => this.props.setActiveTrip(''))
-  //     .then(() => this.props.history.push('/'))
-  // }
-
   render () {
     const { loading, trip, createDestination } = this.props
-    return (
+    if (!this.state.resolved) {
+      return <Spinner />
+    }
+    return trip.id ? (
       <div>
         <Title
           settingsLink={`/${trip.id}/settings`}
@@ -36,16 +41,17 @@ class Trip extends React.Component {
           title={trip.title}
           description={trip.description} />
 
-        { trip.is_complete ? ( // these elements need a fully loaded trip object
-          <div>
-            <Destinations
-              createDestination={createDestination(trip.id)}
-              destinations={trip.destinations} />
-          </div>
-
-        ) : <Spinner /> }
+        {
+          // these elements need a fully loaded trip object
+          trip.is_complete && (
+            <div>
+              <Destinations
+                createDestination={createDestination(trip.id)}
+                destinations={trip.destinations} />
+            </div>
+        )}
       </div>
-    )
+    ) : <NotFound />
   }
 }
 
@@ -56,8 +62,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  getTrips: () => dispatch(getTrips()),
   getTrip: (id) => dispatch(getTrip(id)),
-  deleteTrip: (id) => dispatch(deleteTrip(id)),
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
   createDestination: (id) => (title) => dispatch(createDestination(id, title))
 })

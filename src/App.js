@@ -5,6 +5,7 @@ import { store } from './'
 import Trips from './pages/trips'
 import New from './pages/trip/new'
 import Trip from './pages/trip/current'
+import Settings from './pages/trip/settings'
 import Tickets from './pages/trip/tickets'
 import Money from './pages/trip/money'
 import Auth0Callback from './pages/auth/callback'
@@ -31,9 +32,12 @@ export default class App extends Component {
           <Route path='/auth/renew' component={Auth0Renew} />
           <Route path='/auth/logout' component={Logout} />
           <Route path='/new' component={New} />
+
+          <Route path='/:id/settings' component={Settings} />
           <Route path='/:id/tickets' component={Tickets} />
           <Route path='/:id/money' component={Money} />
           <Route path='/:id' render={checkTripId} />
+
           <Route exact path='/' component={Trips} />
           <Route component={NotFound} />
         </Switch>

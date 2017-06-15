@@ -5,8 +5,6 @@ import { dashboardPageWithLogin } from '../../../enhancers'
 import { getTrip, deleteTrip, createDestination, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import Spinner from '../../../components/spinner'
-import Button from '../../../components/button'
-// import Members from './components/members'
 import Title from './components/title'
 import Destinations from './components/destinations'
 
@@ -22,18 +20,18 @@ class Trip extends React.Component {
       .map((error) => notify.show(error[1].message, 'error'))
   }
 
-  deleteTrip = () => {
-    this.props.deleteTrip(this.props.trip.id)
-      .then(() => this.props.setActiveTrip(''))
-      .then(() => this.props.history.push('/'))
-  }
+  // deleteTrip = () => {
+  //   this.props.deleteTrip(this.props.trip.id)
+  //     .then(() => this.props.setActiveTrip(''))
+  //     .then(() => this.props.history.push('/'))
+  // }
 
   render () {
     const { loading, trip, createDestination } = this.props
     return (
       <div>
-        <Button small onClick={this.deleteTrip}>Delete trip</Button>
         <Title
+          settingsLink={`/${trip.id}/settings`}
           loading={loading}
           title={trip.title}
           description={trip.description} />

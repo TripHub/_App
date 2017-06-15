@@ -13,11 +13,16 @@ export default (Wrapped) => {
     }
 
     componentDidMount () {
-      const { match, setActiveTrip, getTrip, getTrips } = this.props
-      getTrips()
-        .then(() => getTrip(match.params.id))
-        .then(() => setActiveTrip(match.params.id))
-        .then(() => this.setState({ resolved: true }))
+      const { trip, match, setActiveTrip, getTrip, getTrips } = this.props
+      const urlId = match.params.id
+      if (urlId !== trip.id) {
+        getTrips()
+          .then(() => getTrip(match.params.id))
+          .then(() => setActiveTrip(match.params.id))
+          .then(() => this.setState({ resolved: true }))
+      } else {
+        this.setState({ resolved: true })
+      }
     }
 
     render () {

@@ -30,9 +30,12 @@ class Trip extends React.Component {
 
   render () {
     const { loading, trip, createDestination } = this.props
+    // show spinner whilst trip data is fetched
     if (!this.state.resolved) {
       return <Spinner />
     }
+    // if the trip resolves with an ID then show the page, else the
+    // trip does not exist and so show NotFound
     return trip.id ? (
       <div>
         <Title

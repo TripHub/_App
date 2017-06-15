@@ -7,7 +7,7 @@ export default styled(Link, ({ disabled }) => ({
   border: 0,
   background: 'none',
   color: color.black,
-  opacity: disabled ? opacity.disabled : opacity.muted,
+  opacity: disabled ? opacity.disabled : 0.55,
   cursor: 'pointer',
   fontSize: fontSize.heading2,
 

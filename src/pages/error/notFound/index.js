@@ -7,7 +7,7 @@ import Container from './components/container'
 
 export default loginRequired(() => (
   <Container>
-    <Heading1>404 - Page not found.</Heading1>
+    <Heading1>Page not found.</Heading1>
     <Link to='/'>
       <Button small>Return to dashboard</Button>
     </Link>

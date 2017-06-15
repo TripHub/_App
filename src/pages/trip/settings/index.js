@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { dashboardPageWithLogin } from '../../../enhancers'
+import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { Title } from '../../../components/text'
 import { getTrip, deleteTrip, createDestination, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
-import DangerZone from './components/dangerZone'
 import Padding from './components/padding'
+import Trip from './components/trip'
+import DangerZone from './components/dangerZone'
 
 class Settings extends React.Component {
   componentDidMount () {
@@ -24,6 +25,7 @@ class Settings extends React.Component {
     return (
       <Padding>
         <Title>Settings</Title>
+        <Trip title={trip.title} description={trip.description} />
         <DangerZone onDelete={this.handleDelete} />
       </Padding>
     )
@@ -41,5 +43,5 @@ const mapDispatchToProps = (dispatch) => ({
   setActiveTrip: (id) => dispatch(setActiveTrip(id))
 })
 
-const SettingsPage = dashboardPageWithLogin(Settings)
+const SettingsPage = dashboardPageWithLogin(loadTrip(Settings))
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage)

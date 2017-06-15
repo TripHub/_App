@@ -1,28 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
-import { dashboardPageWithLogin } from '../../../enhancers'
+import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { getTrip, getTrips, createDestination, setActiveTrip } from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
-import Spinner from '../../../components/spinner'
-import NotFound from '../../error/notFound'
 import Title from './components/title'
 import Destinations from './components/destinations'
 
 class Trip extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { resolved: false }
-  }
-
-  componentDidMount () {
-    const { match, setActiveTrip, getTrip, getTrips } = this.props
-    getTrips()
-      .then(() => getTrip(match.params.id))
-      .then(() => setActiveTrip(match.params.id))
-      .then(() => this.setState({ resolved: true }))
-  }
-
   componentWillReceiveProps (nextProps) {
     Object.entries(nextProps.errors)
       .map((error) => notify.show(error[1].message, 'error'))
@@ -30,13 +15,7 @@ class Trip extends React.Component {
 
   render () {
     const { loading, trip, createDestination } = this.props
-    // show spinner whilst trip data is fetched
-    if (!this.state.resolved) {
-      return <Spinner />
-    }
-    // if the trip resolves with an ID then show the page, else the
-    // trip does not exist and so show NotFound
-    return trip.id ? (
+    return (
       <div>
         <Title
           settingsLink={`/${trip.id}/settings`}
@@ -54,7 +33,7 @@ class Trip extends React.Component {
             </div>
         )}
       </div>
-    ) : <NotFound />
+    )
   }
 }
 
@@ -71,4 +50,5 @@ const mapDispatchToProps = (dispatch) => ({
   createDestination: (id) => (title) => dispatch(createDestination(id, title))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(dashboardPageWithLogin(Trip))
+const TripPage = dashboardPageWithLogin(loadTrip(Trip))
+export default connect(mapStateToProps, mapDispatchToProps)(TripPage)

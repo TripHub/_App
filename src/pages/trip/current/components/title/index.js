@@ -13,6 +13,6 @@ export default ({ loading, title, description, settingsLink }) => (
         <Icon name='cog' />
       </IconLink>
     </TitleRow>
-    <P disabled={loading}>{description}</P>
+    <P noMargin disabled={loading}>{description || 'Get your camping gear ready ;)'}</P>
   </Container>
 )

@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import createStore from './store'
 import './assets/index.css'
 
-export const store = createStore()
+const store = createStore()
 const styletron = new Styletron()
 
 render(

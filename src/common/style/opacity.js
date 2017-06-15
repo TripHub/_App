@@ -1,4 +1,4 @@
 export const opacity = {
-  muted: 0.75,
-  disabled: 0.4
+  muted: 0.78,
+  disabled: 0.3
 }

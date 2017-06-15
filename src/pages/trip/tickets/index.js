@@ -1,9 +1,9 @@
 import React from 'react'
-import { dashboardPageWithLogin } from '../../../enhancers'
+import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { P } from '../../../components/text'
 
-export default dashboardPageWithLogin(() => (
+export default dashboardPageWithLogin(loadTrip(() => (
   <div>
     <P>Tickets</P>
   </div>
-))
+)))

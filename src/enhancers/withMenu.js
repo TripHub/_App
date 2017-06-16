@@ -10,14 +10,19 @@ export default (Wrapped) => {
       const { user, logout } = this.props
       return (
         <div>
-          <Menu onLogout={logout} loading={user.loading} picture={user.picture} />
+          <Menu
+            loading={user.loading}
+            onLogout={logout}
+            picture={user.picture} />
           <Wrapped {...this.props} />
         </div>
       )
     }
   }
 
-  const mapStateToProps = ({ user }) => ({ user })
+  const mapStateToProps = (state) => ({
+    user: state.user
+  })
 
   const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout())

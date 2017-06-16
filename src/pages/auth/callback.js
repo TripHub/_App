@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { handleAuth0TokensAndGetProfile } from '../../data/user/actions'
 import { isUserAuthenticated } from '../../data/user/selectors'
+import { getHashItem } from '../../services/url'
 import { P } from '../../components/text'
 
 class Callback extends React.Component {
@@ -14,9 +15,20 @@ class Callback extends React.Component {
     }
   }
 
+  getReturnToValue = () => {
+    const hashState = getHashItem(window.location.hash, 'state')
+    if (hashState) {
+      const decodedState = decodeURIComponent(hashState)
+      const jsonState = JSON.parse(decodedState)
+      return jsonState.returnTo || '/'
+    }
+    return '/'
+  }
+
   render () {
+    console.log('state', getHashItem(window.location.hash, 'state'), window.location.hash)
     return this.props.isUserAuthenticated
-      ? <Redirect push={false} to='/' />
+      ? <Redirect push={false} to={this.getReturnToValue()} />
       : <P>Logging in...</P>
   }
 }

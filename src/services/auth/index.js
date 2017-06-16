@@ -57,8 +57,10 @@ export default class Auth {
     this.auth0.parseHash(handle)
   )
 
-  login = () => (
-    this.auth0.authorize()
+  login = (config = {}) => (
+    this.auth0.authorize({
+      state: JSON.stringify(config)
+    })
   )
 
   logout = () => (

@@ -46,7 +46,7 @@ class New extends React.Component {
             autoFocus
             disabled={trip.loading}
             label={'Your Trip\'s Name'}
-            placeholder='Trip Title'
+            placeholder='e.g. American Getaway...'
             onKeyDown={this.handleKeyDown}
             onChange={this.handleChange} />
         </Body>
@@ -70,4 +70,5 @@ const mapDispatchToProps = (dispatch) => ({
   createTrip: (title) => dispatch(createTrip(title))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginRequired(withMenu(New)))
+const NewPage = loginRequired(withMenu(New))
+export default connect(mapStateToProps, mapDispatchToProps)(NewPage)

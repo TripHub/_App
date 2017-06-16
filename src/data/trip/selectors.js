@@ -4,12 +4,12 @@ import { LOADING } from '../../common/fetch'
 const getTripData = ({ trip }) => trip
 
 export const tripsSelector = createSelector(
-  [getTripData],
+  [ getTripData ],
   (trip) => trip
 )
 
 export const tripsEntitiesSelector = createSelector(
-  [getTripData],
+  [ getTripData ],
   ({ entities }) => entities
 )
 

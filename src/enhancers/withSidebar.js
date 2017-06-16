@@ -7,9 +7,9 @@ import { activeTripSelector } from '../data/trip/selectors'
 export default (Wrapped) => {
   class WithSidebar extends React.Component {
     render () {
-      const { activeTrip } = this.props
+      const { trip } = this.props
       return (
-        <Sidebar currentTrip={activeTrip}>
+        <Sidebar trip={trip}>
           <Wrapped {...this.props} />
         </Sidebar>
       )
@@ -17,7 +17,7 @@ export default (Wrapped) => {
   }
 
   const mapStateToProps = (state) => ({
-    activeTrip: activeTripSelector(state)
+    trip: activeTripSelector(state)
   })
 
   return connect(mapStateToProps)(WithSidebar)

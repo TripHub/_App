@@ -7,6 +7,7 @@ import { getTrip, deleteTrip, updateTrip, setActiveTrip } from '../../../data/tr
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import Padding from './components/padding'
 import Trip from './components/trip'
+import Members from './components/members'
 import DangerZone from './components/dangerZone'
 
 class Settings extends React.Component {
@@ -51,6 +52,7 @@ class Settings extends React.Component {
           tagLineDisabled={!tagLine || tagLine === trip.tag_line}
           onTagLineChange={(e) => this.setState({ tagLine: e.target.value.trim() })}
           onTagLineSubmit={(e) => this.handleUpdate(e, { tag_line: tagLine })} />
+        <Members />
         <DangerZone onDelete={this.handleDelete} />
       </Padding>
     )

@@ -5,8 +5,8 @@ import Children from './components/children'
 import Logo from './components/logo'
 import Link from './components/link'
 
-export default ({children, currentTrip, ...props}) => {
-  const { id } = currentTrip || {}
+export default ({children, trip, ...props}) => {
+  const { id } = trip || {}
   const disabled = !id
   return (
     <Container>

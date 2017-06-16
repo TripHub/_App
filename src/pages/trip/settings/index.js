@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { Title } from '../../../components/text'
 import { getTrip, deleteTrip, updateTrip, setActiveTrip } from '../../../data/trip/actions'
@@ -32,6 +33,7 @@ class Settings extends React.Component {
     e.preventDefault()
     const { trip } = this.props
     this.props.updateTrip(trip.id, data)
+      .then(() => notify.show(`${trip.title} updated!`, 'success'))
   }
 
   render () {

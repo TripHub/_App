@@ -30,6 +30,7 @@ export default styled('button', ({ primary, small, noMargin }) => ({
   },
 
   ':disabled': {
-    opacity: opacity.disabled
+    opacity: opacity.disabled,
+    pointerEvents: 'none'
   }
 }))

@@ -17,3 +17,5 @@ export const objFrom = (obj, key, valueFunc) => {
     ...key && { [key]: valueFunc(obj[key]) }
   }
 }
+
+export const randomString = () => Math.random().toString(36).replace(/[^a-z]+/gi, '')

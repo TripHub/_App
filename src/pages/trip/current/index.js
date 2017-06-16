@@ -21,7 +21,7 @@ class Trip extends React.Component {
           settingsLink={`/${trip.id}/settings`}
           loading={loading}
           title={trip.title}
-          description={trip.description} />
+          tagLine={trip.tag_line} />
 
         {
           // these elements need a fully loaded trip object

@@ -13,6 +13,9 @@ export const CREATE_TRIP_FAILURE = 'CREATE_TRIP_FAILURE'
 export const DELETE_TRIP_REQUEST = 'DELETE_TRIP_REQUEST'
 export const DELETE_TRIP_SUCCESS = 'DELETE_TRIP_SUCCESS'
 export const DELETE_TRIP_FAILURE = 'DELETE_TRIP_FAILURE'
+export const UPDATE_TRIP_REQUEST = 'UPDATE_TRIP_REQUEST'
+export const UPDATE_TRIP_SUCCESS = 'UPDATE_TRIP_SUCCESS'
+export const UPDATE_TRIP_FAILURE = 'UPDATE_TRIP_FAILURE'
 export const CREATE_DESTINATION_REQUEST = 'CREATE_DESTINATION_REQUEST'
 export const CREATE_DESTINATION_SUCCESS = 'CREATE_DESTINATION_SUCCESS'
 export const CREATE_DESTINATION_FAILURE = 'CREATE_DESTINATION_FAILURE'
@@ -36,6 +39,21 @@ export const getTrip = (id) => apiRequest(`/trip/${id}/`, {
     meta: { id }
   }, {
     type: GET_TRIP_FAILURE,
+    meta: { id }
+  }]
+})
+
+export const updateTrip = (id, data) => apiRequest(`/trip/${id}/`, {
+  method: 'PATCH',
+  body: JSON.stringify(data),
+  types: [{
+    type: UPDATE_TRIP_REQUEST,
+    meta: { id }
+  }, {
+    type: UPDATE_TRIP_SUCCESS,
+    meta: { id }
+  }, {
+    type: UPDATE_TRIP_FAILURE,
     meta: { id }
   }]
 })

@@ -172,7 +172,51 @@ export default (state = initialState, action = {}) => {
       }
 
     /**
-     * Delete a single trip
+     * Update a trip
+     */
+
+    case actionTypes.UPDATE_TRIP_REQUEST:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          ...action.error && { [new Date().getTime()]: action.payload }
+        },
+        fetchStatus: {
+          ...state.fetchStatus,
+          [action.meta.id]: action.error ? fetch.ERROR : fetch.LOADING
+        }
+      }
+    case actionTypes.UPDATE_TRIP_SUCCESS:
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          [action.payload.id]: {
+            ...state.entities[action.payload.id],
+            ...action.payload
+          }
+        },
+        fetchStatus: {
+          ...state.fetchStatus,
+          [action.payload.id]: fetch.LOADED
+        }
+      }
+    case actionTypes.UPDATE_TRIP_FAILURE:
+      return {
+        ...state,
+        fetchStatus: {
+          ...state.fetchStatus,
+          [action.payload.id]: fetch.ERROR
+        },
+        errors: {
+          ...state.errors,
+          [new Date().getTime()]: action.payload
+        }
+      }
+
+    /**
+     * Create a destination
      */
 
     case actionTypes.CREATE_DESTINATION_REQUEST:

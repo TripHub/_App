@@ -31,7 +31,7 @@ export default class extends React.Component {
 
   render () {
     const { destinations } = this.props
-    const { showForm, input } = this.state
+    let { showForm, input } = this.state
     return (
       <div>
         <Header>

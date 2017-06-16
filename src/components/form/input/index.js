@@ -1,19 +1,21 @@
 import React from 'react'
 import { styled } from 'styletron-react'
 import { borderRadius, spacing, color, fontFamily, fontSize } from '../../../common/style'
+import { randomString } from '../../../services/primitives'
 
 export const InputWithoutLabel = styled('input', ({ small }) => ({
   display: 'block',
   boxSizing: 'border-box',
-  padding: small ? spacing.sm : spacing.sd,
+  width: '100%',
+  padding: small ? `${spacing.sm} 6px` : `0 ${spacing.sd}`,
   border: `1px solid ${color.medGrey}`,
   fontSize: small ? fontSize.body : fontSize.heading2,
   fontFamily: fontFamily.body,
   borderRadius: borderRadius.sd,
-  width: '100%',
   outline: 0,
+  lineHeight: small ? 1.55 : 2.8,
 
-  ':hover': {
+  ':focus': {
     borderColor: color.darkGrey
   },
 
@@ -33,8 +35,7 @@ export const Label = styled('label', ({ small }) => ({
 }))
 
 export const Input = ({ label, small, id, ...props }) => {
-  // if no ID is given, then generate a random one
-  const _id = id || Math.random().toString(36).replace(/[^a-z]+/gi, '')
+  const _id = id || randomString()
   return (
     <div>
       <Label

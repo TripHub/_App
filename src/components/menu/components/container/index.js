@@ -1,9 +1,13 @@
 import { styled } from 'styletron-react'
-import { spacing } from '../../../../common/style'
+import { color, spacing, opacity } from '../../../../common/style'
 
-export default styled('div', {
+export default styled('div', ({ disabled }) => ({
   display: 'flex',
+  boxSizing: 'border-box',
   alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: `${spacing.sm} ${spacing.sd}`
-})
+  justifyContent: 'space-between',
+  padding: `${spacing.sm} ${spacing.sd}`,
+  marginBottom: spacing.sm,
+  borderBottom: `1px solid ${color.lightGrey}`,
+  opacity: disabled ? opacity.disabled : 1
+}))

@@ -17,11 +17,11 @@ class Trip extends React.Component {
     const { loading, trip, createDestination } = this.props
     return (
       <div>
-        <Title
+        {false && <Title
           settingsLink={`/${trip.id}/settings`}
           loading={loading}
           title={trip.title}
-          tagLine={trip.tag_line} />
+          tagLine={trip.tag_line} />}
 
         {
           // these elements need a fully loaded trip object

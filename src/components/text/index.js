@@ -2,10 +2,10 @@ import { styled } from 'styletron-react'
 import { Link as _Link } from 'react-router-dom'
 import { fontFamily, fontSize, color, colorDarker, spacing, opacity } from '../../common/style'
 
-const baseStyles = ({ disabled = false, light = false, noMargin = false }) => ({
+const baseStyles = ({ disabled = false, muted = false, light = false, noMargin = false }) => ({
   display: 'block',
   color: light ? 'white' : color.black,
-  opacity: disabled ? opacity.disabled : 1,
+  opacity: disabled ? opacity.disabled : muted ? opacity.muted : 1,
   ...noMargin && { margin: 0 }
 })
 

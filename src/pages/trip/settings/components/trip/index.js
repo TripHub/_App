@@ -9,6 +9,7 @@ const Container = styled('div', {
 })
 
 export default ({
+  loading,
   title,
   description,
   titleDisabled,
@@ -22,6 +23,7 @@ export default ({
     <Heading1>Trip</Heading1>
     <InputForm
       small
+      loading={loading}
       label='Title'
       defaultValue={title}
       disabled={titleDisabled}
@@ -29,6 +31,7 @@ export default ({
       onSubmit={onTitleSubmit} />
     <InputForm
       small
+      loading={loading}
       label='Tag Line'
       defaultValue={description}
       disabled={tagLineDisabled}

@@ -16,7 +16,7 @@ const InputWrapper = styled('div', {
   marginRight: spacing.sm
 })
 
-export const InputForm = ({ small, label, id, onSubmit, buttonText, disabled, ...props }) => {
+export const InputForm = ({ loading, small, label, id, onSubmit, buttonText, disabled, ...props }) => {
   const _id = id || randomString()
   return (
     <form onSubmit={onSubmit}>
@@ -29,12 +29,13 @@ export const InputForm = ({ small, label, id, onSubmit, buttonText, disabled, ..
           <InputWithoutLabel
             id={_id}
             small={small}
+            disabled={loading}
             {...props} />
         </InputWrapper>
         <Button
           small
           type='submit'
-          disabled={disabled}
+          disabled={disabled || loading}
           children={buttonText || 'Save'} />
       </Row>
     </form>

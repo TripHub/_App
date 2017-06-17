@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/TripHub/App.svg?branch=master)](https://travis-ci.org/TripHub/App)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-🛠 *This project is in the early stages of development*
+🛠 *This app is in the early stages of development.*
+
+⏳ *This app uses a free [Heroku](https://www.heroku.com/) server and so initial load can take a while.*
 
 **Welcome to TripHub, a unified place for groups to organise trips!**
 

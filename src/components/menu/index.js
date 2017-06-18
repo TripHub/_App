@@ -31,9 +31,6 @@ export default ({ loading, picture, trip, onLogout, ...props }) => (
           <Icon name='cog' />
         </IconButton>
       }
-      <Link to='/'>
-        <Button small>All Trips</Button>
-      </Link>
       <Link to='/auth/logout'>
         <Button small>Logout</Button>
       </Link>

@@ -11,7 +11,7 @@ export default ({children, trip, ...props}) => {
   return (
     <Container>
       <Sidebar>
-        <Logo>TripHub</Logo>
+        <Logo to='/'>TripHub</Logo>
         <Link
           disabled={disabled}
           to={!disabled ? `/${id}` : ''}

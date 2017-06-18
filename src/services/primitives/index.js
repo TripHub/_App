@@ -18,7 +18,7 @@ export const objectFromArray = (array, key, valueFunc = () => {}) => {
  * Takes an object and returns a new object with the value specified by the
  * given key replaced with the given value.
  */
-export const updateObject = (obj, key, valueFunc) => {
+export const objFrom = (obj, key, valueFunc) => {
   return {
     ...obj,
     ...key && { [key]: valueFunc(obj[key]) }

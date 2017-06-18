@@ -5,6 +5,10 @@ import { randomString } from '../../../services/primitives'
 import Button from '../../button'
 import { InputWithoutLabel, Label } from '../input'
 
+const Form = styled('form', ({ noMargin }) => ({
+  marginBottom: noMargin ? 0 : spacing.sd
+}))
+
 const Row = styled('div', {
   display: 'flex',
   flexDirection: 'row',
@@ -19,7 +23,7 @@ const InputWrapper = styled('div', {
 export const InputForm = ({ loading, small, label, id, onSubmit, buttonText, disabled, ...props }) => {
   const _id = id || randomString()
   return (
-    <form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit}>
       <Label
         htmlFor={_id}
         small={small}
@@ -38,6 +42,6 @@ export const InputForm = ({ loading, small, label, id, onSubmit, buttonText, dis
           disabled={disabled || loading}
           children={buttonText || 'Save'} />
       </Row>
-    </form>
+    </Form>
   )
 }

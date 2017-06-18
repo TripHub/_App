@@ -26,7 +26,6 @@ class Callback extends React.Component {
   }
 
   render () {
-    console.log('state', getHashItem(window.location.hash, 'state'), window.location.hash)
     return this.props.isUserAuthenticated
       ? <Redirect push={false} to={this.getReturnToValue()} />
       : <P>Logging in...</P>

@@ -65,6 +65,7 @@ export const renewAuthHandler = (error, authResult) => (dispatch) => {
   }
 }
 
-export const logout = () => {
-  new Auth().logout()
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT })
+    .then(new Auth().logout)
 }

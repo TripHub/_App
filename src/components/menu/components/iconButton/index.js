@@ -9,7 +9,8 @@ export default styled(Link, ({ disabled }) => ({
   color: color.black,
   opacity: disabled ? opacity.disabled : opacity.muted,
   cursor: 'pointer',
-  fontSize: fontSize.heading2,
+  fontSize: fontSize.heading1,
+  marginRight: spacing.sd,
 
   ':hover': {
     opacity: 1

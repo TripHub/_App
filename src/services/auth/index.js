@@ -19,10 +19,11 @@ export default class Auth {
 
   /**
    * Generates a cryptographically secure string.
+   * @param {int} [length=16] - The returned string length.
    * @static
    * @memberof Auth
    */
-  static generateCryptoString = (length) => {
+  static generateCryptoString = (length = 16) => {
     const bytes = new Uint8Array(length)
     const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
     const random = window.crypto.getRandomValues(bytes)

@@ -11,12 +11,9 @@ import Members from './components/members'
 import DangerZone from './components/dangerZone'
 
 class Settings extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      title: '',
-      description: ''
-    }
+  state = {
+    title: '',
+    description: ''
   }
 
   componentDidMount () {

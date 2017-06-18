@@ -9,12 +9,7 @@ import Title from './components/title'
 import { Form, Header, Body, Footer } from './components/form'
 
 class New extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      title: ''
-    }
-  }
+  state = { title: '' }
 
   handleSubmit = (e) => {
     e.preventDefault()

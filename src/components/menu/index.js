@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Heading2, Small } from '../text'
 import Icon from '../icon'
-import Button from '../button'
+import DropDown, { DropDownItem } from '../dropDown'
 import Container from './components/container'
 import IconButton from './components/iconButton'
 import TitleLink from './components/title'
@@ -31,10 +30,9 @@ export default ({ loading, picture, trip, onLogout, ...props }) => (
           <Icon name='cog' />
         </IconButton>
       }
-      <Link to='/auth/logout'>
-        <Button small>Logout</Button>
-      </Link>
-      <ProfileMenu loading={loading} picture={picture} />
+      <DropDown toggle={<ProfileMenu loading={loading} picture={picture} />}>
+        <DropDownItem to='/auth/logout'>Logout</DropDownItem>
+      </DropDown>
     </Right>
   </Container>
 )

@@ -103,13 +103,10 @@ export default class Auth {
   )
 
   /**
-   * Call's Auth0's logout method. It adds location.origin to the request's
-   * state.
+   * Call's Auth0's logout method.
    * @memberof Auth
    */
   logout = () => (
-    this.auth0.logout({
-      returnTo: window.location.origin
-    })
+    this.auth0.logout()
   )
 }

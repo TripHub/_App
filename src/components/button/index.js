@@ -10,22 +10,22 @@ import {
   shadow
 } from '../../common/style'
 
-export default styled('button', ({ primary, small, noMargin }) => ({
+export default styled('button', ({ primary, small, danger, noMargin }) => ({
   boxSizing: 'border-box',
   marginRight: noMargin ? 0 : small ? spacing.sm : spacing.sd,
   padding: small ? '2px 5px' : `7px ${spacing.sd}`,
-  background: primary ? gradient.green : 'white',
+  background: primary ? (danger ? color.red : gradient.green) : 'white',
   border: '1px solid',
-  borderColor: primary ? 'white' : color.medGrey,
+  borderColor: primary ? 'white' : (danger ? color.red : color.medGrey),
   borderRadius: borderRadius.sd,
   fontFamily: fontFamily.body,
   fontSize: small ? fontSize.small : fontSize.body,
   cursor: 'pointer',
-  color: color.black,
+  color: danger && primary ? 'white' : color.black,
 
   ':hover': {
-    background: primary ? gradient.greenHover : 'white',
-    borderColor: primary ? 'white' : color.darkGrey,
+    background: primary ? (danger ? color.red : gradient.greenHover) : 'white',
+    borderColor: primary ? 'white' : (danger ? color.red : color.darkGrey),
     boxShadow: shadow.sd
   },
 

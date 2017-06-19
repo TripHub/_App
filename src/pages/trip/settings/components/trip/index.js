@@ -1,11 +1,14 @@
 import React from 'react'
 import { styled } from 'styletron-react'
-import { spacing } from '../../../../../common/style'
+import { borderRadius, color, spacing } from '../../../../../common/style'
 import { Heading1 } from '../../../../../components/text'
 import { InputForm } from '../../../../../components/form'
 
 const Container = styled('div', {
-  marginBottom: spacing.lg
+  marginBottom: spacing.sd,
+  padding: spacing.sd,
+  border: `1px solid ${color.lightGrey}`,
+  borderRadius: borderRadius.sd
 })
 
 export default ({
@@ -23,6 +26,7 @@ export default ({
     <Heading1>Trip</Heading1>
     <InputForm
       small
+      maxLength='255'
       loading={loading}
       label='Title'
       defaultValue={title}
@@ -31,6 +35,7 @@ export default ({
       onSubmit={onTitleSubmit} />
     <InputForm
       small
+      maxLength='255'
       loading={loading}
       label='Tag Line'
       defaultValue={description}

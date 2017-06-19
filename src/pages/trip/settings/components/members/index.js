@@ -1,15 +1,25 @@
 import React from 'react'
 import { styled } from 'styletron-react'
-import { spacing } from '../../../../../common/style'
+import { borderRadius, color, spacing } from '../../../../../common/style'
 import { Heading1, Small } from '../../../../../components/text'
+import { InputForm } from '../../../../../components/form'
 
 const Container = styled('div', {
-  marginBottom: spacing.lg
+  marginBottom: spacing.sd,
+  padding: spacing.sd,
+  border: `1px solid ${color.lightGrey}`,
+  borderRadius: borderRadius.sd
 })
 
 export default () => (
   <Container>
     <Heading1>Members</Heading1>
-    <Small>Member management to go here...</Small>
+    <Small>You can add as many users as you like.</Small>
+    <InputForm
+      small
+      type='email'
+      placeholder='name@domain.com'
+      label='Invite Member'
+      buttonText='Invite' />
   </Container>
 )

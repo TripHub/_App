@@ -23,17 +23,12 @@ export default class DropDown extends React.Component {
   }
 
   render () {
-    const { toggle } = this.props
+    const { toggle, children } = this.props
     const { open } = this.state
     return (
       <Container>
         <div onClick={open ? this.close : this.open}>{toggle}</div>
-        {
-          open &&
-          <Menu>
-            {this.props.children}
-          </Menu>
-        }
+        { open && <Menu children={children} /> }
       </Container>
     )
   }

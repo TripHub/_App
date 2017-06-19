@@ -6,16 +6,30 @@ import Item from './components/item'
 export default class DropDown extends React.Component {
   state = { open: false }
 
-  open = () => this.setState({ open: false })
-  close = () => this.setState({ open: false })
-  toggle = () => this.setState(s => ({ open: !s.open }))
+  open = () => {
+    this.setState({ open: true })
+    this.attachListener()
+  }
+  close = () => {
+    this.setState({ open: false })
+    this.detachListener()
+  }
+
+  attachListener = () => document.body.addEventListener('click', this.close)
+  detachListener = () => document.body.removeEventListener('click', this.close)
+
+  componentWillUnmount () {
+    this.detachListener()
+  }
 
   render () {
+    const { toggle } = this.props
+    const { open } = this.state
     return (
       <Container>
-        <div onClick={this.toggle}>{this.props.toggle}</div>
+        <div onClick={open ? this.close : this.open}>{toggle}</div>
         {
-          this.state.open &&
+          open &&
           <Menu>
             {this.props.children}
           </Menu>

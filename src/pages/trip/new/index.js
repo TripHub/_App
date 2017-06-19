@@ -12,9 +12,14 @@ class New extends React.Component {
   state = { title: '' }
 
   handleSubmit = (e) => {
+    const { history, createTrip } = this.props
     e.preventDefault()
-    this.props.createTrip(this.state.title)
-      .then(() => this.props.history.push('/'))
+    createTrip(this.state.title)
+      .then((action) => {
+        action.payload.id
+          ? history.push(`/${action.payload.id}`)
+          : history.push('/')
+      })
   }
 
   handleKeyDown = (e) => {

@@ -11,15 +11,31 @@ const Container = styled('div', {
   borderRadius: borderRadius.sd
 })
 
-export default () => (
-  <Container>
-    <Heading1>Members</Heading1>
-    <Small>You can add as many users as you like.</Small>
-    <InputForm
-      small
-      type='email'
-      placeholder='name@domain.com'
-      label='Invite Member'
-      buttonText='Invite' />
-  </Container>
-)
+export default class Members extends React.Component {
+  state = { email: '' }
+
+  handleChange = (e) => this.setState({ email: e.target.value })
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.onSubmit(this.state.email)
+  }
+
+  render () {
+    const { email } = this.state
+    return (
+      <Container>
+        <Heading1>Members</Heading1>
+        <Small>Invite your fellow trippers!</Small>
+        <InputForm
+          small
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+          value={email}
+          type='email'
+          placeholder='name@domain.com'
+          label='Invite Member'
+          buttonText='Invite' />
+      </Container>
+    )
+  }
+}

@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { Title } from '../../../components/text'
-import { getTrip, deleteTrip, updateTrip, setActiveTrip } from '../../../data/trip/actions'
+import {
+  deleteTrip, updateTrip, setActiveTrip,
+  inviteMember
+} from '../../../data/trip/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import Padding from './components/padding'
 import Trip from './components/trip'
@@ -17,7 +20,10 @@ class Settings extends React.Component {
   }
 
   componentDidMount () {
-    this.props.getTrip(this.props.match.params.id)
+    /** Bootstrap trip-dependant actions */
+    const { trip } = this.props
+    this.updateTrip = this.props.updateTrip(trip.id)
+    this.inviteMember = this.props.inviteMember(trip.id)
   }
 
   handleDelete = () => {
@@ -30,8 +36,17 @@ class Settings extends React.Component {
   handleUpdate = (e, data) => {
     e.preventDefault()
     const { trip } = this.props
-    this.props.updateTrip(trip.id, data)
+    this.updateTrip(data)
       .then(() => notify.show(`${trip.title} updated!`, 'success'))
+  }
+
+  handleInvite = (email) => {
+    this.inviteMember(email)
+      .then(({ error, payload }) => {
+        error
+          ? notify.show(payload.response[0] || 'There was a problem.', 'error')
+          : notify.show('Invite sent!', 'success')
+      })
   }
 
   render () {
@@ -50,7 +65,7 @@ class Settings extends React.Component {
           tagLineDisabled={!tagLine || tagLine === trip.tag_line || loading}
           onTagLineChange={(e) => this.setState({ tagLine: e.target.value.trim() })}
           onTagLineSubmit={(e) => this.handleUpdate(e, { tag_line: tagLine })} />
-        <Members />
+        <Members onSubmit={this.handleInvite} />
         <DangerZone onDelete={this.handleDelete} />
       </Padding>
     )
@@ -63,10 +78,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTrip: (id) => dispatch(getTrip(id)),
   deleteTrip: (id) => dispatch(deleteTrip(id)),
-  updateTrip: (id, data) => dispatch(updateTrip(id, data)),
-  setActiveTrip: (id) => dispatch(setActiveTrip(id))
+  updateTrip: (id) => (data) => dispatch(updateTrip(id, data)),
+  setActiveTrip: (id) => dispatch(setActiveTrip(id)),
+  inviteMember: (id) => (email) => dispatch(inviteMember(id, email))
 })
 
 const SettingsPage = dashboardPageWithLogin(loadTrip(Settings))

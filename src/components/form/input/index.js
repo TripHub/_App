@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'styletron-react'
 import { Text } from '../../text'
-import { borderRadius, spacing, color, fontFamily, fontSize } from '../../../common/style'
+import { borderRadius, spacing, color, fontFamily, fontSize, letterSpacing } from '../../../common/style'
 import { randomString } from '../../../services/primitives'
 
 export const InputWithoutLabel = styled('input', ({ small }) => ({
@@ -10,8 +10,9 @@ export const InputWithoutLabel = styled('input', ({ small }) => ({
   width: '100%',
   padding: small ? `${spacing.sm} 6px` : `0 ${spacing.sd}`,
   border: `1px solid ${color.medGrey}`,
-  fontSize: small ? fontSize.body : fontSize.heading2,
+  fontSize: fontSize.body,
   fontFamily: fontFamily.body,
+  letterSpacing: letterSpacing.body,
   borderRadius: borderRadius.sd,
   outline: 0,
   lineHeight: small ? 1.55 : 2.8,

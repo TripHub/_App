@@ -5,7 +5,7 @@
  * @param {function} valueFunc - passed each object and should return the
  * value to use for that object
  */
-export const objectFromArray = (array, key, valueFunc = () => {}) => {
+export const objectFromArray = (array, key, valueFunc = (obj) => obj) => {
   return array.reduce((acc, item) => {
     if (item[key] !== undefined) {
       acc[item[key]] = valueFunc(item)

@@ -32,12 +32,13 @@ describe('objectFromArray', () => {
     expect(result).toEqual(expected)
   })
 
-  it('should give undefined without getValue function', () => {
+  it('should default to original object without getValue function', () => {
     const result = objectFromArray(array, 'id')
     const expected = {
-      '1': undefined,
-      '2': undefined,
-      '3': undefined
+      '1': { id: '1', x: 2 },
+      '2': { id: '2', x: 3 },
+      '3': { id: '3', x: 5, y: 'a' },
+      '4': { id: '4', x: 8, y: 'b' }
     }
     expect(result).toEqual(expected)
   })

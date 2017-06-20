@@ -7,6 +7,7 @@ import {
   deleteTrip, updateTrip, setActiveTrip,
   inviteMember
 } from '../../../data/trip/actions'
+import { getInvites } from '../../../data/invite/actions';
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import Padding from './components/padding'
 import Trip from './components/trip'
@@ -23,6 +24,7 @@ class Settings extends React.Component {
     /** Bootstrap trip-dependant actions */
     const { trip } = this.props
     this.updateTrip = this.props.updateTrip(trip.id)
+    this.getInvites = this.props.getInvites(trip.id)
     this.inviteMember = this.props.inviteMember(trip.id)
   }
 
@@ -81,6 +83,7 @@ const mapDispatchToProps = (dispatch) => ({
   deleteTrip: (id) => dispatch(deleteTrip(id)),
   updateTrip: (id) => (data) => dispatch(updateTrip(id, data)),
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
+  getInvites: (id) => dispatch(getInvites(id)),
   inviteMember: (id) => (email) => dispatch(inviteMember(id, email))
 })
 

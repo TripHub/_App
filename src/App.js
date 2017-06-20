@@ -7,6 +7,7 @@ import Trip from './pages/trip/current'
 import Settings from './pages/trip/settings'
 import Tickets from './pages/trip/tickets'
 import Money from './pages/trip/money'
+import Invite from './pages/invite'
 import Auth0Callback from './pages/auth/callback'
 import Auth0Renew from './pages/auth/renew'
 import Logout from './pages/auth/logout'
@@ -22,6 +23,8 @@ export default class App extends Component {
           <Route path='/auth/renew' component={Auth0Renew} />
           <Route path='/auth/logout' component={Logout} />
           <Route path='/new' component={New} />
+
+          <Route path='/invite/:id' component={Invite} />
 
           <Route path='/:id/settings' component={Settings} />
           <Route path='/:id/tickets' component={Tickets} />

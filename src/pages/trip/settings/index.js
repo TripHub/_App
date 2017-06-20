@@ -52,7 +52,7 @@ class Settings extends React.Component {
   }
 
   render () {
-    const { loading, trip } = this.props
+    const { loading, trip, invites, invitesLoading } = this.props
     const { title, tagLine } = this.state
     return (
       <Padding>
@@ -67,7 +67,10 @@ class Settings extends React.Component {
           tagLineDisabled={!tagLine || tagLine === trip.tag_line || loading}
           onTagLineChange={(e) => this.setState({ tagLine: e.target.value.trim() })}
           onTagLineSubmit={(e) => this.handleUpdate(e, { tag_line: tagLine })} />
-        <Members onSubmit={this.handleInvite} />
+        <Members
+          loading={invitesLoading}
+          members={invites}
+          onSubmit={this.handleInvite} />
         <DangerZone onDelete={this.handleDelete} />
       </Padding>
     )
@@ -76,7 +79,9 @@ class Settings extends React.Component {
 
 const mapStateToProps = (state) => ({
   trip: activeTripSelector(state),
-  loading: isActiveTripLoading(state)
+  loading: isActiveTripLoading(state),
+  invites: state.invite.entities,
+  invitesLoading: state.invite.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({

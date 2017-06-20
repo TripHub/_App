@@ -1,30 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { loginRequired } from '../../enhancers'
 import { logout } from '../../data/user/actions'
-import { isUserAuthenticated } from '../../data/user/selectors'
 import { P } from '../../components/text'
 
-class Callback extends React.Component {
+class Logout extends React.Component {
   componentDidMount () {
-    if (this.props.isUserAuthenticated) {
-      this.props.logout()
-    }
+    this.props.logout()
   }
 
   render () {
-    return this.props.isUserAuthenticated
-      ? <P>Logging out...</P>
-      : <Redirect push={false} to='/' />
+    return <P>Logging out...</P>
   }
 }
-
-const mapStateToProps = (state) => ({
-  isUserAuthenticated: isUserAuthenticated(state)
-})
 
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Callback)
+const LogoutPage = loginRequired(Logout)
+export default connect(null, mapDispatchToProps)(LogoutPage)

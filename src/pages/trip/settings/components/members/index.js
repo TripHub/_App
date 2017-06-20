@@ -21,6 +21,7 @@ export default class Members extends React.Component {
   }
 
   render () {
+    const { members, loading } = this.props
     const { email } = this.state
     return (
       <Container>
@@ -35,6 +36,14 @@ export default class Members extends React.Component {
           placeholder='name@domain.com'
           label='Invite Member'
           buttonText='Invite' />
+        <div>
+          {loading && <p>loading...</p>}
+          {
+            Object.values(members).map((member) => (
+              <p key={member.id}>{member.email} ({member.status})</p>
+            ))
+          }
+        </div>
       </Container>
     )
   }

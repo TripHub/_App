@@ -7,7 +7,7 @@ import {
   deleteTrip, updateTrip, setActiveTrip,
   inviteMember
 } from '../../../data/trip/actions'
-import { getInvites } from '../../../data/invite/actions';
+import { getInvites, cancelInvite } from '../../../data/invite/actions'
 import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
 import Padding from './components/padding'
 import Trip from './components/trip'
@@ -23,9 +23,11 @@ class Settings extends React.Component {
   componentDidMount () {
     /** Bootstrap trip-dependant actions */
     const { trip } = this.props
-    this.updateTrip = this.props.updateTrip(trip.id)
     this.getInvites = this.props.getInvites(trip.id)
+    this.updateTrip = this.props.updateTrip(trip.id)
     this.inviteMember = this.props.inviteMember(trip.id)
+
+    this.getInvites()
   }
 
   handleDelete = () => {
@@ -49,6 +51,17 @@ class Settings extends React.Component {
           ? notify.show(payload.response[0] || 'There was a problem.', 'error')
           : notify.show('Invite sent!', 'success')
       })
+      .then(this.getInvites)
+  }
+
+  handleCancel = (id) => {
+    this.props.cancelInvite(id)
+      .then(({ error, payload }) => {
+        error
+          ? notify.show(payload.response[0] || 'There was a problem', 'error')
+          : notify.show('Invite cancelled!', 'success')
+      })
+      .then(this.getInvites)
   }
 
   render () {
@@ -70,7 +83,8 @@ class Settings extends React.Component {
         <Members
           loading={invitesLoading}
           members={invites}
-          onSubmit={this.handleInvite} />
+          onSubmit={this.handleInvite}
+          onCancel={this.handleCancel} />
         <DangerZone onDelete={this.handleDelete} />
       </Padding>
     )
@@ -88,8 +102,9 @@ const mapDispatchToProps = (dispatch) => ({
   deleteTrip: (id) => dispatch(deleteTrip(id)),
   updateTrip: (id) => (data) => dispatch(updateTrip(id, data)),
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
-  getInvites: (id) => dispatch(getInvites(id)),
-  inviteMember: (id) => (email) => dispatch(inviteMember(id, email))
+  getInvites: (id) => () => dispatch(getInvites(id)),
+  inviteMember: (id) => (email) => dispatch(inviteMember(id, email)),
+  cancelInvite: (id) => dispatch(cancelInvite(id))
 })
 
 const SettingsPage = dashboardPageWithLogin(loadTrip(Settings))

@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styletron-react'
+import { Text } from '../../text'
 import { borderRadius, spacing, color, fontFamily, fontSize } from '../../../common/style'
 import { randomString } from '../../../services/primitives'
 
@@ -38,10 +39,12 @@ export const Input = ({ label, small, id, ...props }) => {
   const _id = id || randomString()
   return (
     <div>
-      <Label
-        htmlFor={_id}
-        small={small}
-        children={label} />
+      <Text>
+        <Label
+          htmlFor={_id}
+          small={small}
+          children={label} />
+      </Text>
       <InputWithoutLabel
         id={_id}
         small={small}

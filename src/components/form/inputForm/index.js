@@ -3,6 +3,7 @@ import { styled } from 'styletron-react'
 import { spacing } from '../../../common/style'
 import { randomString } from '../../../services/primitives'
 import Button from '../../button'
+import { Text } from '../../text'
 import { InputWithoutLabel, Label } from '../input'
 
 const Form = styled('form', ({ noMargin }) => ({
@@ -36,11 +37,11 @@ export const InputForm = ({ loading, small, label, id, onSubmit, buttonText, dis
             disabled={loading}
             {...props} />
         </InputWrapper>
-        <Button
-          small
-          type='submit'
-          disabled={disabled || loading}
-          children={buttonText || 'Save'} />
+        <Button small type='submit' disabled={disabled || loading}>
+          <Text>
+            {buttonText || 'Save'}
+          </Text>
+        </Button>
       </Row>
     </Form>
   )

@@ -1,11 +1,11 @@
 import { styled } from 'styletron-react'
 import {
-  fontFamily,
   fontSize,
   spacing,
   gradient,
   borderRadius,
   color,
+  colorDarker,
   opacity,
   shadow
 } from '../../common/style'
@@ -18,14 +18,13 @@ export default styled('button', ({ primary, small, danger, noMargin }) => ({
   border: '1px solid',
   borderColor: primary ? 'white' : (danger ? color.red : color.medGrey),
   borderRadius: borderRadius.sd,
-  fontFamily: fontFamily.body,
   fontSize: small ? fontSize.small : fontSize.body,
   cursor: 'pointer',
   color: danger && primary ? 'white' : color.black,
 
   ':hover': {
-    background: primary ? (danger ? color.red : gradient.greenHover) : 'white',
-    borderColor: primary ? 'white' : (danger ? color.red : color.darkGrey),
+    background: primary ? (danger ? colorDarker.red : gradient.greenHover) : 'white',
+    borderColor: primary ? 'white' : (danger ? colorDarker.red : color.darkGrey),
     boxShadow: shadow.sd
   },
 

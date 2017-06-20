@@ -12,6 +12,6 @@ export const fontFamily = {
 }
 
 export const letterSpacing = {
-  body: '0.045em',
-  heading: '0.065em'
+  body: '0.04em',
+  heading: '0.06em'
 }

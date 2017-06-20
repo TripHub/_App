@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { createTrip } from '../../../data/trip/actions'
 import { loginRequired, withMenu } from '../../../enhancers'
 import Button from '../../../components/button'
+import { Text } from '../../../components/text'
 import { Input } from '../../../components/form'
 import Title from './components/title'
 import { Form, Header, Body, Footer } from './components/form'
@@ -53,10 +54,12 @@ class New extends React.Component {
 
         <Footer>
           <Button disabled={trip.loading} primary type='submit'>
-            Create Trip
+            <Text>Create Trip</Text>
           </Button>
           <Link disabled={trip.loading} to='/'>
-            <Button>Cancel</Button>
+            <Button>
+              <Text>Cancel</Text>
+            </Button>
           </Link>
         </Footer>
       </Form>

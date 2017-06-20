@@ -1,4 +1,5 @@
 import React from 'react'
+import { Text } from '../text'
 import Container from './components/container'
 import Menu from './components/menu'
 import Item from './components/item'
@@ -10,7 +11,8 @@ export default class DropDown extends React.Component {
     this.setState({ open: true })
     this.attachListener()
   }
-  close = () => {
+
+  close = (e) => {
     this.setState({ open: false })
     this.detachListener()
   }
@@ -34,6 +36,8 @@ export default class DropDown extends React.Component {
   }
 }
 
-export const DropDownItem = (props) => (
-  <Item to='#' {...props} />
+export const DropDownItem = ({ children, ...props }) => (
+  <Item to='#' {...props}>
+    <Text>{children}</Text>
+  </Item>
 )

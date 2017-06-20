@@ -10,7 +10,8 @@ export const color = {
 
 export const colorDarker = {
   blue: '#2C80D4',
-  green: '#009F79'
+  green: '#009F79',
+  red: '#c0392b'
 }
 
 export const gradient = {

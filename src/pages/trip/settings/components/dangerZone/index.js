@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'styletron-react'
 import { borderRadius, color, spacing } from '../../../../../common/style'
-import { Heading1, Small } from '../../../../../components/text'
+import { Heading1, Small, Text } from '../../../../../components/text'
 import Button from '../../../../../components/button'
 
 const Container = styled('div', {
@@ -15,6 +15,8 @@ export default ({ onDelete }) => (
   <Container>
     <Heading1>Danger Zone!</Heading1>
     <Small>Be careful! These actions are irreversible.</Small>
-    <Button primary danger onClick={onDelete}>Delete Trip</Button>
+    <Button primary danger onClick={onDelete}>
+      <Text light>Delete Trip</Text>
+    </Button>
   </Container>
 )

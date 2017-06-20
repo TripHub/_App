@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../../../../../../../components/button'
+import { Text } from '../../../../../../../components/text'
 import { Input } from '../../../../../../../components/form'
 import Form from './components/form'
 import InputContainer from './components/inputContainer'
@@ -22,16 +23,12 @@ export default ({ input, onChange, onSubmit, onCancel }) => {
           onKeyDown={handleKeyDown}
           onChange={onChange} />
       </InputContainer>
-      <Button
-        small
-        primary
-        type='submit'
-        onClick={onSubmit}
-        children='Create' />
-      <Button
-        small
-        onClick={onCancel}
-        children='Cancel' />
+      <Button small primary type='submit' onClick={onSubmit}>
+        <Text>Create</Text>
+      </Button>
+      <Button small onClick={onCancel}>
+        <Text>Cancel</Text>
+      </Button>
     </Form>
   )
 }

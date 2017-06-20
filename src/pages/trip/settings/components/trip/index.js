@@ -7,7 +7,7 @@ import { InputForm } from '../../../../../components/form'
 const Container = styled('div', {
   marginBottom: spacing.sd,
   padding: spacing.sd,
-  border: `1px solid ${color.lightGrey}`,
+  border: `1px solid ${color.medGrey}`,
   borderRadius: borderRadius.sd
 })
 

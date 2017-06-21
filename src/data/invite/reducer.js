@@ -4,7 +4,6 @@ import { objectFromArray } from '../../services/primitives'
 const initialState = {
   loading: false,
   entities: {},
-  entitiesCount: 0,
   fetchStatus: {},
   errors: {}
 }
@@ -23,7 +22,6 @@ export default (state = initialState, action) => {
     case actionTypes.GET_INVITES_SUCCESS:
       return {
         ...state,
-        entitiesCount: action.payload.count,
         entities: objectFromArray(action.payload.results, 'id'),
         loading: false
       }

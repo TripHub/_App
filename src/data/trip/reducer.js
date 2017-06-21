@@ -12,7 +12,6 @@ export const initialState = {
   loading: false,  // loading list
   errors: {},  // object of errors
   didInvalidate: true, // flags whether to fetch from API
-  entitiesCount: 0,  // results count from API
   entities: {},  // object of trips
   fetchStatus: {},  // object matching entities, with item fetch statuses
   activeTripId: ''  // currently selected trip
@@ -36,7 +35,6 @@ export default (state = initialState, action = {}) => {
     case actionTypes.GET_TRIPS_SUCCESS:
       return {
         ...state,
-        entitiesCount: action.payload.count,
         entities: objectFromArray(action.payload.results, 'id', (item) => ({ ...item, is_complete: false })),
         fetchStatus: objectFromArray(action.payload.results, 'id', () => fetch.LOADED),
         didInvalidate: false,

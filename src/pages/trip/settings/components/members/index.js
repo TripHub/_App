@@ -3,7 +3,7 @@ import { styled } from 'styletron-react'
 import { borderRadius, color, spacing } from '../../../../../common/style'
 import { Heading1, Small } from '../../../../../components/text'
 import { InputForm } from '../../../../../components/form'
-import Invite from './components/invite'
+import Invites from './components/invites'
 
 const Container = styled('div', {
   marginBottom: spacing.sd,
@@ -24,7 +24,7 @@ export default class Members extends React.Component {
   }
 
   render () {
-    const { loading, members, onCancel } = this.props
+    const { invitesLoading, members, onCancel } = this.props
     const { email } = this.state
     return (
       <Container>
@@ -39,18 +39,10 @@ export default class Members extends React.Component {
           placeholder='name@domain.com'
           label='Invite to trip'
           buttonText='Invite' />
-        <div>
-          {loading && <p>loading...</p>}
-          {
-            Object.values(members).map((invite) => (
-              <Invite
-                key={invite.id}
-                email={invite.email}
-                status={invite.status}
-                onCancel={() => onCancel(invite.id)} />
-            ))
-          }
-        </div>
+        <Invites
+          loading={invitesLoading}
+          invites={Object.values(members)}
+          onCancel={onCancel} />
       </Container>
     )
   }

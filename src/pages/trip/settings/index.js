@@ -81,7 +81,7 @@ class Settings extends React.Component {
           onTagLineChange={(e) => this.setState({ tagLine: e.target.value.trim() })}
           onTagLineSubmit={(e) => this.handleUpdate(e, { tag_line: tagLine })} />
         <Members
-          loading={invitesLoading}
+          invitesLoading={invitesLoading}
           members={invites}
           onSubmit={this.handleInvite}
           onCancel={this.handleCancel} />

@@ -4,7 +4,11 @@ import { Text } from '../../text'
 import { borderRadius, spacing, color, fontFamily, fontSize, letterSpacing } from '../../../common/style'
 import { randomString } from '../../../services/primitives'
 
-export const InputWithoutLabel = styled('input', ({ small }) => ({
+const Container = styled('div', ({ noMargin }) => ({
+  marginBottom: noMargin ? 0 : spacing.sd
+}))
+
+export const InputWithoutLabel = styled('input', ({ small, noMargin }) => ({
   display: 'block',
   boxSizing: 'border-box',
   width: '100%',
@@ -24,7 +28,7 @@ export const InputWithoutLabel = styled('input', ({ small }) => ({
   ':disabled': {
     background: color.lightGrey,
     borderColor: color.medGrey,
-    color: color.darkGrey
+    color: color.black
   }
 }))
 
@@ -36,10 +40,10 @@ export const Label = styled('label', ({ small }) => ({
   fontSize: fontSize.body
 }))
 
-export const Input = ({ label, small, id, ...props }) => {
+export const Input = ({ label, small, id, noMargin, ...props }) => {
   const _id = id || randomString()
   return (
-    <div>
+    <Container noMargin={noMargin}>
       <Text>
         <Label
           htmlFor={_id}
@@ -50,6 +54,6 @@ export const Input = ({ label, small, id, ...props }) => {
         id={_id}
         small={small}
         {...props} />
-    </div>
+    </Container>
   )
 }

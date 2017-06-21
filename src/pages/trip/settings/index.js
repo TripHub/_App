@@ -41,7 +41,7 @@ class Settings extends React.Component {
     e.preventDefault()
     const { trip } = this.props
     this.updateTrip(data)
-      .then(() => notify.show(`${trip.title} updated!`, 'success'))
+      .then(() => notify.show(`${trip.title} updated`, 'success'))
   }
 
   handleInvite = (email) => {
@@ -49,7 +49,7 @@ class Settings extends React.Component {
       .then(({ error, payload }) => {
         error
           ? notify.show(payload.response[0] || 'There was a problem.', 'error')
-          : notify.show('Invite sent!', 'success')
+          : notify.show('Invite sent', 'success')
       })
       .then(this.getInvites)
   }
@@ -59,7 +59,7 @@ class Settings extends React.Component {
       .then(({ error, payload }) => {
         error
           ? notify.show(payload.response[0] || 'There was a problem', 'error')
-          : notify.show('Invite cancelled!', 'success')
+          : notify.show('Invite cancelled', 'success')
       })
       .then(this.getInvites)
   }

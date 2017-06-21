@@ -17,6 +17,7 @@ export default ({ input, onChange, onSubmit, onCancel }) => {
       <InputContainer>
         <Input
           small
+          noMargin
           autoFocus
           label='Name'
           value={input}
@@ -26,7 +27,7 @@ export default ({ input, onChange, onSubmit, onCancel }) => {
       <Button small primary type='submit' onClick={onSubmit}>
         <Text>Create</Text>
       </Button>
-      <Button small onClick={onCancel}>
+      <Button small type='button' onClick={onCancel}>
         <Text>Cancel</Text>
       </Button>
     </Form>

@@ -1,8 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { isUserAuthenticated } from '../../data/user/selectors'
 import { getInvite } from '../../data/invite/actions'
 import NotFound from '../error/notFound'
 import { Heading1 } from '../../components/text'
+import Container from './components/container'
+import Form from './components/form'
 
 class Invites extends React.Component {
   state = {
@@ -21,17 +24,23 @@ class Invites extends React.Component {
 
   render () {
     const { error, resolved, invite } = this.state
-    console.log(error, invite)
     return !resolved ? <p>loading...</p> : error
       ? <NotFound />
       : (
-        <Heading1>You have been invited to {invite.trip.title}</Heading1>
+        <Container>
+          <Heading1>Join {invite.trip.title}</Heading1>
+          <Form email={invite.email} />
+        </Container>
       )
   }
 }
+
+const mapStateToProps = (state) => ({
+  isUserAuthenticated: isUserAuthenticated(state)
+})
 
 const mapDispatchToProps = (dispatch) => ({
   getInvite: (id) => dispatch(getInvite(id))
 })
 
-export default connect(null, mapDispatchToProps)(Invites)
+export default connect(mapStateToProps, mapDispatchToProps)(Invites)

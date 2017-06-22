@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrips } from '../../data/trip/actions'
-import { tripsSelector, activeTripSelector } from '../../data/trip/selectors'
+import { activeTripSelector } from '../../data/trip/selectors'
 import Spinner from '../../components/spinner/'
 import { Row } from '../../components/responsive/'
 import Icon from '../../components/icon/'
@@ -48,7 +48,7 @@ class Trips extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trips: tripsSelector(state),
+  trips: state.trip,
   activeTrip: activeTripSelector(state)
 })
 

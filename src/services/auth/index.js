@@ -45,6 +45,12 @@ export default class Auth {
   )
 
   /**
+   * Returns the Auth0 instance.
+   * @memberof Auth
+   */
+  auth0 = this.auth0
+
+  /**
    * Calls Auth0's authorize method, but within an iFrame so the user is not
    * redirected. The hash passed to the iFrame (parsed by the parseHash method)
    * contains the results of the authentication request.
@@ -82,9 +88,8 @@ export default class Auth {
   )
 
   /**
-   *
-   *
-   *
+   * Calls Auth0's parseHash method.
+   * @param {function} handle - A callback function to handle results
    * @memberof Auth
    */
   handleAuthentication = (handle) => (

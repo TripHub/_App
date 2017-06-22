@@ -1,21 +1,13 @@
 import { createSelector } from 'reselect'
 import { LOADING } from '../../common/fetch'
 
-const getTripData = ({ trip }) => trip
-
-export const tripsSelector = createSelector(
-  [ getTripData ],
-  (trip) => trip
-)
-
-export const tripsEntitiesSelector = createSelector(
-  [ getTripData ],
-  ({ entities }) => entities
-)
+const getTrips = (state) => state.trip.entities
+const getActiveTrip = (state) => state.trip.activeTripId
+const getFetchStatus = (state) => state.trip.fetchStatus
 
 export const activeTripSelector = createSelector(
-  [ getTripData ],
-  ({ entities, activeTripId }) => (
+  [ getTrips, getActiveTrip ],
+  (entities, activeTripId) => (
     activeTripId
       ? entities[activeTripId] ? entities[activeTripId] : {}
       : {}
@@ -23,8 +15,8 @@ export const activeTripSelector = createSelector(
 )
 
 export const isActiveTripLoading = createSelector(
-  [ getTripData ],
-  ({ fetchStatus, activeTripId }) => (
+  [ getFetchStatus, getActiveTrip ],
+  (fetchStatus, activeTripId) => (
     fetchStatus[activeTripId] === LOADING
   )
 )

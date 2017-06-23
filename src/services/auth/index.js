@@ -13,7 +13,7 @@ export default class Auth {
       redirectUri: `${window.location.origin}/auth/callback`,
       responseType: 'token id_token',
       scope: 'openid profile',
-      leeway: 30
+      leeway: 30  // accounts for clock skew in JWT expirations
     })
   }
 

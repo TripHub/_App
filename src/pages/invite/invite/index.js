@@ -4,7 +4,7 @@ import Auth from '../../../services/auth'
 import { isUserAuthenticated } from '../../../data/user/selectors'
 import { getInvite } from '../../../data/invite/actions'
 import NotFound from '../../error/notFound'
-import { Heading1 } from '../../../components/text'
+import { Heading1, P } from '../../../components/text'
 import Container from './components/container'
 import Form from './components/form'
 
@@ -16,9 +16,13 @@ class Invite extends React.Component {
   }
 
   handleSubmit = () => {
-    new Auth().login({ state: {
-      returnTo: `/invite/${this.state.invite.id}/accept`
-    }})
+    new Auth().login({
+      state: {
+        returnTo: `/invite/${this.state.invite.id}/accept`
+      },
+      loginHint: this.state.invite.email,
+      initialScreen: 'signUp'
+    })
   }
 
   componentDidMount () {
@@ -33,11 +37,13 @@ class Invite extends React.Component {
 
   render () {
     const { error, resolved, invite } = this.state
+    console.log(invite.email)
     return !resolved ? <p>loading...</p> : error
       ? <NotFound />
       : (
         <Container>
           <Heading1>Join {invite.trip.title}</Heading1>
+          <P>Sign up as <strong>{invite.email}</strong> to join this trip</P>
           <Form onSubmit={this.handleSubmit} />
         </Container>
       )

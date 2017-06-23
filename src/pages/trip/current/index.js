@@ -13,7 +13,7 @@ class Trip extends React.Component {
   }
 
   render () {
-    const { loading, trip, createDestination, isOwner } = this.props
+    const { trip, createDestination, isOwner } = this.props
     return (
       <div>
         {

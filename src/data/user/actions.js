@@ -63,7 +63,6 @@ export const renewAuthHandler = (error, authResult) => (dispatch) => {
     dispatch(getUserProfileRequest())
     auth.getUserProfile(authResult.accessToken, (error, profile) => {
       // check if we have received a profile object
-      console.log('profile', profile)
       profile
         ? dispatch(getUserProfileSuccess(profile))
         : dispatch(getUserProfileFailure(error))

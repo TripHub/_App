@@ -24,10 +24,9 @@ export const isActiveTripLoading = createSelector(
 
 export const isUserActiveTripOwner = createSelector(
   [ getUserSub, getActiveTrip ],
-  (sub, activeTrip) => {
-    console.log(sub, activeTrip, activeTrip.owner && activeTrip.owner.auth0_id && sub === activeTrip.owner.auth0_id)
-    return activeTrip.owner &&
+  (sub, activeTrip) => (
+    activeTrip.owner &&
       activeTrip.owner.auth0_id &&
       activeTrip.owner.auth0_id === sub
-  }
+  )
 )

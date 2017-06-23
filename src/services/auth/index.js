@@ -56,18 +56,19 @@ export default class Auth {
    * contains the results of the authentication request.
    * @memberof Auth
    */
-  renewAuth = (config) => {
+  renewAuth = ({state, ...config}) => {
     const nonce = Auth.generateCryptoString(16)
     window.localStorage.setItem('nonce', nonce)
     this.auth0.authorize({
       nonce,
-      state: JSON.stringify(config),
+      state: JSON.stringify(state),
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       audience: process.env.REACT_APP_AUTH0_API_AUD,
       prompt: 'none',
       scope: 'openid profile',
       responseType: 'id_token token',
-      redirectUri: `${window.location.origin}/auth/renew`
+      redirectUri: `${window.location.origin}/auth/renew`,
+      ...config
     })
   }
 
@@ -101,9 +102,10 @@ export default class Auth {
    * @param config {object} - additional information to add to the request.
    * @memberof Auth
    */
-  login = (config = {}) => (
+  login = ({state, ...config}) => (
     this.auth0.authorize({
-      state: JSON.stringify(config)
+      state: JSON.stringify(state),
+      ...config
     })
   )
 

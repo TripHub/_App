@@ -15,7 +15,7 @@ class Renew extends React.Component {
       auth.parseHash((error, authResult) => {
         error
           ? new Auth().login({
-            returnTo: this.getReturnToValue()
+            state: { returnTo: this.getReturnToValue() }
           })
           : this.props.renewAuthHandler(error, authResult)
       })

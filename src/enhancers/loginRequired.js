@@ -9,7 +9,9 @@ export default (Wrapped) => {
     componentDidMount () {
       if (!this.props.isUserAuthenticated) {
         this.props.renewAuthRequest({
-          returnTo: window.location.pathname
+          state: {
+            returnTo: window.location.pathname
+          }
         })
       }
     }

@@ -16,7 +16,9 @@ class Invite extends React.Component {
   }
 
   handleSubmit = () => {
-    new Auth().login({ returnTo: `/invite/${this.state.invite.id}/accept` })
+    new Auth().login({ state: {
+      returnTo: `/invite/${this.state.invite.id}/accept`
+    }})
   }
 
   componentDidMount () {

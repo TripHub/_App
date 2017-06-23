@@ -3,12 +3,16 @@ import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { Title } from '../../../components/text'
+import { getInvites, cancelInvite } from '../../../data/invite/actions'
 import {
   deleteTrip, updateTrip, setActiveTrip,
   inviteMember
 } from '../../../data/trip/actions'
-import { getInvites, cancelInvite } from '../../../data/invite/actions'
-import { getActiveTrip, isActiveTripLoading, isUserActiveTripOwner } from '../../../data/trip/selectors'
+import {
+  getActiveTrip,
+  isActiveTripLoading,
+  isUserActiveTripOwner
+} from '../../../data/trip/selectors'
 import NotFound from '../../error/notFound/'
 import Padding from './components/padding'
 import Trip from './components/trip'
@@ -79,12 +83,18 @@ class Settings extends React.Component {
           loading={loading}
           title={trip.title}
           titleDisabled={!title || title === trip.title || loading}
-          onTitleChange={(e) => this.setState({ title: e.target.value.trim() })}
+          onTitleChange={(e) => this.setState({
+            title: e.target.value.trim()
+          })}
           onTitleSubmit={(e) => this.handleUpdate(e, { title })}
           description={trip.tag_line}
           tagLineDisabled={!tagLine || tagLine === trip.tag_line || loading}
-          onTagLineChange={(e) => this.setState({ tagLine: e.target.value.trim() })}
-          onTagLineSubmit={(e) => this.handleUpdate(e, { tag_line: tagLine })} />
+          onTagLineChange={(e) => this.setState({
+            tagLine: e.target.value.trim()
+          })}
+          onTagLineSubmit={(e) => this.handleUpdate(e, {
+            tag_line: tagLine
+          })} />
         <Members
           invitesLoading={invitesLoading}
           members={invites}

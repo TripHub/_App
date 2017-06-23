@@ -9,7 +9,7 @@ import Right from './components/right'
 import Left from './components/left'
 import ProfileMenu from './components/profileMenu'
 
-export default ({ loading, picture, trip, onLogout, ...props }) => (
+export default ({ loading, picture, trip, isOwner, onLogout, ...props }) => (
   <Container {...props}>
     {
       trip.id && (
@@ -25,7 +25,7 @@ export default ({ loading, picture, trip, onLogout, ...props }) => (
     }
     <Right>
       {
-        trip.id &&
+        trip.id && isOwner &&
         <IconButton to={`/${trip.id}/settings`}>
           <Icon name='cog' />
         </IconButton>

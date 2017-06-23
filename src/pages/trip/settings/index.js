@@ -8,7 +8,8 @@ import {
   inviteMember
 } from '../../../data/trip/actions'
 import { getInvites, cancelInvite } from '../../../data/invite/actions'
-import { getActiveTrip, isActiveTripLoading } from '../../../data/trip/selectors'
+import { getActiveTrip, isActiveTripLoading, isUserActiveTripOwner } from '../../../data/trip/selectors'
+import NotFound from '../../error/notFound/'
 import Padding from './components/padding'
 import Trip from './components/trip'
 import Members from './components/members'
@@ -17,10 +18,14 @@ import DangerZone from './components/dangerZone'
 class Settings extends React.Component {
   state = {
     title: '',
-    description: ''
+    description: '',
+    notFound: false
   }
 
   componentDidMount () {
+    if (!this.props.isOwner) {
+      return this.setState({ notFound: true })
+    }
     /** Bootstrap trip-dependant actions */
     const { trip } = this.props
     this.getInvites = this.props.getInvites(trip.id)
@@ -67,7 +72,7 @@ class Settings extends React.Component {
   render () {
     const { loading, trip, invites, invitesLoading } = this.props
     const { title, tagLine } = this.state
-    return (
+    return this.state.notFound ? <NotFound /> : (
       <Padding>
         <Title>Settings</Title>
         <Trip
@@ -93,6 +98,7 @@ class Settings extends React.Component {
 
 const mapStateToProps = (state) => ({
   trip: getActiveTrip(state),
+  isOwner: isUserActiveTripOwner(state),
   loading: isActiveTripLoading(state),
   invites: state.invite.entities,
   invitesLoading: state.invite.loading

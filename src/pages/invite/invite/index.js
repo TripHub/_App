@@ -18,7 +18,7 @@ class Invite extends React.Component {
   handleSubmit = () => {
     new Auth().login({
       state: {
-        returnTo: `/invite/${this.state.invite.id}/accept`
+        returnTo: `/i/${this.state.invite.id}/accept`
       },
       loginHint: this.state.invite.email,
       initialScreen: 'signUp'

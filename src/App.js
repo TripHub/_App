@@ -24,8 +24,8 @@ export default class App extends Component {
           <Route path='/auth/logout' component={Logout} />
           <Route path='/new' component={New} />
 
-          <Route path='/invite/:id/accept' component={AcceptPage} />
-          <Route path='/invite/:id' component={Invite} />
+          <Route path='/i/:id/accept' component={AcceptPage} />
+          <Route path='/i/:id' component={Invite} />
 
           <Route path='/:id/settings' component={Settings} />
           <Route path='/:id/tickets' component={Tickets} />

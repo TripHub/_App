@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Sidebar from '../components/sidebar'
-import { activeTripSelector } from '../data/trip/selectors'
+import { getActiveTrip } from '../data/trip/selectors'
 
 // adds the sidebar
 export default (Wrapped) => {
@@ -17,7 +17,7 @@ export default (Wrapped) => {
   }
 
   const mapStateToProps = (state) => ({
-    trip: activeTripSelector(state)
+    trip: getActiveTrip(state)
   })
 
   return connect(mapStateToProps)(WithSidebar)

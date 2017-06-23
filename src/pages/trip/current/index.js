@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { getTrip, getTrips, createDestination, setActiveTrip } from '../../../data/trip/actions'
-import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
-import Title from './components/title'
+import { getActiveTrip, isActiveTripLoading, isUserActiveTripOwner } from '../../../data/trip/selectors'
 import Destinations from './components/destinations'
 
 class Trip extends React.Component {
@@ -14,20 +13,15 @@ class Trip extends React.Component {
   }
 
   render () {
-    const { loading, trip, createDestination } = this.props
+    const { loading, trip, createDestination, isOwner } = this.props
     return (
       <div>
-        {false && <Title
-          settingsLink={`/${trip.id}/settings`}
-          loading={loading}
-          title={trip.title}
-          tagLine={trip.tag_line} />}
-
         {
           // these elements need a fully loaded trip object
           trip.is_complete && (
             <div>
               <Destinations
+                showCreate={isOwner}
                 createDestination={createDestination(trip.id)}
                 destinations={trip.destinations} />
             </div>
@@ -38,7 +32,8 @@ class Trip extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trip: activeTripSelector(state),
+  trip: getActiveTrip(state),
+  isOwner: isUserActiveTripOwner(state),
   loading: isActiveTripLoading(state),
   errors: state.trip.errors
 })

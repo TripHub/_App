@@ -10,6 +10,9 @@ export const GET_INVITE_FAILURE = 'GET_INVITE_FAILURE'
 export const CANCEL_INVITE_REQUEST = 'CANCEL_INVITE_REQUEST'
 export const CANCEL_INVITE_SUCCESS = 'CANCEL_INVITE_SUCCESS'
 export const CANCEL_INVITE_FAILURE = 'CANCEL_INVITE_FAILURE'
+export const ACCEPT_INVITE_REQUEST = 'ACCEPT_INVITE_REQUEST'
+export const ACCEPT_INVITE_SUCCESS = 'ACCEPT_INVITE_SUCCESS'
+export const ACCEPT_INVITE_FAILURE = 'ACCEPT_INVITE_FAILURE'
 
 /**
  * Get the list of all invitations for all trips in the user's scope.
@@ -38,4 +41,12 @@ export const getInvite = (id) => ({
  */
 export const cancelInvite = (id) => apiRequest(`/invite/${id}/cancel/`, {
   types: [CANCEL_INVITE_REQUEST, CANCEL_INVITE_SUCCESS, CANCEL_INVITE_FAILURE]
+})
+
+/**
+ * Accepts an invitation.
+ * @param {string} id - ID of the invitation to accept.
+ */
+export const acceptInvite = (id) => apiRequest(`/invite/${id}/accept/`, {
+  types: [ACCEPT_INVITE_REQUEST, ACCEPT_INVITE_SUCCESS, ACCEPT_INVITE_FAILURE]
 })

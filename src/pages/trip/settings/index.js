@@ -8,7 +8,7 @@ import {
   inviteMember
 } from '../../../data/trip/actions'
 import { getInvites, cancelInvite } from '../../../data/invite/actions'
-import { activeTripSelector, isActiveTripLoading } from '../../../data/trip/selectors'
+import { getActiveTrip, isActiveTripLoading } from '../../../data/trip/selectors'
 import Padding from './components/padding'
 import Trip from './components/trip'
 import Members from './components/members'
@@ -92,7 +92,7 @@ class Settings extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trip: activeTripSelector(state),
+  trip: getActiveTrip(state),
   loading: isActiveTripLoading(state),
   invites: state.invite.entities,
   invitesLoading: state.invite.loading

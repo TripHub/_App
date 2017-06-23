@@ -30,18 +30,21 @@ export default class extends React.Component {
   }
 
   render () {
-    const { destinations } = this.props
+    const { destinations, showCreate } = this.props
     let { showForm, input } = this.state
     return (
       <div>
-        <Header>
-          <Heading1>Destinations</Heading1>
-          <Button small onClick={this.show}>
-            <Text>
-              <Icon name='plus' /> add destination
-            </Text>
-          </Button>
-        </Header>
+        {
+          showCreate &&
+          <Header>
+            <Heading1>Destinations</Heading1>
+            <Button small onClick={this.show}>
+              <Text>
+                <Icon name='plus' /> add destination
+              </Text>
+            </Button>
+          </Header>
+        }
         <Row>
           {
             showForm && (

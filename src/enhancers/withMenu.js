@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Menu from '../components/menu'
 import { logout } from '../data/user/actions'
-import { activeTripSelector } from '../data/trip/selectors'
+import { getActiveTrip } from '../data/trip/selectors'
 
 // adds the menu bar and `user` to this.props
 export default (Wrapped) => {
@@ -24,7 +24,7 @@ export default (Wrapped) => {
 
   const mapStateToProps = (state) => ({
     user: state.user,
-    trip: activeTripSelector(state)
+    trip: getActiveTrip(state)
   })
 
   const mapDispatchToProps = (dispatch) => ({

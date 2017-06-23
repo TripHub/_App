@@ -2,8 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
-import { getTrip, getTrips, createDestination, setActiveTrip } from '../../../data/trip/actions'
-import { getActiveTrip, isActiveTripLoading, isUserActiveTripOwner } from '../../../data/trip/selectors'
+import {
+  getTrip,
+  getTrips,
+  createDestination,
+  setActiveTrip
+} from '../../../data/trip/actions'
+import {
+  getActiveTrip,
+  isActiveTripLoading,
+  isUserActiveTripOwner
+} from '../../../data/trip/selectors'
 import Destinations from './components/destinations'
 
 class Trip extends React.Component {

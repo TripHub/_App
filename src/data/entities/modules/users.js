@@ -3,7 +3,9 @@ import { ADD_ENTITIES } from '../actions'
 
 export const STATE_KEY = 'users'
 
-export default function reducer (state = { byId: {} }, action) {
+const initialState = { byId: {} }
+
+export default function reducer (state = initialState, action) {
   switch (action.type) {
     case ADD_ENTITIES:
       return {

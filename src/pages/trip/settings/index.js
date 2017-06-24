@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { Title } from '../../../components/text'
-import { cancelInvite } from '../../../data/invite/actions'
-import {
-  updateTrip,
-  inviteMember
-} from '../../../data/trip/actions'
 import {
   setActiveTrip,
   getInvitations,
+  inviteMember,
+  cancelInvite,
+  updateTrip,
   deleteTrip
 } from '../../../data/entities/actions'
 import {
@@ -64,7 +62,7 @@ class Settings extends React.Component {
           ? notify.show(payload.response[0] || 'There was a problem.', 'error')
           : notify.show('Invite sent', 'success')
       })
-      .then(this.getInvites)
+      .then(this.props.getInvites)
   }
 
   handleCancel = (id) => {
@@ -74,7 +72,7 @@ class Settings extends React.Component {
           ? notify.show(payload.response[0] || 'There was a problem', 'error')
           : notify.show('Invite cancelled', 'success')
       })
-      .then(this.getInvites)
+      .then(this.props.getInvites)
   }
 
   render () {

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Auth from '../../../services/auth'
 import { isUserAuthenticated } from '../../../data/user/selectors'
-import { getInvite } from '../../../data/invite/actions'
+import { getInvitation } from '../../../data/entities/actions'
 import NotFound from '../../error/notFound'
 import { Heading1, P } from '../../../components/text'
 import Container from './components/container'
@@ -26,7 +26,7 @@ class Invite extends React.Component {
   }
 
   componentDidMount () {
-    this.props.getInvite(this.props.match.params.id)
+    this.props.getInvitation(this.props.match.params.id)
       // if theres an error then we assume that the invite doesn't exist
       .then((action) => this.setState({
         error: !!action.error,
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getInvite: (id) => dispatch(getInvite(id))
+  getInvitation: (id) => dispatch(getInvitation(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Invite)

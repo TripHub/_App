@@ -1,12 +1,4 @@
 import { CALL_API } from 'redux-api-middleware'
-// import axios from 'axios'
-
-// export default (accessToken) => axios.create({
-//   baseUrl: process.env.REACT_APP_API_URL,
-//   headers: {
-//     'Authorization': accessToken
-//   }
-// })
 
 /**
  * Sets useful request defaults, and then updates with given config.
@@ -34,7 +26,7 @@ export default (endpoint, { success, ...config } = {}) => ({
       ...user && user.accessToken && { Authorization: user.accessToken },
       'Content-Type': 'application/json'
     }),
-    types: ['REQUEST', success || 'SUCCESS', 'FAILURE'],
+    types: ['request', success || 'success', 'failure'],
     ...config
   }
 })

@@ -1,9 +1,8 @@
 import React from 'react'
-import Container from './components/container'
 import Invite from './components/invite'
 
 export default ({ loading, invites, onCancel }) => (
-  <Container loading={loading}>
+  <div>
     {
       invites.map((invite) => (
         <Invite
@@ -13,5 +12,5 @@ export default ({ loading, invites, onCancel }) => (
           onCancel={() => onCancel(invite.id)} />
       ))
     }
-  </Container>
+  </div>
 )

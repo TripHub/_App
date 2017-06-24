@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { loginRequired } from '../../../enhancers'
-import { getInvite, acceptInvite } from '../../../data/invite/actions'
+import { getInvitation, acceptInvite } from '../../../data/entities/actions'
 import NotFound from '../../error/notFound'
 
 class Accept extends React.Component {
@@ -9,7 +9,7 @@ class Accept extends React.Component {
 
   componentDidMount () {
     const id = this.props.match.params.id
-    this.props.getInvite(id).then(({ error, payload }) => {
+    this.props.getInvitation(id).then(({ error, payload }) => {
       error
         ? this.setState({ notFound: true })
         : this.props.accept(id)
@@ -29,7 +29,7 @@ class Accept extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getInvite: (id) => dispatch(getInvite(id)),
+  getInvitation: (id) => dispatch(getInvitation(id)),
   accept: (id) => dispatch(acceptInvite(id))
 })
 

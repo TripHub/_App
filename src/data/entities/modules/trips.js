@@ -3,55 +3,25 @@ import { merge, deleteFrom } from '../../../services/primitives'
 import { ADD_ENTITIES, addEntities } from '../actions'
 
 export const STATE_KEY = 'trips'
-
-const REQUEST_ALL = `${STATE_KEY}_all_request`
-const FAILURE_ALL = `${STATE_KEY}_all_failure`
-const REQUEST_SINGLE = `${STATE_KEY}_single_request`
-const FAILURE_SINGLE = `${STATE_KEY}_single_failure`
 const SET_ACTIVE_TRIP = `${STATE_KEY}_set_active`
 const DELETE = `${STATE_KEY}_delete`
 
-export default function reducer (state = { byId: {} }, action) {
+const initialState = {
+  didInvalidate: true,
+  loading: false,
+  byId: {},
+  active: ''
+}
+
+export default function reducer (state = initialState, action) {
   switch (action.type) {
     case ADD_ENTITIES:
       return {
         ...state,
         byId: merge(state.byId, action.payload.trip, { loading: false }),
+        didInvalidate: false,
         loading: false
       }
-    case REQUEST_ALL:
-      return {
-        ...state,
-        loading: !action.error
-      }
-    case REQUEST_SINGLE:
-      return {
-        ...state,
-        byId: {
-          ...state.byId,
-          [action.meta.id]: {
-            ...state.byId[action.meta.id],
-            loading: true
-          }
-        }
-      }
-    case FAILURE_ALL:
-      return {
-        ...state,
-        loading: false
-      }
-    case FAILURE_SINGLE: {
-      return {
-        ...state,
-        byId: {
-          ...state.byId,
-          [action.meta.id]: {
-            ...state.byId[action.meta.id],
-            loading: true
-          }
-        }
-      }
-    }
     case SET_ACTIVE_TRIP: {
       return {
         ...state,
@@ -71,20 +41,47 @@ export default function reducer (state = { byId: {} }, action) {
 
 export const getTrips = () => (dispatch, getState, { api, schema }) => (
   dispatch(api('/trip/', {
-    types: [ REQUEST_ALL, addEntities([schema.trip]), FAILURE_ALL ]
+    bailout: ({ entities }) => !entities.trips.didInvalidate,
+    success: addEntities([schema.trip])
   }))
 )
 
 export const getTrip = (id) => (dispatch, getState, { api, schema }) => (
   dispatch(api(`/trip/${id}/`, {
-    types: [
-      {type: REQUEST_SINGLE, meta: { id }},
-      addEntities(schema.trip),
-      { type: FAILURE_SINGLE, meta: { id } }
-    ]
+    success: addEntities(schema.trip)
   }))
 )
 
+/**
+ * Creates a trip.
+ * @param {string} title - The title of the trip.
+ */
+export const createTrip = (title) => (dispatch, getState, { api, schema }) => (
+  dispatch(api('/trip/', {
+    method: 'post',
+    body: JSON.stringify({ title }),
+    success: addEntities(schema.trip)
+  }))
+)
+
+/**
+ * Updates a trip.
+ * @param {string} id - ID of the trip to update.
+ * @param {object} data - Object containing the new data (can be partial).
+ */
+export const updateTrip = (id, data) =>
+  (dispatch, getState, { api, schema }) => (
+    dispatch(api(`/trip/${id}/`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      success: addEntities(schema.trip)
+    }))
+  )
+
+/**
+ * Deletes a trip.
+ * @param {string} id - ID of the trip to delete.
+ */
 export const deleteTrip = (id) => (dispatch, getState, { api, schema }) => (
   dispatch(api(`/trip/${id}/`, {
     method: 'delete',
@@ -95,10 +92,16 @@ export const deleteTrip = (id) => (dispatch, getState, { api, schema }) => (
   }))
 )
 
+/**
+ * Sets the trip with the given ID as the active trip.
+ * @param {string} id - ID of the trip to make active.
+ */
 export const setActiveTrip = (id) => ({
   type: SET_ACTIVE_TRIP,
   payload: { id }
 })
+
+/** Selectors */
 
 const selectActiveTripId = ({ entities }) => entities.trips.active
 

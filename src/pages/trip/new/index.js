@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { createTrip } from '../../../data/trip/actions'
+import { createTrip } from '../../../data/entities/actions'
 import { loginRequired, withMenu } from '../../../enhancers'
 import Button from '../../../components/button'
 import { Text } from '../../../components/text'
@@ -16,9 +16,10 @@ class New extends React.Component {
     const { history, createTrip } = this.props
     e.preventDefault()
     createTrip(this.state.title)
-      .then((action) => {
-        action.payload.id
-          ? history.push(`/${action.payload.id}`)
+      .then(({ payload }) => {
+        const id = Object.keys(payload.trip)[0]
+        id
+          ? history.push(`/${id}`)
           : history.push('/')
       })
   }

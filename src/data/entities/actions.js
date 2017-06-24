@@ -3,7 +3,7 @@ export * from './modules/trips'
 export * from './modules/destinations'
 export * from './modules/invitations'
 
-export const ADD_ENTITIES = 'ADD_ENTITIES'
+export const ADD_ENTITIES = 'add_entities'
 export const addEntities = (schema) => ({
   type: ADD_ENTITIES,
   payload: (action, state, res) => res.json()

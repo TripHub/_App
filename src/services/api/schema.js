@@ -7,4 +7,4 @@ export const trip = new schema.Entity('trip', {
   owner: user,
   destinations: [ destination ]
 })
-export const invite = new schema.Entity('invite')
+export const invitation = new schema.Entity('invitation', { trip })

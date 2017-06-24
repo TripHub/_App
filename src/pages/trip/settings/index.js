@@ -3,16 +3,20 @@ import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { Title } from '../../../components/text'
-import { getInvites, cancelInvite } from '../../../data/invite/actions'
+import { cancelInvite } from '../../../data/invite/actions'
 import {
-  deleteTrip, updateTrip, setActiveTrip,
+  deleteTrip, updateTrip,
   inviteMember
 } from '../../../data/trip/actions'
 import {
-  getActiveTrip,
-  isActiveTripLoading,
+  setActiveTrip,
+  getInvitations as _getInvites
+} from '../../../data/entities/actions'
+import {
+  selectActiveTrip,
+  selectActiveTripInvitations,
   isUserActiveTripOwner
-} from '../../../data/trip/selectors'
+} from '../../../data/entities/selectors'
 import NotFound from '../../error/notFound/'
 import Padding from './components/padding'
 import Trip from './components/trip'
@@ -32,11 +36,10 @@ class Settings extends React.Component {
     }
     /** Bootstrap trip-dependant actions */
     const { trip } = this.props
-    this.getInvites = this.props.getInvites(trip.id)
     this.updateTrip = this.props.updateTrip(trip.id)
     this.inviteMember = this.props.inviteMember(trip.id)
 
-    this.getInvites()
+    this.props.getInvites()
   }
 
   handleDelete = () => {
@@ -74,21 +77,21 @@ class Settings extends React.Component {
   }
 
   render () {
-    const { loading, trip, invites, invitesLoading } = this.props
+    const { trip, invites, invitesLoading } = this.props
     const { title, tagLine } = this.state
     return this.state.notFound ? <NotFound /> : (
       <Padding>
         <Title>Settings</Title>
         <Trip
-          loading={loading}
+          loading={trip.loading}
           title={trip.title}
-          titleDisabled={!title || title === trip.title || loading}
+          titleDisabled={!title || title === trip.title || trip.loading}
           onTitleChange={(e) => this.setState({
             title: e.target.value.trim()
           })}
           onTitleSubmit={(e) => this.handleUpdate(e, { title })}
           description={trip.tag_line}
-          tagLineDisabled={!tagLine || tagLine === trip.tag_line || loading}
+          tagLineDisabled={!tagLine || tagLine === trip.tag_line || trip.loading}
           onTagLineChange={(e) => this.setState({
             tagLine: e.target.value.trim()
           })}
@@ -107,18 +110,17 @@ class Settings extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trip: getActiveTrip(state),
+  trip: selectActiveTrip(state),
   isOwner: isUserActiveTripOwner(state),
-  loading: isActiveTripLoading(state),
-  invites: state.invite.entities,
-  invitesLoading: state.invite.loading
+  invites: selectActiveTripInvitations(state),
+  invitesLoading: state.entities.invitations.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({
   deleteTrip: (id) => dispatch(deleteTrip(id)),
   updateTrip: (id) => (data) => dispatch(updateTrip(id, data)),
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
-  getInvites: (id) => () => dispatch(getInvites(id)),
+  getInvites: () => dispatch(_getInvites()),
   inviteMember: (id) => (email) => dispatch(inviteMember(id, email)),
   cancelInvite: (id) => dispatch(cancelInvite(id))
 })

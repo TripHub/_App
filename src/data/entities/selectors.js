@@ -1,1 +1,6 @@
-export { selectActiveTrip, isUserActiveTripOwner } from './modules/trips'
+export {
+  selectActiveTrip,
+  isUserActiveTripOwner,
+  selectActiveTripDestinations,
+  selectActiveTripInvitations
+} from './modules/trips'

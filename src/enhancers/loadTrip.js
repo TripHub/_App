@@ -7,10 +7,7 @@ import NotFound from '../pages/error/notFound'
 // gets the trip from the URL and loads it
 export default (Wrapped) => {
   class LoadTrip extends React.Component {
-    constructor (props) {
-      super(props)
-      this.state = { resolved: false }
-    }
+    state = { resolved: false }
 
     componentDidMount () {
       const { trip, match, setActiveTrip, getTrip, getTrips } = this.props

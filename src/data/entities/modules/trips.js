@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import { merge } from '../../../services/primitives'
 import { ADD_ENTITIES, addEntities } from '../actions'
 
 export const STATE_KEY = 'trips'
@@ -9,8 +10,14 @@ const REQUEST_SINGLE = `${STATE_KEY}_single_request`
 const FAILURE_SINGLE = `${STATE_KEY}_single_failure`
 const SET_ACTIVE_TRIP = 'SET_ACTIVE_TRIP'
 
-export default function reducer (state = { byId: {}, active: '' }, action) {
+export default function reducer (state = { byId: {} }, action) {
   switch (action.type) {
+    case ADD_ENTITIES:
+      return {
+        ...state,
+        byId: merge(state.byId, action.payload.trip, { loading: false }),
+        loading: false
+      }
     case REQUEST_ALL:
       return {
         ...state,
@@ -26,19 +33,6 @@ export default function reducer (state = { byId: {}, active: '' }, action) {
             loading: true
           }
         }
-      }
-    case ADD_ENTITIES:
-      return {
-        byId: Object.entries(action.payload.trip || {})
-          .reduce((trips, [id, trip]) => ({
-            ...trips,
-            [id]: {
-              ...(trips[id] || {}),
-              ...trip,
-              loading: false
-            }
-          }), state.byId),
-        loading: false
       }
     case FAILURE_ALL:
       return {
@@ -89,8 +83,10 @@ export const setActiveTrip = (id) => ({
   payload: { id }
 })
 
+const selectActiveTripId = ({ entities }) => entities.trips.active
+
 export const selectActiveTrip = createSelector(
-  [({ entities }) => entities.trips.byId, ({ entities }) => entities.trips.active],
+  [({ entities }) => entities.trips.byId, selectActiveTripId],
   (trips, active) => active ? trips[active] || {} : {}
 )
 
@@ -99,4 +95,19 @@ export const isUserActiveTripOwner = createSelector(
   (sub, activeTrip, users) => (
     activeTrip && activeTrip.owner && users[activeTrip.owner].auth0_id === sub
   )
+)
+
+export const selectActiveTripDestinations = createSelector(
+  [({ entities }) => entities.destinations.byId, selectActiveTrip],
+  (destinations, activeTrip) => (
+    activeTrip.destinations &&
+    activeTrip.destinations.map((id) => destinations[id])
+  )
+)
+
+export const selectActiveTripInvitations = createSelector(
+  [({ entities }) => entities.invitations.byId, selectActiveTripId],
+  (invitations, activeTripId) => activeTripId &&
+    Object.values(invitations)
+      .filter((invitation) => invitation.trip === activeTripId)
 )

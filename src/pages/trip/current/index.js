@@ -1,47 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import {
-  createDestination,
-  setActiveTrip
+  createDestination
 } from '../../../data/trip/actions'
+import { setActiveTrip } from '../../../data/entities/actions'
 import {
-  getActiveTrip,
-  isActiveTripLoading,
-  isUserActiveTripOwner
-} from '../../../data/trip/selectors'
+  selectActiveTrip,
+  isUserActiveTripOwner,
+  selectActiveTripDestinations
+} from '../../../data/entities/selectors'
 import Destinations from './components/destinations'
 
 class Trip extends React.Component {
-  componentWillReceiveProps (nextProps) {
-    Object.entries(nextProps.errors)
-      .map((error) => notify.show(error[1].message, 'error'))
-  }
-
   render () {
-    const { trip, createDestination, isOwner } = this.props
+    const { trip, destinations, createDestination, isOwner } = this.props
     return (
       <div>
-        {
-          // these elements need a fully loaded trip object
-          trip.is_complete && (
-            <div>
-              <Destinations
-                showCreate={isOwner}
-                createDestination={createDestination(trip.id)}
-                destinations={trip.destinations} />
-            </div>
-        )}
+        <Destinations
+          showCreate={isOwner}
+          createDestination={createDestination(trip.id)}
+          destinations={destinations || []} />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  trip: getActiveTrip(state),
+  trip: selectActiveTrip(state),
+  destinations: selectActiveTripDestinations(state),
   isOwner: isUserActiveTripOwner(state),
-  loading: isActiveTripLoading(state),
   errors: state.trip.errors
 })
 

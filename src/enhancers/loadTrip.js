@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTrip, getTrips, setActiveTrip } from '../data/trip/actions'
-import { getActiveTrip } from '../data/trip/selectors'
+import { getTrips, getTrip, setActiveTrip } from '../data/entities/actions'
+import { selectActiveTrip } from '../data/entities/selectors'
 import NotFound from '../pages/error/notFound'
 
 // gets the trip from the URL and loads it
@@ -36,7 +36,7 @@ export default (Wrapped) => {
   }
 
   const mapStateToProps = (state) => ({
-    trip: getActiveTrip(state)
+    trip: selectActiveTrip(state)
   })
 
   const mapDispatchToProps = (dispatch) => ({

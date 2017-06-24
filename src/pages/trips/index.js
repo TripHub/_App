@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../enhancers'
-import { getTrips } from '../../data/trip/actions'
-import { getActiveTrip } from '../../data/trip/selectors'
+import { getTrips } from '../../data/entities/actions'
+import { selectActiveTrip } from '../../data/entities/selectors'
 import Spinner from '../../components/spinner/'
 import { Row } from '../../components/responsive/'
 import Icon from '../../components/icon/'
@@ -34,7 +34,7 @@ class Trips extends React.Component {
         {
           trips.loading
             ? <Spinner />
-            : Object.values(trips.entities).map(trip =>
+            : Object.values(trips.byId).map(trip =>
               <TripItem
                 key={trip.id}
                 to={`/${trip.id}`}
@@ -48,12 +48,13 @@ class Trips extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.trip,
-  activeTrip: getActiveTrip(state)
+  trips: state.entities.trips,
+  activeTrip: selectActiveTrip(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getTrips: () => dispatch(getTrips())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(dashboardPageWithLogin(Trips))
+const TripsPage = dashboardPageWithLogin(Trips)
+export default connect(mapStateToProps, mapDispatchToProps)(TripsPage)

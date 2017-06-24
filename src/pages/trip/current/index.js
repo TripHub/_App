@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import {
-  getTrip,
-  getTrips,
   createDestination,
   setActiveTrip
 } from '../../../data/trip/actions'
@@ -48,8 +46,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTrips: () => dispatch(getTrips()),
-  getTrip: (id) => dispatch(getTrip(id)),
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
   createDestination: (id) => (title) => dispatch(createDestination(id, title))
 })

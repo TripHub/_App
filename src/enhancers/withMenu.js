@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Menu from '../components/menu'
 import { logout } from '../data/user/actions'
-import { isUserActiveTripOwner } from '../data/trip/selectors'
-import { selectActiveTrip } from '../data/entities/selectors'
+import { selectActiveTrip, isUserActiveTripOwner } from '../data/entities/selectors'
 
 // adds the menu bar and `user` to this.props
 export default (Wrapped) => {

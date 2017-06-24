@@ -93,3 +93,10 @@ export const selectActiveTrip = createSelector(
   [({ entities }) => entities.trips.byId, ({ entities }) => entities.trips.active],
   (trips, active) => active ? trips[active] || {} : {}
 )
+
+export const isUserActiveTripOwner = createSelector(
+  [({ user }) => user.sub, selectActiveTrip, ({ entities }) => entities.users.byId],
+  (sub, activeTrip, users) => (
+    activeTrip && activeTrip.owner && users[activeTrip.owner].auth0_id === sub
+  )
+)

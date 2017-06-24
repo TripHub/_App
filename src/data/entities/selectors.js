@@ -1,1 +1,1 @@
-export { selectActiveTrip } from './modules/trips'
+export { selectActiveTrip, isUserActiveTripOwner } from './modules/trips'

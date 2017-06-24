@@ -1,5 +1,6 @@
 import { normalize } from 'normalizr'
 export * from './modules/trips'
+export * from './modules/destinations'
 export * from './modules/invitations'
 
 export const ADD_ENTITIES = 'ADD_ENTITIES'

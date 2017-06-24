@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { merge } from '../../../services/primitives'
+import { merge, deleteFrom } from '../../../services/primitives'
 import { ADD_ENTITIES, addEntities } from '../actions'
 
 export const STATE_KEY = 'trips'
@@ -8,7 +8,8 @@ const REQUEST_ALL = `${STATE_KEY}_all_request`
 const FAILURE_ALL = `${STATE_KEY}_all_failure`
 const REQUEST_SINGLE = `${STATE_KEY}_single_request`
 const FAILURE_SINGLE = `${STATE_KEY}_single_failure`
-const SET_ACTIVE_TRIP = 'SET_ACTIVE_TRIP'
+const SET_ACTIVE_TRIP = `${STATE_KEY}_set_active`
+const DELETE = `${STATE_KEY}_delete`
 
 export default function reducer (state = { byId: {} }, action) {
   switch (action.type) {
@@ -57,6 +58,12 @@ export default function reducer (state = { byId: {} }, action) {
         active: action.payload.id
       }
     }
+    case DELETE: {
+      return {
+        ...state,
+        byId: deleteFrom(state.byId, action.meta.id)
+      }
+    }
     default:
       return state
   }
@@ -75,6 +82,16 @@ export const getTrip = (id) => (dispatch, getState, { api, schema }) => (
       addEntities(schema.trip),
       { type: FAILURE_SINGLE, meta: { id } }
     ]
+  }))
+)
+
+export const deleteTrip = (id) => (dispatch, getState, { api, schema }) => (
+  dispatch(api(`/trip/${id}/`, {
+    method: 'delete',
+    success: {
+      type: DELETE,
+      meta: { id }
+    }
   }))
 )
 

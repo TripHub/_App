@@ -5,12 +5,13 @@ import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import { Title } from '../../../components/text'
 import { cancelInvite } from '../../../data/invite/actions'
 import {
-  deleteTrip, updateTrip,
+  updateTrip,
   inviteMember
 } from '../../../data/trip/actions'
 import {
   setActiveTrip,
-  getInvitations as _getInvites
+  getInvitations,
+  deleteTrip
 } from '../../../data/entities/actions'
 import {
   selectActiveTrip,
@@ -120,7 +121,7 @@ const mapDispatchToProps = (dispatch) => ({
   deleteTrip: (id) => dispatch(deleteTrip(id)),
   updateTrip: (id) => (data) => dispatch(updateTrip(id, data)),
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
-  getInvites: () => dispatch(_getInvites()),
+  getInvites: () => dispatch(getInvitations()),
   inviteMember: (id) => (email) => dispatch(inviteMember(id, email)),
   cancelInvite: (id) => dispatch(cancelInvite(id))
 })

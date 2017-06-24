@@ -14,7 +14,7 @@ export const objectFromArray = (array, key, valueFunc = (obj) => obj) => {
   }, {})
 }
 
-export const merge = (root, merge, suppliment = {}) => {
+export const merge = (obj, merge, suppliment = {}) => {
   return Object.entries(merge || {})
     .reduce((acc, [id, value]) => ({
       ...acc,
@@ -23,8 +23,17 @@ export const merge = (root, merge, suppliment = {}) => {
         ...value,
         ...suppliment
       }
-    }), root || {})
+    }), obj || {})
 }
+
+export const deleteFrom = (obj, target) => (
+  Object.keys(obj).reduce((acc, key) => {
+    if (key !== target) {
+      acc[key] = obj[key]
+    }
+    return acc
+  }, {})
+)
 
 /**
  * Takes an object and returns a new object with the value specified by the

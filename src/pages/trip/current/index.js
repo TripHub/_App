@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { dashboardPageWithLogin, loadTrip } from '../../../enhancers'
 import {
+  getTrip,
+  setActiveTrip,
   createDestination
-} from '../../../data/trip/actions'
-import { setActiveTrip } from '../../../data/entities/actions'
+} from '../../../data/entities/actions'
 import {
   selectActiveTrip,
   isUserActiveTripOwner,
@@ -29,13 +30,13 @@ class Trip extends React.Component {
 const mapStateToProps = (state) => ({
   trip: selectActiveTrip(state),
   destinations: selectActiveTripDestinations(state),
-  isOwner: isUserActiveTripOwner(state),
-  errors: state.trip.errors
+  isOwner: isUserActiveTripOwner(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
   createDestination: (id) => (title) => dispatch(createDestination(id, title))
+    .then(() => dispatch(getTrip(id)))
 })
 
 const TripPage = dashboardPageWithLogin(loadTrip(Trip))

@@ -1,5 +1,5 @@
 import { merge } from '../../../services/primitives'
-import { ADD_ENTITIES } from '../actions'
+import { ADD_ENTITIES, addEntities } from '../actions'
 
 export const STATE_KEY = 'destinations'
 
@@ -14,3 +14,12 @@ export default function reducer (state = { byId: {} }, action) {
       return state
   }
 }
+
+export const createDestination = (trip, title) =>
+  (dispatch, getState, { api, schema }) => (
+    dispatch(api(`/destination/`, {
+      method: 'post',
+      body: JSON.stringify({ trip, title }),
+      success: addEntities(schema.destination)
+    }))
+  )

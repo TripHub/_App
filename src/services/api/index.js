@@ -26,7 +26,7 @@ export const apiRequest = (endpoint, config = {}) => ({
   }
 })
 
-export default (endpoint, config = {}) => ({
+export default (endpoint, { success, ...config } = {}) => ({
   [CALL_API]: {
     endpoint: process.env.REACT_APP_API_URL + endpoint,
     method: 'get',
@@ -34,6 +34,7 @@ export default (endpoint, config = {}) => ({
       ...user && user.accessToken && { Authorization: user.accessToken },
       'Content-Type': 'application/json'
     }),
+    types: ['REQUEST', success || 'SUCCESS', 'FAILURE'],
     ...config
   }
 })

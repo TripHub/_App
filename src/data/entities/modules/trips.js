@@ -131,3 +131,9 @@ export const selectActiveTripInvitations = createSelector(
     Object.values(invitations)
       .filter((invitation) => invitation.trip === activeTripId)
 )
+
+export const selectActiveTripMembers = createSelector(
+  [({ entities }) => entities.users.byId, selectActiveTrip],
+  (users, activeTrip) => (activeTrip.members || [])
+    .map(id => users[id]).filter(i => !!i)
+)

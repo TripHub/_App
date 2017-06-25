@@ -1,3 +1,7 @@
+/**
+ * TODO: Actions should be refactored to be RSAs.
+ */
+
 import Auth from '../../services/auth'
 
 // Action types

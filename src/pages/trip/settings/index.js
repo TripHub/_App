@@ -14,6 +14,7 @@ import {
 import {
   selectActiveTrip,
   selectActiveTripInvitations,
+  selectActiveTripMembers,
   isUserActiveTripOwner
 } from '../../../data/entities/selectors'
 import NotFound from '../../error/notFound/'
@@ -76,7 +77,7 @@ class Settings extends React.Component {
   }
 
   render () {
-    const { trip, invites, invitesLoading } = this.props
+    const { trip, invites, members, invitesLoading } = this.props
     const { title, tagLine } = this.state
     return this.state.notFound ? <NotFound /> : (
       <Padding>
@@ -99,7 +100,8 @@ class Settings extends React.Component {
           })} />
         <Members
           invitesLoading={invitesLoading}
-          members={invites}
+          invites={invites}
+          members={members}
           onSubmit={this.handleInvite}
           onCancel={this.handleCancel} />
         <DangerZone onDelete={this.handleDelete} />
@@ -110,6 +112,7 @@ class Settings extends React.Component {
 
 const mapStateToProps = (state) => ({
   trip: selectActiveTrip(state),
+  members: selectActiveTripMembers(state),
   isOwner: isUserActiveTripOwner(state),
   invites: selectActiveTripInvitations(state),
   invitesLoading: state.entities.invitations.loading

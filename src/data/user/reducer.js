@@ -2,10 +2,9 @@ import * as actionTypes from './actions'
 
 export const initialState = {
   accessToken: '',
-  picture: '',
-  name: '',
-  email: '',
   expiryTime: '',
+  sub: '',
+  email: '',
   loading: false,
   error: false
 }
@@ -19,7 +18,8 @@ export default (state = initialState, action) => {
       }
     case actionTypes.LOGIN_AUTH0_SUCCESS:
       // we're working in millis
-      const expiryTime = action.authResult.expiresIn * 1000 + new Date().getTime()
+      const now = new Date().getTime()
+      const expiryTime = (action.authResult.expiresIn * 1000) + now
       return {
         ...state,
         expiryTime,

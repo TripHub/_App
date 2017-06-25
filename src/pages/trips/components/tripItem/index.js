@@ -3,8 +3,9 @@ import Panel from '../../../../components/panel'
 import { Heading2, Small } from '../../../../components/text'
 import { OneTwoFour } from '../../../../components/responsive'
 
-export default ({ trip, children, memberCount, ...props }) => {
-  const totalMembers = memberCount + 1  // include the owner
+export default ({ trip, children, ...props }) => {
+  const totalMembers = trip &&
+    trip.members.length + 1  // include the owner
   const memberText = totalMembers === 1 ? 'member' : 'members'
   return (
     <OneTwoFour>

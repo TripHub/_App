@@ -39,8 +39,7 @@ class Trips extends React.Component {
                 key={trip.id}
                 to={`/${trip.id}`}
                 trip={trip}
-                active={activeTrip.id === trip.id}
-                memberCount={trip.member_count} />)
+                active={activeTrip.id === trip.id} />)
         }
       </Row>
     )

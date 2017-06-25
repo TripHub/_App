@@ -24,8 +24,9 @@ export default class Members extends React.Component {
   }
 
   render () {
-    const { members, onCancel } = this.props
+    const { invites, members, onCancel } = this.props
     const { email } = this.state
+    console.log(members)
     return (
       <Container>
         <Heading1>Members</Heading1>
@@ -40,7 +41,7 @@ export default class Members extends React.Component {
           label='Invite to trip'
           buttonText='Invite' />
         <Invites
-          invites={Object.values(members)}
+          invites={Object.values(invites)}
           onCancel={onCancel} />
       </Container>
     )

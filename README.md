@@ -11,7 +11,9 @@
 
 I am building TripHub, partly because I think it's a cool idea and I can't find anything else like it, and partly as a learning exercise for developing scalable and performant Single Page Applications (SPA's) by utilising awesome techniques like bundle splitting and atomic CSS.
 
-**Below is a running log of some of the packages I'm using, with my thoughts/notes** 📝
+The [app's documentation](https://triphub.gitbooks.io/app) is on GitBooks.
+
+Below is a running log of some of the packages I'm using, with my thoughts/notes 📝
 
 ## [Redux](http://redux.js.org/)
 

@@ -12,16 +12,8 @@ import TripItem from './components/tripItem'
 class Trips extends React.Component {
   componentDidMount () {
     this.props.getTrips()
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const errors = nextProps.trips.errors
-    errors && this.showErrors(errors)
-  }
-
-  showErrors = (errors) => {
-    Object.entries(errors)
-      .map((error) => notify.show(error[1].message, 'error'))
+      .then(({ error, payload }) =>
+        error && notify.show(payload.message, 'error'))
   }
 
   render () {

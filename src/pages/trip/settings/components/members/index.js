@@ -4,6 +4,7 @@ import { borderRadius, color, spacing } from '../../../../../common/style'
 import { Heading1, Small } from '../../../../../components/text'
 import { InputForm } from '../../../../../components/form'
 import Invites from './components/invites'
+import MembersList from './components/members'
 
 const Container = styled('div', {
   marginBottom: spacing.sd,
@@ -26,10 +27,10 @@ export default class Members extends React.Component {
   render () {
     const { invites, members, onCancel } = this.props
     const { email } = this.state
-    console.log(members)
     return (
       <Container>
         <Heading1>Members</Heading1>
+        <MembersList members={members} />
         <Small>Invite your fellow trippers!</Small>
         <InputForm
           small

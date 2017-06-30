@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { notify } from 'react-notify-toast'
 import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrips } from '../../data/entities/actions'
 import { selectActiveTrip } from '../../data/entities/selectors'
@@ -12,8 +11,6 @@ import TripItem from './components/tripItem'
 class Trips extends React.Component {
   componentDidMount () {
     this.props.getTrips()
-      .then(({ error, payload }) =>
-        error && notify.show(payload.message, 'error'))
   }
 
   render () {

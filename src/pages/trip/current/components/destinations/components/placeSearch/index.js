@@ -34,8 +34,8 @@ class PlaceSearch extends React.Component {
     const longitude = parseFloat(latLng.lng.toFixed(9))
 
     this.props.createDestination({
-      title: address,
       google_place_id: placeId,
+      address,
       latitude,
       longitude
     })
@@ -58,8 +58,10 @@ class PlaceSearch extends React.Component {
        * Extract the lat/lng from the results
        */
 
-      .then(results =>
-        getLatLng(results[0]).then((latLng) => this.setState({ latLng })))
+      .then(results => {
+        console.log('results', results)
+        getLatLng(results[0]).then((latLng) => this.setState({ latLng }))
+      })
 
       .catch(err => console.log(err))
 

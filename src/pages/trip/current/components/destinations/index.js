@@ -5,7 +5,6 @@ import Button from '../../../../../components/button'
 import Panel from '../../../../../components/panel'
 import Icon from '../../../../../components/icon'
 import Header from './components/header'
-import New from './components/new'
 import PlaceSearch from './components/placeSearch'
 
 export default class extends React.Component {
@@ -29,7 +28,8 @@ export default class extends React.Component {
 
   render () {
     const { destinations, showCreate } = this.props
-    let { showForm, input } = this.state
+    // let { showForm, input } = this.state
+
     return (
       <div>
         {
@@ -64,7 +64,7 @@ export default class extends React.Component {
             destinations.map((destination) => (
               <OneTwoFour key={destination.id}>
                 <Panel>
-                  <Heading2 noMargin>{destination.title}</Heading2>
+                  <Heading2 noMargin>{destination.address}</Heading2>
                 </Panel>
               </OneTwoFour>
             ))

@@ -7,7 +7,7 @@ import InputContainer from './components/inputContainer'
 
 export default ({ input, onChange, onSubmit, onCancel }) => {
   const handleKeyDown = (e) => {
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 /** esc key */) {
       onCancel()
     }
   }

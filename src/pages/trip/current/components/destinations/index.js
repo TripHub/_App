@@ -6,14 +6,12 @@ import Panel from '../../../../../components/panel'
 import Icon from '../../../../../components/icon'
 import Header from './components/header'
 import New from './components/new'
+import PlaceSearch from './components/placeSearch'
 
 export default class extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      showForm: false,
-      input: ''
-    }
+  state = {
+    showForm: false,
+    input: ''
   }
 
   show = () => this.setState({ showForm: true })
@@ -45,19 +43,20 @@ export default class extends React.Component {
             </Button>
           </Header>
         }
+        <PlaceSearch onCancel={this.hide} />
         <Row>
           {
-            showForm && (
-              <OneTwoFour>
-                <Panel>
-                  <New
-                    onChange={this.handleChange}
-                    onSubmit={this.handleSubmit}
-                    onCancel={this.hide}
-                    input={input} />
-                </Panel>
-              </OneTwoFour>
-            )
+            // showForm && (
+            //   <OneTwoFour>
+            //     <Panel>
+            //       <New
+            //         onChange={this.handleChange}
+            //         onSubmit={this.handleSubmit}
+            //         onCancel={this.hide}
+            //         input={input} />
+            //     </Panel>
+            //   </OneTwoFour>
+            // )
           }
           {
             destinations.map((destination) => (

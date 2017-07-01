@@ -25,13 +25,13 @@ export default function reducer (state = initialState, action) {
 
 /**
  * Creates a destination for a trip.
- * @param {string} id - ID of the trip to create the destination on.
- * @param {string} title - Title of the destination.
+ * @param {object} data - Object of data to populate the new destination with.
+ * Need's at least the ID of the parent trip.
  */
-export const createDestination = (trip, title) =>
+export const createDestination = (data) =>
   (dispatch, getState, { api, schema }) => dispatch(api(`/destination/`, {
     method: 'post',
-    body: JSON.stringify({ trip, title }),
+    body: JSON.stringify(data),
     success: addEntities(schema.destination)
   }))
 

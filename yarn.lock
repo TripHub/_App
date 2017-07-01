@@ -3927,6 +3927,10 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash.defaults@^4.0.1, lodash.defaults@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
@@ -5145,6 +5149,14 @@ react-notify-toast@^0.2.0:
     react "^0.14.7 || ^15.0.0"
     react-dom "^0.14.7 || ^15.0.0"
 
+react-places-autocomplete@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-5.3.1.tgz#f37e737eec05c53d8a9ba38b0106bac522f3ee99"
+  dependencies:
+    lodash.debounce "^4.0.8"
+    prop-types "^15.5.8"
+    react "^15.3.0"
+
 react-redux@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.5.tgz#f8e8c7b239422576e52d6b7db06439469be9846a"
@@ -5237,7 +5249,7 @@ react-test-renderer@^15.5.4:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
 
-"react@^0.14.7 || ^15.0.0", react@^15.5.4:
+"react@^0.14.7 || ^15.0.0", react@^15.3.0, react@^15.5.4:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
   dependencies:

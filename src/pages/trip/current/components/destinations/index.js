@@ -43,7 +43,9 @@ export default class extends React.Component {
             </Button>
           </Header>
         }
-        <PlaceSearch onCancel={this.hide} />
+        <PlaceSearch
+          onCancel={this.hide}
+          createDestination={this.props.createDestination} />
         <Row>
           {
             // showForm && (

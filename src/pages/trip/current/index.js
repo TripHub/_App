@@ -35,7 +35,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveTrip: (id) => dispatch(setActiveTrip(id)),
-  createDestination: (id) => (title) => dispatch(createDestination(id, title))
+  createDestination: (id) => (data) => dispatch(createDestination({
+    trip: id,
+    ...data
+  }))
     .then(() => dispatch(getTrip(id)))
 })
 

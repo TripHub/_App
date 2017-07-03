@@ -16,8 +16,8 @@ class New extends React.Component {
   }
 
   handleSubmit = (e) => {
-    const { history, createTrip } = this.props
     e.preventDefault()
+    const { history, createTrip } = this.props
     const { title, tagLine } = this.state
     createTrip({ title, tag_line: tagLine })
       .then(({ payload }) => {
@@ -29,7 +29,7 @@ class New extends React.Component {
   }
 
   handleKeyDown = (e) => {
-    // clear state and leave route if esc key
+    // leave route if esc key pressed
     if (e.keyCode === 27) {
       this.props.history.push('/')
     }
@@ -55,7 +55,6 @@ class New extends React.Component {
             onChange={(e) => this.setState({ title: e.target.value })}
             value={title} />
           <Input
-            autoFocus
             disabled={trip.loading}
             label={'Your trip\'s tag line'}
             placeholder='e.g. Get ready for the adventure of a lifetime...'

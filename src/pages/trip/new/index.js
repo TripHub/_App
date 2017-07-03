@@ -50,14 +50,14 @@ class New extends React.Component {
             autoFocus
             disabled={trip.loading}
             label={'What is your trip called?'}
-            placeholder='e.g. American Getaway...'
+            placeholder='American Getaway...'
             onKeyDown={this.handleKeyDown}
             onChange={(e) => this.setState({ title: e.target.value })}
             value={title} />
           <Input
             disabled={trip.loading}
             label={'Your trip\'s tag line'}
-            placeholder='e.g. Get ready for the adventure of a lifetime...'
+            placeholder='The adventure of a lifetime...'
             onKeyDown={this.handleKeyDown}
             onChange={(e) => this.setState({ tagLine: e.target.value })} />
         </Body>

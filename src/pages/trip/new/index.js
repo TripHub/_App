@@ -47,7 +47,7 @@ class New extends React.Component {
           <Input
             autoFocus
             disabled={trip.loading}
-            label={'Your Trip\'s Name'}
+            label={'What is your trip called?'}
             placeholder='e.g. American Getaway...'
             onKeyDown={this.handleKeyDown}
             onChange={this.handleChange} />

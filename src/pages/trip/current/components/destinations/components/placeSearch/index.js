@@ -4,18 +4,17 @@ import PlacesAutocomplete, {
   getLatLng
 } from 'react-places-autocomplete'
 import Button from '../../../../../../../components/button'
+import Form from './components/form'
 
 class PlaceSearch extends React.Component {
   constructor (props) {
     super(props)
-
     this.initialState = {
       address: '',
       placeId: '',
       latLng: {},
       loading: false
     }
-
     this.state = this.initialState
   }
 
@@ -33,13 +32,12 @@ class PlaceSearch extends React.Component {
     const latitude = parseFloat(latLng.lat.toFixed(9))
     const longitude = parseFloat(latLng.lng.toFixed(9))
 
-    this.props.createDestination({
+    this.props.onSubmit({
       google_place_id: placeId,
       address,
       latitude,
       longitude
     })
-      .then(() => this.setState(this.initialState))
   }
 
   handleSelect = (address, placeId) => {
@@ -74,23 +72,23 @@ class PlaceSearch extends React.Component {
   }
 
   render () {
-    const { loading } = this.state
+    const { loading, address } = this.state
 
     const inputProps = {
-      value: this.state.address,
+      value: address,
       onChange: (address) => this.setState({ address }),
       type: 'search',
       placeholder: 'Search Places...'
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <PlacesAutocomplete
           highlightFirstSuggestion
           onSelect={this.handleSelect}
           inputProps={inputProps} />
         <Button small primary disabled={loading} type='submit'>Add</Button>
-      </form>
+      </Form>
     )
   }
 }

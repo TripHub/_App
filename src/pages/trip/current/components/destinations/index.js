@@ -9,26 +9,21 @@ import PlaceSearch from './components/placeSearch'
 
 export default class extends React.Component {
   state = {
-    showForm: false,
-    input: ''
+    showForm: false
   }
 
   show = () => this.setState({ showForm: true })
 
-  hide = () => this.setState({ showForm: false, input: '' })
+  hide = () => this.setState({ showForm: false })
 
-  handleChange = (e) => this.setState({ input: e.target.value })
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.createDestination(this.state.input)
+  handleSubmit = (data) => {
+    this.props.createDestination(data)
     this.hide()
-    this.setState({ input: '' })
   }
 
   render () {
     const { destinations, showCreate } = this.props
-    // let { showForm, input } = this.state
+    let { showForm, address } = this.state
 
     return (
       <div>
@@ -43,22 +38,18 @@ export default class extends React.Component {
             </Button>
           </Header>
         }
-        <PlaceSearch
-          onCancel={this.hide}
-          createDestination={this.props.createDestination} />
         <Row>
           {
-            // showForm && (
-            //   <OneTwoFour>
-            //     <Panel>
-            //       <New
-            //         onChange={this.handleChange}
-            //         onSubmit={this.handleSubmit}
-            //         onCancel={this.hide}
-            //         input={input} />
-            //     </Panel>
-            //   </OneTwoFour>
-            // )
+            showForm && (
+              <OneTwoFour>
+                <Panel>
+                  <PlaceSearch
+                    value={address}
+                    onCancel={this.hide}
+                    onSubmit={this.handleSubmit} />
+                </Panel>
+              </OneTwoFour>
+            )
           }
           {
             destinations.map((destination) => (

@@ -56,10 +56,10 @@ export const getTrip = (id) => (dispatch, getState, { api, schema }) => (
  * Creates a trip.
  * @param {string} title - The title of the trip.
  */
-export const createTrip = (title) => (dispatch, getState, { api, schema }) => (
+export const createTrip = (data) => (dispatch, getState, { api, schema }) => (
   dispatch(api('/trip/', {
     method: 'post',
-    body: JSON.stringify({ title }),
+    body: JSON.stringify(data),
     success: addEntities(schema.trip)
   }))
 )

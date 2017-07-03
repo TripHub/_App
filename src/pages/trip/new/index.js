@@ -10,12 +10,16 @@ import Title from './components/title'
 import { Form, Header, Body, Footer } from './components/form'
 
 class New extends React.Component {
-  state = { title: '' }
+  state = {
+    title: '',
+    tagLine: ''
+  }
 
   handleSubmit = (e) => {
     const { history, createTrip } = this.props
     e.preventDefault()
-    createTrip(this.state.title)
+    const { title, tagLine } = this.state
+    createTrip({ title, tag_line: tagLine })
       .then(({ payload }) => {
         const id = Object.keys(payload.trip)[0]
         id
@@ -31,12 +35,10 @@ class New extends React.Component {
     }
   }
 
-  handleChange = (e) => {
-    this.setState({ title: e.target.value })
-  }
-
   render () {
     const { trip } = this.props
+    const { title } = this.state
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Header>
@@ -50,7 +52,15 @@ class New extends React.Component {
             label={'What is your trip called?'}
             placeholder='e.g. American Getaway...'
             onKeyDown={this.handleKeyDown}
-            onChange={this.handleChange} />
+            onChange={(e) => this.setState({ title: e.target.value })}
+            value={title} />
+          <Input
+            autoFocus
+            disabled={trip.loading}
+            label={'Your trip\'s tag line'}
+            placeholder='e.g. Get ready for the adventure of a lifetime...'
+            onKeyDown={this.handleKeyDown}
+            onChange={(e) => this.setState({ tagLine: e.target.value })} />
         </Body>
 
         <Footer>
@@ -71,7 +81,7 @@ class New extends React.Component {
 const mapStateToProps = ({ trip }) => ({ trip })
 
 const mapDispatchToProps = (dispatch) => ({
-  createTrip: (title) => dispatch(createTrip(title))
+  createTrip: (data) => dispatch(createTrip(data))
 })
 
 const NewPage = loginRequired(withMenu(New))

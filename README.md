@@ -4,6 +4,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > 🛠 *This app is in the early stages of development.*
+
 > ⏳ *This app uses a [free Heroku server](https://www.heroku.com/free) and so the initial load can take a while.*
 
 **Welcome to TripHub, a unified place for groups to organise trips!**

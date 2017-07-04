@@ -13,27 +13,47 @@ I am building TripHub, partly because I think it's a cool idea and I can't find 
 
 The [app's documentation](https://triphub.gitbooks.io/app) is on GitBooks.
 
-Below is a running log of some of the packages I'm using, with my thoughts/notes 📝
+## Roadmap
 
-## [Redux](http://redux.js.org/)
+**Authentication**
+- [x] Working authentication flow using Auth0
+- [x] Persistent login
 
-*Global App State*
+**Trip**
+- [x] Create new trip
+- [x] Edit trip
+- [x] Invite new users
+- [ ] List/menage existing members
+
+**Destination**
+- [x] Search using Google API to get place details from a search (e.g. lat/lng)
+- [ ] Enter arrive/departure time
+- [ ] Select travel type
+- [ ] View destinations on map
+
+**Money**
+- [ ] Ability to create a new payment
+- [ ] Can mark member as having paid their share of a payment
+
+**Tickets**
+- [ ] Can upload a ticket/document
+- [ ] Ticket/document management
+
+## Notes
+
+**[Create React App](https://github.com/facebookincubator/create-react-app)** | Project bootstrapping
+
+Amazingly simple and easy project creation, I had a really simple prototype thrown together in a couple of hours 😄
+However, I'm not a huge fan of the hidden webpack config, and the lack of typescript support (although flow is supported).
+So I may be forced to [eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup) at some point in the future. However, until then CRA has really sped up development time and reduced [bikeshedding](https://en.wiktionary.org/wiki/bikeshedding).
+
+**[Redux](http://redux.js.org/)** | Global app state
 
 [This](https://medium.com/statuscode/dissecting-twitters-redux-store-d7280b62c6b1) article on how
 [Twitter Lite](https://mobile.twitter.com) have structured
 their redux store is really interesting, and definitely an influencer in how the redux state is designed in TripHub.
 
-## [Create React App](https://github.com/facebookincubator/create-react-app)
-
-*Bootstrapping*
-
-Amazingly simple and easy project creation, I had a really simple prototype thrown together in a couple of hours 😄
-However, I'm not a huge fan of the hidden webpack config, and the lack of typescript support (although flow is supported).
-So I may be forced to [eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup) at some point in the future.
-
-## [Styletron](https://github.com/rtsao/styletron)
-
-*CSS-in-JS*
+**[Styletron](https://github.com/rtsao/styletron)** | CSS-in-JS
 
 I was drawn to this library because I like how it handles CSS class names. Styletron converts individual CSS rules into their own atomic classes, and then combines those classes to create the desired styles. In doing this, it hopes to limit CSS size, as future rules are likely to simply be a combination of pre-existing classes.
 

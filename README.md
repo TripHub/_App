@@ -13,7 +13,31 @@ I am building TripHub, partly because I think it's a cool idea and I can't find 
 
 The [app's documentation](https://triphub.gitbooks.io/app) is on GitBooks.
 
-Below is a running log of some of the packages I'm using, with my thoughts/notes 📝
+## Roadmap
+
+**Authentication**
+- [x] Working authentication flow using Auth0
+- [x] Persistent login
+
+**Trip**
+- [x] Create new trip
+- [x] Edit trip
+- [x] Invite new users
+- [ ] List/menage existing members
+
+**Destination**
+- [x] Search using Google API to get place details from a search (e.g. lat/lng)
+- [ ] Enter arrive/departure time
+- [ ] Select travel type
+- [ ] View destinations on map
+
+**Money**
+- [ ] Ability to create a new payment
+- [ ] Can mark member as having paid their share of a payment
+
+**Tickets**
+- [ ] Can upload a ticket/document
+- [ ] Ticket/document management
 
 ## Notes
 

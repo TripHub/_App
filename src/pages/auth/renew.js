@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { renewAuthHandler } from '../../data/user/actions'
 import { isUserAuthenticated } from '../../data/user/selectors'
 import { getReturnToValue } from '../../services/url'
+import { P } from '../../components/text'
 import Auth from '../../services/auth'
 
 // this page is inteneded to be loaded by Auth0 inside an i-frame for silent reauthentication
@@ -25,7 +26,7 @@ class Renew extends React.Component {
   render () {
     return this.props.isUserAuthenticated
       ? <Redirect push={false} to={getReturnToValue(window.location.hash)} />
-      : <div>Redirecting...</div>
+      : <P>Redirecting...</P>
   }
 }
 

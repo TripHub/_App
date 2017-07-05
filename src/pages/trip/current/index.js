@@ -24,7 +24,10 @@ class Trip extends React.Component {
           showCreate={isOwner}
           createDestination={createDestination(trip.id)}
           destinations={destinations || []} />
-        <Map />
+        <Map
+          centre={{ lat: 54, lng: 0 }}
+          zoom={5}
+          destinations={destinations || []} />
       </Container>
     )
   }

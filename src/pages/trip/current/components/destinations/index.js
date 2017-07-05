@@ -1,9 +1,10 @@
 import React from 'react'
-import { Heading1, Heading3, Text } from '../../../../../components/text'
+import { Heading1, Text } from '../../../../../components/text'
 import Button from '../../../../../components/button'
 import Icon from '../../../../../components/icon'
 import Container from './components/container'
 import Header from './components/header'
+import Destination from './components/destination'
 import PlaceSearch from './components/placeSearch'
 
 export default class extends React.Component {
@@ -26,8 +27,7 @@ export default class extends React.Component {
 
     return (
       <Container>
-        {
-          showCreate &&
+        {showCreate &&
           <Header>
             <Heading1>Destinations</Heading1>
             <Button small onClick={this.show}>
@@ -37,21 +37,19 @@ export default class extends React.Component {
             </Button>
           </Header>
         }
-        {
-          showForm && (
-            <PlaceSearch
-              value={address}
-              onCancel={this.hide}
-              onSubmit={this.handleSubmit} />
-          )
-        }
-        {
-          destinations.map((destination) => (
-            <Heading3
-              key={destination.id}
-              noMargin>{destination.address}</Heading3>
-          ))
-        }
+
+        {showForm && (
+          <PlaceSearch
+            value={address}
+            onCancel={this.hide}
+            onSubmit={this.handleSubmit} />
+        )}
+
+        {destinations.map((destination) => (
+          <Destination
+            key={destination.id}
+            address={destination.address} />
+        ))}
       </Container>
     )
   }

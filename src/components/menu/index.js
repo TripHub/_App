@@ -8,6 +8,7 @@ import TitleLink from './components/title'
 import Right from './components/right'
 import Left from './components/left'
 import ProfileMenu from './components/profileMenu'
+import DropDownContainer from './components/dropDownContainer'
 
 export default ({ loading, picture, trip, isOwner, onLogout, ...props }) => (
   <Container {...props}>
@@ -30,9 +31,11 @@ export default ({ loading, picture, trip, isOwner, onLogout, ...props }) => (
           <Icon name='cog' />
         </IconButton>
       }
-      <DropDown toggle={<ProfileMenu loading={loading} picture={picture} />}>
-        <DropDownItem to='/auth/logout'>Logout</DropDownItem>
-      </DropDown>
+      <DropDownContainer>
+        <DropDown toggle={<ProfileMenu loading={loading} picture={picture} />}>
+          <DropDownItem to='/auth/logout'>Logout</DropDownItem>
+        </DropDown>
+      </DropDownContainer>
     </Right>
   </Container>
 )

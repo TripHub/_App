@@ -21,7 +21,7 @@ class Trip extends React.Component {
     return (
       <Container>
         <Destinations
-          showCreate={isOwner}
+          hasCreatePermission={isOwner}
           createDestination={createDestination(trip.id)}
           destinations={destinations || []} />
         <Map

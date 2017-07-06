@@ -23,6 +23,7 @@ export default ({ destinations, centre, zoom }) => (
       defaultZoom={zoom}>
       {destinations.map((destination) => (
         <Marker
+          key={destination.id}
           lat={destination.latitude}
           lng={destination.longitude} />
       ))}

@@ -7,7 +7,6 @@ export default styled('div', ({ disabled }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: `${spacing.sm} ${spacing.sd}`,
-  marginBottom: spacing.sd,
   borderBottom: `1px solid ${color.lightGrey}`,
   opacity: disabled ? opacity.disabled : 1
 }))

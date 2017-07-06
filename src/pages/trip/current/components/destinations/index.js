@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading1, Text } from '../../../../../components/text'
+import { Text } from '../../../../../components/text'
 import Button from '../../../../../components/button'
 import Icon from '../../../../../components/icon'
 import Container from './components/container'
@@ -22,14 +22,13 @@ export default class extends React.Component {
   }
 
   render () {
-    const { destinations, showCreate } = this.props
+    const { destinations, hasCreatePermission } = this.props
     let { showForm, address } = this.state
 
     return (
       <Container>
-        {showCreate &&
+        {hasCreatePermission &&
           <Header>
-            <Heading1>Destinations</Heading1>
             <Button small onClick={this.show}>
               <Text>
                 <Icon name='plus' /> add destination
@@ -38,7 +37,7 @@ export default class extends React.Component {
           </Header>
         }
 
-        {showForm && (
+        {showForm && hasCreatePermission && (
           <PlaceSearch
             value={address}
             onCancel={this.hide}

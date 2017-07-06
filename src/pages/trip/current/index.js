@@ -17,17 +17,18 @@ import Map from './components/map'
 
 class Trip extends React.Component {
   render () {
-    const { trip, destinations, createDestination, isOwner } = this.props
+    const { trip, destinations, isOwner, createDestination } = this.props
+
     return (
       <Container>
         <Destinations
           hasCreatePermission={isOwner}
           createDestination={createDestination(trip.id)}
-          destinations={destinations || []} />
+          destinations={destinations} />
         <Map
-          centre={{ lat: 54, lng: 0 }}
+          center={{ lat: 53, lng: 0 }}
           zoom={5}
-          destinations={destinations || []} />
+          destinations={destinations} />
       </Container>
     )
   }

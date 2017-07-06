@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { styled } from 'styletron-react'
 import GoogleMapReact from 'google-map-react'
 
@@ -16,10 +17,10 @@ const Marker = styled('div', {
   background: 'dodgerblue'
 })
 
-export default ({ destinations, centre, zoom }) => (
+const Map = ({ destinations, center, zoom }) => (
   <Container>
     <GoogleMapReact
-      defaultCenter={centre}
+      defaultCenter={center}
       defaultZoom={zoom}>
       {destinations.map((destination) => (
         <Marker
@@ -30,3 +31,17 @@ export default ({ destinations, centre, zoom }) => (
     </GoogleMapReact>
   </Container>
 )
+
+Map.propTypes = {
+  destinations: PropTypes.arrayOf(PropTypes.object),
+  center: PropTypes.object,
+  zoom: PropTypes.number
+}
+
+Map.defaultProps = {
+  destinations: [],
+  center: { lat: 0, lng: 0 },
+  zoom: 4
+}
+
+export default Map

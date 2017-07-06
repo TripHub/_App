@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Text } from '../../../../../components/text'
 import Button from '../../../../../components/button'
 import Icon from '../../../../../components/icon'
@@ -7,13 +8,10 @@ import Header from './components/header'
 import Destination from './components/destination'
 import PlaceSearch from './components/placeSearch'
 
-export default class extends React.Component {
-  state = {
-    showForm: false
-  }
+class Destinations extends React.Component {
+  state = { showForm: false }
 
   show = () => this.setState({ showForm: true })
-
   hide = () => this.setState({ showForm: false })
 
   handleSubmit = (data) => {
@@ -53,3 +51,15 @@ export default class extends React.Component {
     )
   }
 }
+
+Destinations.propTypes = {
+  hasCreatePermission: PropTypes.bool.isRequired,
+  createDestination: PropTypes.func.isRequired,
+  destinations: PropTypes.arrayOf(PropTypes.object)
+}
+
+Destinations.defaultProps = {
+  destinations: []
+}
+
+export default Destinations

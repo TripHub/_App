@@ -2,58 +2,68 @@ import { styled } from 'styletron-react'
 import { Link as _Link } from 'react-router-dom'
 import { fontFamily, fontSize, color, colorDarker, spacing, opacity, letterSpacing } from '../../common/style'
 
-export const baseStyles = ({ disabled, muted, light, noMargin }) => ({
+const baseStyles = ({
+  disabled = false,
+  muted = false,
+  light = false,
+  noMargin = false,
+  margin = spacing.sd
+}) => ({
   display: 'block',
-  color: light ? 'white' : color.black,
   opacity: disabled ? opacity.disabled : muted ? opacity.muted : 1,
+  color: light ? 'white' : color.black,
   boxSizing: 'border-box',
   letterSpacing: letterSpacing.body,
-  ...noMargin && { margin: 0 }
+  ...noMargin
+    ? { margin: 0 }
+    : { margin: `0 0 ${margin}` }
 })
 
 export const Text = styled('span', (props) => ({
-  ...baseStyles(props)
+  // since Text is primarily used for buttons, it defaults to noMargin
+  ...baseStyles({ noMargin: true, ...props })
 }))
 
 export const Title = styled('h1', (props) => ({
+  ...baseStyles({ ...props, margin: spacing.lg }),
   fontFamily: fontFamily.heading,
   fontSize: fontSize.title,
   fontWeight: 'bold',
-  margin: `0 0 ${spacing.lg}`,
-  letterSpacing: letterSpacing.heading,
-  ...baseStyles(props)
+  letterSpacing: letterSpacing.heading
 }))
 
 export const Heading1 = styled('h1', (props) => ({
+  ...baseStyles(props),
   fontFamily: fontFamily.heading,
   fontSize: fontSize.heading1,
   fontWeight: 'bold',
-  margin: `0 0 ${spacing.sd}`,
-  letterSpacing: letterSpacing.heading,
-  ...baseStyles(props)
+  letterSpacing: letterSpacing.heading
 }))
 
 export const Heading2 = styled('h2', (props) => ({
+  ...baseStyles(props),
   fontFamily: fontFamily.heading,
-  fontWeight: 'normal',
   fontSize: fontSize.heading2,
-  margin: `0 0 ${spacing.sd}`,
-  letterSpacing: letterSpacing.heading,
-  ...baseStyles(props)
+  letterSpacing: letterSpacing.heading
+}))
+
+export const Heading3 = styled('h3', (props) => ({
+  ...baseStyles(props),
+  fontFamily: fontFamily.heading,
+  fontSize: fontSize.heading3,
+  letterSpacing: letterSpacing.heading
 }))
 
 export const P = styled('p', (props) => ({
+  ...baseStyles(props),
   fontFamily: fontFamily.body,
-  fontSize: fontSize.body,
-  margin: `0 0 ${spacing.sd}`,
-  ...baseStyles(props)
+  fontSize: fontSize.body
 }))
 
 export const Small = styled('small', (props) => ({
+  ...baseStyles(props),
   fontFamily: fontFamily.body,
-  fontSize: fontSize.small,
-  margin: `0 0 ${spacing.sd}`,
-  ...baseStyles(props)
+  fontSize: fontSize.small
 }))
 
 export const Link = styled(_Link, ({ disabled }) => ({

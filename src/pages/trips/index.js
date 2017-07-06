@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { dashboardPageWithLogin } from '../../enhancers'
 import { getTrips } from '../../data/entities/actions'
 import { selectActiveTrip } from '../../data/entities/selectors'
+import Page from '../../components/page/'
 import Spinner from '../../components/spinner/'
 import { Row } from '../../components/responsive/'
 import Icon from '../../components/icon/'
@@ -16,21 +17,23 @@ class Trips extends React.Component {
   render () {
     const { trips, activeTrip } = this.props
     return (
-      <Row>
-        <TripItem to='/new'>
-          <Icon name='plus' /> New Trip
-        </TripItem>
-        {
-          trips.loading
-            ? <Spinner />
-            : Object.values(trips.byId).map(trip =>
-              <TripItem
-                key={trip.id}
-                to={`/${trip.id}`}
-                trip={trip}
-                active={activeTrip.id === trip.id} />)
-        }
-      </Row>
+      <Page>
+        <Row>
+          <TripItem to='/new'>
+            <Icon name='plus' /> New Trip
+          </TripItem>
+          {
+            trips.loading
+              ? <Spinner />
+              : Object.values(trips.byId).map(trip =>
+                <TripItem
+                  key={trip.id}
+                  to={`/${trip.id}`}
+                  trip={trip}
+                  active={activeTrip.id === trip.id} />)
+          }
+        </Row>
+      </Page>
     )
   }
 }

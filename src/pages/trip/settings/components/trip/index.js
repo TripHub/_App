@@ -14,7 +14,7 @@ const Container = styled('div', {
 export default ({
   loading,
   title,
-  description,
+  tagLine,
   titleDisabled,
   onTitleChange,
   onTitleSubmit,
@@ -38,7 +38,7 @@ export default ({
       maxLength='255'
       loading={loading}
       label='Tag Line'
-      defaultValue={description}
+      defaultValue={tagLine}
       disabled={tagLineDisabled}
       onChange={onTagLineChange}
       onSubmit={onTagLineSubmit} />

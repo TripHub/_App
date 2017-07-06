@@ -11,18 +11,25 @@ import {
   isUserActiveTripOwner,
   selectActiveTripDestinations
 } from '../../../data/entities/selectors'
+import Container from './components/container'
 import Destinations from './components/destinations'
+import Map from './components/map'
 
 class Trip extends React.Component {
   render () {
-    const { trip, destinations, createDestination, isOwner } = this.props
+    const { trip, destinations, isOwner, createDestination } = this.props
+
     return (
-      <div>
+      <Container>
         <Destinations
-          showCreate={isOwner}
+          hasCreatePermission={isOwner}
           createDestination={createDestination(trip.id)}
-          destinations={destinations || []} />
-      </div>
+          destinations={destinations} />
+        <Map
+          center={{ lat: 53, lng: 0 }}
+          zoom={5}
+          destinations={destinations} />
+      </Container>
     )
   }
 }

@@ -10,7 +10,7 @@ export default (Wrapped) => {
     render () {
       const { user, trip, logout, isOwner } = this.props
       return (
-        <div>
+        <div style={{minHeight: '100%'}}>
           <Menu
             loading={user.loading}
             onLogout={logout}

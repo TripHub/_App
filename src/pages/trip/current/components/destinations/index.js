@@ -1,19 +1,17 @@
 import React from 'react'
-import { Row, OneTwoFour } from '../../../../../components/responsive'
-import { Heading1, Heading2, Text } from '../../../../../components/text'
+import PropTypes from 'prop-types'
+import { Text } from '../../../../../components/text'
 import Button from '../../../../../components/button'
-import Panel from '../../../../../components/panel'
 import Icon from '../../../../../components/icon'
+import Container from './components/container'
 import Header from './components/header'
+import Destination from './components/destination'
 import PlaceSearch from './components/placeSearch'
 
-export default class extends React.Component {
-  state = {
-    showForm: false
-  }
+class Destinations extends React.Component {
+  state = { showForm: false }
 
   show = () => this.setState({ showForm: true })
-
   hide = () => this.setState({ showForm: false })
 
   handleSubmit = (data) => {
@@ -22,15 +20,13 @@ export default class extends React.Component {
   }
 
   render () {
-    const { destinations, showCreate } = this.props
+    const { destinations, hasCreatePermission } = this.props
     let { showForm, address } = this.state
 
     return (
-      <div>
-        {
-          showCreate &&
+      <Container>
+        {hasCreatePermission &&
           <Header>
-            <Heading1>Destinations</Heading1>
             <Button small onClick={this.show}>
               <Text>
                 <Icon name='plus' /> add destination
@@ -38,30 +34,32 @@ export default class extends React.Component {
             </Button>
           </Header>
         }
-        <Row>
-          {
-            showForm && (
-              <OneTwoFour>
-                <Panel>
-                  <PlaceSearch
-                    value={address}
-                    onCancel={this.hide}
-                    onSubmit={this.handleSubmit} />
-                </Panel>
-              </OneTwoFour>
-            )
-          }
-          {
-            destinations.map((destination) => (
-              <OneTwoFour key={destination.id}>
-                <Panel>
-                  <Heading2 noMargin>{destination.address}</Heading2>
-                </Panel>
-              </OneTwoFour>
-            ))
-          }
-        </Row>
-      </div>
+
+        {showForm && hasCreatePermission && (
+          <PlaceSearch
+            value={address}
+            onCancel={this.hide}
+            onSubmit={this.handleSubmit} />
+        )}
+
+        {destinations.map((destination) => (
+          <Destination
+            key={destination.id}
+            address={destination.address} />
+        ))}
+      </Container>
     )
   }
 }
+
+Destinations.propTypes = {
+  hasCreatePermission: PropTypes.bool.isRequired,
+  createDestination: PropTypes.func.isRequired,
+  destinations: PropTypes.arrayOf(PropTypes.object)
+}
+
+Destinations.defaultProps = {
+  destinations: []
+}
+
+export default Destinations

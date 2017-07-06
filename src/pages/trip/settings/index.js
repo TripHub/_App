@@ -17,7 +17,8 @@ import {
   selectActiveTripMembers,
   isUserActiveTripOwner
 } from '../../../data/entities/selectors'
-import NotFound from '../../error/notFound/'
+import Page from '../../../components/page'
+import NotFound from '../../error/notFound'
 import Padding from './components/padding'
 import Trip from './components/trip'
 import Members from './components/members'
@@ -79,33 +80,39 @@ class Settings extends React.Component {
   render () {
     const { trip, invites, members, invitesLoading } = this.props
     const { title, tagLine } = this.state
-    return this.state.notFound ? <NotFound /> : (
-      <Padding>
-        <Title>Settings</Title>
-        <Trip
-          loading={trip.loading}
-          title={trip.title}
-          titleDisabled={!title || title === trip.title || trip.loading}
-          onTitleChange={(e) => this.setState({
-            title: e.target.value.trim()
-          })}
-          onTitleSubmit={(e) => this.handleUpdate(e, { title })}
-          description={trip.tag_line}
-          tagLineDisabled={!tagLine || tagLine === trip.tag_line || trip.loading}
-          onTagLineChange={(e) => this.setState({
-            tagLine: e.target.value.trim()
-          })}
-          onTagLineSubmit={(e) => this.handleUpdate(e, {
-            tag_line: tagLine
-          })} />
-        <Members
-          invitesLoading={invitesLoading}
-          invites={invites}
-          members={members}
-          onSubmit={this.handleInvite}
-          onCancel={this.handleCancel} />
-        <DangerZone onDelete={this.handleDelete} />
-      </Padding>
+    return (
+      <Page>
+        {this.state.notFound ? <NotFound /> : (
+          <Padding>
+            <Title>Settings</Title>
+            <Trip
+              loading={trip.loading}
+
+              title={trip.title}
+              titleDisabled={!title || title === trip.title || trip.loading}
+              onTitleChange={(e) => this.setState({
+                title: e.target.value.trim()
+              })}
+              onTitleSubmit={(e) => this.handleUpdate(e, { title })}
+
+              tagLine={trip.tag_line}
+              tagLineDisabled={!tagLine || tagLine === trip.tag_line || trip.loading}
+              onTagLineChange={(e) => this.setState({
+                tagLine: e.target.value.trim()
+              })}
+              onTagLineSubmit={(e) => this.handleUpdate(e, {
+                tag_line: tagLine
+              })} />
+            <Members
+              invitesLoading={invitesLoading}
+              invites={invites}
+              members={members}
+              onSubmit={this.handleInvite}
+              onCancel={this.handleCancel} />
+            <DangerZone onDelete={this.handleDelete} />
+          </Padding>
+        )}
+      </Page>
     )
   }
 }

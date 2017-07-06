@@ -87,13 +87,15 @@ class Settings extends React.Component {
             <Title>Settings</Title>
             <Trip
               loading={trip.loading}
+
               title={trip.title}
               titleDisabled={!title || title === trip.title || trip.loading}
               onTitleChange={(e) => this.setState({
                 title: e.target.value.trim()
               })}
               onTitleSubmit={(e) => this.handleUpdate(e, { title })}
-              description={trip.tag_line}
+
+              tagLine={trip.tag_line}
               tagLineDisabled={!tagLine || tagLine === trip.tag_line || trip.loading}
               onTagLineChange={(e) => this.setState({
                 tagLine: e.target.value.trim()

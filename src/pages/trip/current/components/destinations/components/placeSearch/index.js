@@ -72,6 +72,7 @@ class PlaceSearch extends React.Component {
   }
 
   render () {
+    const { onCancel } = this.props
     const { loading, address } = this.state
 
     const inputProps = {
@@ -88,6 +89,7 @@ class PlaceSearch extends React.Component {
           onSelect={this.handleSelect}
           inputProps={inputProps} />
         <Button small primary disabled={loading} type='submit'>Add</Button>
+        <Button small disabled={loading} type='button' onClick={onCancel}>Cancel</Button>
       </Form>
     )
   }

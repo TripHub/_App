@@ -49,7 +49,8 @@ export const Heading2 = styled('h2', (props) => ({
 
 export const Heading3 = styled('h3', (props) => ({
   ...baseStyles(props),
-  fontFamily: fontFamily.heading,
+  fontFamily: fontFamily.body,
+  fontWeight: '600',
   fontSize: fontSize.heading3,
   letterSpacing: letterSpacing.heading
 }))

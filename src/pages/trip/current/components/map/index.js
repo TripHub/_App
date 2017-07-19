@@ -25,8 +25,8 @@ const Map = ({ destinations, center, zoom }) => (
       {destinations.map((destination) => (
         <Marker
           key={destination.id}
-          lat={destination.latitude}
-          lng={destination.longitude} />
+          lat={destination.lat}
+          lng={destination.lng} />
       ))}
     </GoogleMapReact>
   </Container>

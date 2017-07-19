@@ -1,8 +1,5 @@
 import React from 'react'
-import PlacesAutocomplete, {
-  geocodeByPlaceId,
-  getLatLng
-} from 'react-places-autocomplete'
+import PlacesAutocomplete from 'react-places-autocomplete'
 import Button from '../../../../../../../components/button'
 import Form from './components/form'
 
@@ -12,7 +9,6 @@ class PlaceSearch extends React.Component {
     this.initialState = {
       address: '',
       placeId: '',
-      latLng: {},
       loading: false
     }
     this.state = this.initialState
@@ -22,21 +18,20 @@ class PlaceSearch extends React.Component {
     e.preventDefault()
 
     /**
-     * We will use the data in this.state to populate the new destination.
-     * However, we will need to format it as an object containing the correct
-     * keys. Also, our api only accepts up to 9 decimal points for the lat/lng
-     * and so we need to truncate the values provided.
+     * Use `this.state` to populate the new destination, formatting the data
+     * as an object containing the correct keys. The API will fill in the
+     * place details automatically using the Google Place ID.
+     *
+     * However, if we want to submit a custom location we leave out the Google
+     * Place ID and send the address, lat and lng ourselves. Note that the api
+     * only accepts up to 10 decimal points for the lat and lng and so we should
+     * truncate the values provided.
      */
 
-    const { address, placeId, latLng } = this.state
-    const latitude = parseFloat(latLng.lat.toFixed(9))
-    const longitude = parseFloat(latLng.lng.toFixed(9))
+    const { placeId } = this.state
 
     this.props.onSubmit({
-      google_place_id: placeId,
-      address,
-      latitude,
-      longitude
+      google_place_id: placeId
     })
   }
 
@@ -45,30 +40,7 @@ class PlaceSearch extends React.Component {
      * Start by updating the state with details of the selected place.
      */
 
-    this.setState({ address, placeId, loading: true })
-
-    /**
-     * Next use the place ID to get additional details.
-     */
-
-    geocodeByPlaceId(placeId)
-      /**
-       * Extract the lat/lng from the results
-       */
-
-      .then(results => {
-        console.log('results', results)
-        getLatLng(results[0]).then((latLng) => this.setState({ latLng }))
-      })
-
-      .catch(err => console.log(err))
-
-      /**
-       * Fetching additional data has now completed, so we can now set
-       * loading to false.
-       */
-
-      .then(() => this.setState({ loading: false }))
+    this.setState({ address, placeId })
   }
 
   render () {

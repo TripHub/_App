@@ -49,7 +49,8 @@ class Destinations extends React.Component {
             key={destination.id}
             address={destination.address}
             arrivalTime={destination.arrival_time}
-            departTime={destination.depart_time} />
+            departTime={destination.depart_time}
+            googleMapUrl={destination.google_place_data.url} />
         ))}
       </Container>
     )

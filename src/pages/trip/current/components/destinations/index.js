@@ -42,10 +42,14 @@ class Destinations extends React.Component {
             onSubmit={this.handleSubmit} />
         )}
 
+        {console.log(destinations)}
+
         {destinations.map((destination) => (
           <Destination
             key={destination.id}
-            address={destination.address} />
+            address={destination.address}
+            arrivalTime={destination.arrival_time}
+            departTime={destination.depart_time} />
         ))}
       </Container>
     )

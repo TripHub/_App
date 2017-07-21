@@ -21,13 +21,15 @@ const Map = ({ destinations, center, zoom }) => (
   <Container>
     <GoogleMapReact
       defaultCenter={center}
-      defaultZoom={zoom}>
+      defaultZoom={zoom} >
+
       {destinations.map((destination) => (
         <Marker
           key={destination.id}
           lat={destination.lat}
           lng={destination.lng} />
       ))}
+
     </GoogleMapReact>
   </Container>
 )

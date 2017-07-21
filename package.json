@@ -12,6 +12,7 @@
     "axios": "^0.16.1",
     "express": "^4.15.3",
     "google-map-react": "^0.24.0",
+    "moment": "^2.18.1",
     "normalizr": "^3.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",

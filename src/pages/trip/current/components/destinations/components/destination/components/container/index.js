@@ -3,6 +3,6 @@ import { color, spacing } from '../../../../../../../../../common/style'
 
 export default styled('div', {
   paddingLeft: spacing.sd,
-  borderLeft: `3px solid ${color.lightGrey}`,
-  margin: `${spacing.sd} ${spacing.sd} 0`
+  borderLeft: `4px solid ${color.lightGrey}`,
+  margin: `0 ${spacing.sd} ${spacing.sd}`
 })

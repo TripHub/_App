@@ -1,6 +1,8 @@
 import { styled } from 'styletron-react'
-import { spacing } from '../../../../../../../../../common/style'
+import { color, spacing } from '../../../../../../../../../common/style'
 
 export default styled('form', {
-  padding: `0 ${spacing.sd}`
+  paddingLeft: spacing.sd,
+  margin: `0 ${spacing.sd} ${spacing.sd}`,
+  borderLeft: `4px dotted ${color.green}`
 })

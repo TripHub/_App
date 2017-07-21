@@ -27,7 +27,7 @@ class Trip extends React.Component {
           destinations={destinations} />
         <Map
           center={{ lat: 53, lng: 0 }}
-          zoom={5}
+          zoom={4}
           destinations={destinations} />
       </Container>
     )

@@ -1,11 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { styled } from 'styletron-react'
 import GoogleMapReact from 'google-map-react'
 
+import { styled } from 'styletron-react'
+import { breakpoint } from '../../../../../common/style'
+
+/**
+ * Local components
+ */
 const Container = styled('div', {
   alignSelf: 'stretch',
-  width: '50%'
+  width: '50%',
+
+  [`@media screen and (max-width: ${breakpoint.large})`]: {
+    display: 'none'
+  }
 })
 
 const Marker = styled('div', {
@@ -17,6 +26,9 @@ const Marker = styled('div', {
   background: 'dodgerblue'
 })
 
+/**
+ * Export component
+ */
 const Map = ({ destinations, center, zoom }) => (
   <Container>
     <GoogleMapReact

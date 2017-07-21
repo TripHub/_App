@@ -48,10 +48,10 @@ class PlaceSearch extends React.Component {
     const { loading, address } = this.state
 
     const inputProps = {
-      value: address,
       onChange: (address) => this.setState({ address }),
+      value: address,
       type: 'search',
-      placeholder: 'Search Places...'
+      placeholder: 'Where are you going?'
     }
 
     return (

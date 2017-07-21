@@ -37,10 +37,12 @@ const Split = styled('span', ({ hasArrive, hasDepart }) => ({
  * Export componet
  */
 const Destination = ({ address, arrivalTime, departTime, googleMapUrl, ...props }) => {
-  const format = 'ddd do MMM, hA'
-  const arrive = arrivalTime && moment(arrivalTime).format(format)
-  const depart = departTime && moment(departTime).format(format)
-  const addressComponent = <Heading3 noMargin>{address}</Heading3>
+  const displayFormat = 'ddd Do MMM, YYYY'
+  const arrive = arrivalTime &&
+    moment.utc(arrivalTime, moment.ISO_8601).format(displayFormat)
+  const depart = departTime &&
+    moment.utc(departTime, moment.ISO_8601).format(displayFormat)
+  const addressEl = <Heading3 noMargin>{address}</Heading3>
 
   return (
     <Container>
@@ -53,8 +55,8 @@ const Destination = ({ address, arrivalTime, departTime, googleMapUrl, ...props 
         <Small noMargin muted>{depart}</Small>
       </TimeContainer>
       {googleMapUrl
-        ? <Link target='_blank' to={googleMapUrl} children={addressComponent} />
-        : addressComponent
+        ? <Link target='_blank' to={googleMapUrl} children={addressEl} />
+        : addressEl
       }
     </Container>
   )

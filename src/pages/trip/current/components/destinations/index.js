@@ -42,7 +42,7 @@ class Destinations extends React.Component {
             onSubmit={this.handleSubmit} />
         )}
 
-        {console.log(destinations)}
+        {console.log(destinations) /** TODO: delete */}
 
         {destinations.map((destination) => (
           <Destination

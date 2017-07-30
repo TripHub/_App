@@ -35,16 +35,7 @@ class Destinations extends React.Component {
           </Header>
         }
 
-        {showForm && hasCreatePermission && (
-          <PlaceSearch
-            value={address}
-            onCancel={this.hide}
-            onSubmit={this.handleSubmit} />
-        )}
-
-        {console.log(destinations) /** TODO: delete */}
-
-        {destinations.map((destination) => (
+        {destinations.map((destination) => (  // this is the list of destinations
           <Destination
             key={destination.id}
             address={destination.address}
@@ -52,6 +43,13 @@ class Destinations extends React.Component {
             departTime={destination.depart_time}
             googleMapUrl={destination.google_place_data.url} />
         ))}
+
+        {showForm && hasCreatePermission && (  // this is the search form
+          <PlaceSearch
+            value={address}
+            onCancel={this.hide}
+            onSubmit={this.handleSubmit} />
+        )}
       </Container>
     )
   }

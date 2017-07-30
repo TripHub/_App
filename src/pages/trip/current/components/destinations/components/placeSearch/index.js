@@ -1,18 +1,28 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import PlacesAutocomplete from 'react-places-autocomplete'
+import { DateRangePicker } from 'react-dates'
+
 import Button from '../../../../../../../components/button'
 import Form from './components/form'
+import Autocomplete from './components/autocomplete'
+import DatePicker from './components/datePicker'
 
 class PlaceSearch extends React.Component {
   constructor (props) {
     super(props)
     this.initialState = {
-      address: '',
-      placeId: '',
-      loading: false
+      address: '',          // Human readable address (used to populate dropdown)
+      placeId: '',          // Google place ID
+      startDate: null,      // selected start date (moment.js obj)
+      endDate: null,        // selected end date (moment.js obj)
+      focusedInput: null,  // which part of react-dates ui to show
+      loading: false        // controls loading ui
     }
     this.state = this.initialState
   }
+
+  handleDateChange = ({ startDate, endDate }) => this.setState({ startDate, endDate })
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -28,10 +38,12 @@ class PlaceSearch extends React.Component {
      * truncate the values provided.
      */
 
-    const { placeId } = this.state
+    const { placeId, startDate, endDate } = this.state
 
     this.props.onSubmit({
-      google_place_id: placeId
+      google_place_id: placeId,
+      arrival_time: startDate,
+      depart_time: endDate
     })
   }
 
@@ -45,7 +57,7 @@ class PlaceSearch extends React.Component {
 
   render () {
     const { onCancel } = this.props
-    const { loading, address } = this.state
+    const { loading, address, startDate, endDate, focusedInput } = this.state
 
     const inputProps = {
       onChange: (address) => this.setState({ address }),
@@ -56,15 +68,30 @@ class PlaceSearch extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <PlacesAutocomplete
-          highlightFirstSuggestion
-          onSelect={this.handleSelect}
-          inputProps={inputProps} />
+        <Autocomplete>
+          <PlacesAutocomplete
+            highlightFirstSuggestion
+            onSelect={this.handleSelect}
+            inputProps={inputProps} />
+        </Autocomplete>
+        <DatePicker>
+          <DateRangePicker
+            withPortal
+            startDate={startDate}
+            endDate={endDate}
+            onDatesChange={this.handleDateChange}
+            focusedInput={focusedInput}
+            onFocusChange={focusedInput => this.setState({ focusedInput })} />
+        </DatePicker>
         <Button small primary disabled={loading} type='submit'>Add</Button>
         <Button small disabled={loading} type='button' onClick={onCancel}>Cancel</Button>
       </Form>
     )
   }
+}
+
+PropTypes.propTypes = {
+
 }
 
 export default PlaceSearch

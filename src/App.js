@@ -13,6 +13,9 @@ import Auth0Renew from './pages/auth/renew'
 import Logout from './pages/auth/logout'
 import NotFound from './pages/error/notFound'
 
+// Third party CSS
+import 'react-dates/lib/css/_datepicker.css'
+
 export default class App extends Component {
   render () {
     return (

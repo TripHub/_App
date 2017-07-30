@@ -16,6 +16,8 @@
     "normalizr": "^3.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
+    "react-addons-shallow-compare": "^15.6.0",
+    "react-dates": "^12.3.0",
     "react-dom": "^15.5.4",
     "react-notify-toast": "^0.2.0",
     "react-places-autocomplete": "^5.3.1",

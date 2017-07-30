@@ -27,7 +27,7 @@ const Marker = styled('div', {
 })
 
 /**
- * Export component
+ * Export components
  */
 const Map = ({ destinations, center, zoom }) => (
   <Container>

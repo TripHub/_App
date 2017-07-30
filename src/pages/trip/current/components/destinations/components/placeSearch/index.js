@@ -22,6 +22,12 @@ class PlaceSearch extends React.Component {
     this.state = this.initialState
   }
 
+  componentDidMount() {
+    window && this.setState({
+      innerWidth: window.innerWidth
+    })
+  }
+
   handleDateChange = ({ startDate, endDate }) => this.setState({ startDate, endDate })
 
   handleSubmit = (e) => {
@@ -57,7 +63,7 @@ class PlaceSearch extends React.Component {
 
   render () {
     const { onCancel } = this.props
-    const { loading, address, startDate, endDate, focusedInput } = this.state
+    const { loading, address, startDate, endDate, focusedInput, innerWidth } = this.state
 
     const inputProps = {
       onChange: (address) => this.setState({ address }),
@@ -77,6 +83,7 @@ class PlaceSearch extends React.Component {
         <DatePicker>
           <DateRangePicker
             withPortal
+            numberOfMonths={innerWidth > 720 ? 2 : 1}
             startDate={startDate}
             endDate={endDate}
             onDatesChange={this.handleDateChange}

@@ -10,12 +10,18 @@ import Icon from '../../components/icon/'
 import TripItem from './components/tripItem'
 
 class Trips extends React.Component {
+  state = { loading: false }
+
   componentDidMount () {
-    this.props.getTrips()
+    this.setState({ loading: true }, () => {
+      this.props.getTrips()
+        .then(() => this.setState({ loading: false }))
+    })
   }
 
   render () {
     const { trips, activeTrip } = this.props
+    const { loading } = this.state
     return (
       <Page>
         <Row>
@@ -23,7 +29,7 @@ class Trips extends React.Component {
             <Icon name='plus' /> New Trip
           </TripItem>
           {
-            trips.loading
+            !loading
               ? <Spinner />
               : Object.values(trips.byId).map(trip =>
                 <TripItem

@@ -22,7 +22,7 @@ class PlaceSearch extends React.Component {
     this.state = this.initialState
   }
 
-  componentDidMount() {
+  componentDidMount () {
     window && this.setState({
       innerWidth: window.innerWidth
     })

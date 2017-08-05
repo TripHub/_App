@@ -11,8 +11,8 @@
 
 Hey, I'm (@benjaminhadfield)[https://github.com/benjaminhadfield] and I'm building TripHub, partly because I think it's a cool idea and I this I'd actually help some people, and partly as a learning exercise for developing scalable and performant Single Page Applications (SPA's) by utilising awesome techniques like bundle splitting and atomic CSS.
 
- - [Documentation can be found on GitBooks](https://triphub.gitbooks.io/app);
- - [The source code for the API server can be found at this repo](https://github.com/TripHub/API);
+ - [Documentation can be found on GitBooks](https://triphub.gitbooks.io/app)
+ - [The source code for the API server can be found at this repo](https://github.com/TripHub/API)
 
 ## Roadmap
 
@@ -24,7 +24,7 @@ Hey, I'm (@benjaminhadfield)[https://github.com/benjaminhadfield] and I'm buildi
 - [x] Create new trip
 - [x] Edit trip
 - [x] Invite new users
-- [ ] List/menage existing members
+- [ ] List/manage existing members
 
 **Destination**
 - [x] Search using Google API to get place details from a search (e.g. lat/lng)

@@ -9,9 +9,10 @@
 
 **Welcome to TripHub, a unified place for groups to organise trips!**
 
-I am building TripHub, partly because I think it's a cool idea and I can't find anything else like it, and partly as a learning exercise for developing scalable and performant Single Page Applications (SPA's) by utilising awesome techniques like bundle splitting and atomic CSS.
+Hey, I'm (@benjaminhadfield)[https://github.com/benjaminhadfield] and I'm building TripHub, partly because I think it's a cool idea and I this I'd actually help some people, and partly as a learning exercise for developing scalable and performant Single Page Applications (SPA's) by utilising awesome techniques like bundle splitting and atomic CSS.
 
-The [app's documentation](https://triphub.gitbooks.io/app) is on GitBooks.
+ - [Documentation can be found on GitBooks](https://triphub.gitbooks.io/app)
+ - [The source code for the API server can be found at this repo](https://github.com/TripHub/API)
 
 ## Roadmap
 
@@ -23,7 +24,7 @@ The [app's documentation](https://triphub.gitbooks.io/app) is on GitBooks.
 - [x] Create new trip
 - [x] Edit trip
 - [x] Invite new users
-- [ ] List/menage existing members
+- [ ] List/manage existing members
 
 **Destination**
 - [x] Search using Google API to get place details from a search (e.g. lat/lng)

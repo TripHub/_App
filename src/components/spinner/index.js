@@ -6,7 +6,7 @@ import Spinner from './components/spinner'
 
 export default (props) => (
   <Container>
-    <P>Loading…</P>
+    <P muted>Loading…</P>
     <Spinner name='three-bounce' color={color.black} {...props} />
   </Container>
 )

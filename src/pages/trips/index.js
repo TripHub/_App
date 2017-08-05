@@ -29,7 +29,7 @@ class Trips extends React.Component {
             <Icon name='plus' /> New Trip
           </TripItem>
           {
-            !loading
+            loading
               ? <Spinner />
               : Object.values(trips.byId).map(trip =>
                 <TripItem

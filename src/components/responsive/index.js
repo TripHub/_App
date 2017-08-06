@@ -24,3 +24,16 @@ export const OneTwoFour = styled('div', ({ noGutter }) => ({
     width: '25%'
   }
 }))
+
+export const OneTwo = styled('div', ({ noGutter }) => ({
+  // base styles
+  display: 'inline-flex',
+  boxSizing: 'border-box',
+  width: '100%',
+  padding: noGutter ? 0 : `0 ${spacing.sd} ${spacing.sd} 0`,
+
+  // large and up
+  [`@media screen and (min-width: ${breakpoint.large}`]: {
+    width: '50%'
+  }
+}))

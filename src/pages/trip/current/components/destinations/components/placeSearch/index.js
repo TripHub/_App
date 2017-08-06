@@ -5,7 +5,7 @@ import { DateRangePicker } from 'react-dates'
 
 import Button from '../../../../../../../components/button'
 import Form from './components/form'
-import Autocomplete from './components/autocomplete'
+import AutocompleteContainer from './components/autocomplete'
 import DatePicker from './components/datePicker'
 
 class PlaceSearch extends React.Component {
@@ -53,13 +53,7 @@ class PlaceSearch extends React.Component {
     })
   }
 
-  handleSelect = (address, placeId) => {
-    /**
-     * Start by updating the state with details of the selected place.
-     */
-
-    this.setState({ address, placeId })
-  }
+  handleSelect = (address, placeId) => this.setState({ address, placeId })
 
   render () {
     const { onCancel } = this.props
@@ -74,12 +68,12 @@ class PlaceSearch extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Autocomplete>
+        <AutocompleteContainer>
           <PlacesAutocomplete
             highlightFirstSuggestion
             onSelect={this.handleSelect}
             inputProps={inputProps} />
-        </Autocomplete>
+        </AutocompleteContainer>
         <DatePicker>
           <DateRangePicker
             withPortal
@@ -98,7 +92,7 @@ class PlaceSearch extends React.Component {
 }
 
 PropTypes.propTypes = {
-
+  onCancel: PropTypes.func.isRequired
 }
 
 export default PlaceSearch

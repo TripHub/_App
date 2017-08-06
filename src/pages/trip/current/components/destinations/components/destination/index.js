@@ -6,8 +6,10 @@ import { styled } from 'styletron-react'
 import { color, spacing, opacity } from '../../../../../../../common/style'
 
 import Icon from '../../../../../../../components/icon'
-import { Heading3, Small, Link } from '../../../../../../../components/text'
+import { Heading3, Small, P } from '../../../../../../../components/text'
 import Container from './components/container'
+import Header from './components/header'
+import Body from './components/body'
 
 /**
  * Local components
@@ -42,21 +44,25 @@ const Destination = ({ address, arrivalTime, departTime, googleMapUrl, ...props 
     moment.utc(arrivalTime, moment.ISO_8601).format(displayFormat)
   const depart = departTime &&
     moment.utc(departTime, moment.ISO_8601).format(displayFormat)
-  const addressEl = <Heading3 noMargin>{address}</Heading3>
 
   return (
     <Container>
-      <TimeContainer>
-        <IconContainer>
-          <Icon name='clock-o' />
-        </IconContainer>
-        <Small noMargin muted>{arrive}</Small>
-        <Split hasArrive={!!arrive} hasDepart={!!depart} />
-        <Small noMargin muted>{depart}</Small>
-      </TimeContainer>
-      {googleMapUrl
-        ? <Link target='_blank' to={googleMapUrl} children={addressEl} />
-        : addressEl
+      <Header>
+        <Heading3 noMargin>{address}</Heading3>
+        <div><Icon name='ticket' /></div>
+      </Header>
+      <Body>
+        <P>Body stuff here...</P>
+      </Body>
+      {
+      // <TimeContainer>
+      //   <IconContainer>
+      //     <Icon name='clock-o' />
+      //   </IconContainer>
+      //   <Small noMargin muted>{arrive}</Small>
+      //   <Split hasArrive={arrive} hasDepart={depart} />
+      //   <Small noMargin muted>{depart}</Small>
+      // </TimeContainer>
       }
     </Container>
   )
@@ -65,7 +71,14 @@ const Destination = ({ address, arrivalTime, departTime, googleMapUrl, ...props 
 Destination.propTypes = {
   address: PropTypes.string.isRequired,
   arrivalTime: PropTypes.string,
-  departTime: PropTypes.string
+  departTime: PropTypes.string,
+  googleMapUrl: PropTypes.string
+}
+
+Destination.defaultProps = {
+  arrivalTime: null,
+  departTime: null,
+  googleMapUrl: null
 }
 
 export default Destination

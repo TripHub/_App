@@ -9,8 +9,7 @@ import { breakpoint } from '../../../../../common/style'
  * Local components
  */
 const Container = styled('div', {
-  alignSelf: 'stretch',
-  width: '50%',
+  height: '220px',
 
   [`@media screen and (max-width: ${breakpoint.large})`]: {
     display: 'none'

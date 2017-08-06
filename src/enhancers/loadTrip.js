@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTrips, getTrip, setActiveTrip } from '../data/entities/actions'
 import { selectActiveTrip } from '../data/entities/selectors'
-import { P } from '../components/text'
+import Spinner from '../components/spinner'
 import NotFound from '../pages/error/notFound'
 
 // gets the trip from the URL and loads it
@@ -29,7 +29,7 @@ export default (Wrapped) => {
         ? trip.id
           ? <Wrapped {...this.props} />
           : <NotFound />
-        : <P>Loading...</P>
+        : <Spinner />
     }
   }
 

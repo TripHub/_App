@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Text } from '../../../../../components/text'
 import Button from '../../../../../components/button'
 import Icon from '../../../../../components/icon'
+import { Row, OneTwo } from '../../../../../components/responsive'
 import Container from './components/container'
 import Header from './components/header'
 import Destination from './components/destination'
@@ -24,33 +25,39 @@ class Destinations extends React.Component {
     let { showForm, address } = this.state
 
     return (
-      <Container>
-        {hasCreatePermission &&
-          <Header>
-            <Button small onClick={this.show}>
-              <Text>
-                <Icon name='plus' /> add destination
-              </Text>
-            </Button>
-          </Header>
-        }
+      <div>
+        <Container>
+          {hasCreatePermission &&
+            <Header>
+              <Button small onClick={this.show}>
+                <Text>
+                  <Icon name='plus' /> add destination
+                </Text>
+              </Button>
+            </Header>
+          }
 
-        {showForm && hasCreatePermission && (  // this is the search form
-          <PlaceSearch
-            value={address}
-            onCancel={this.hide}
-            onSubmit={this.handleSubmit} />
-        )}
+          {showForm && hasCreatePermission && (  // this is the search form
+            <PlaceSearch
+              value={address}
+              onCancel={this.hide}
+              onSubmit={this.handleSubmit} />
+          )}
 
-        {destinations.map((destination) => (  // this is the list of destinations
-          <Destination
-            key={destination.id}
-            address={destination.address}
-            arrivalTime={destination.arrival_time}
-            departTime={destination.depart_time}
-            googleMapUrl={destination.google_place_data.url} />
-        ))}
-      </Container>
+        </Container>
+        <Row>
+          {destinations.map((destination) => (  // this is the list of destinations
+            <OneTwo>
+              <Destination
+                key={destination.id}
+                address={destination.address}
+                arrivalTime={destination.arrival_time}
+                departTime={destination.depart_time}
+                googleMapUrl={destination.google_place_data.url} />
+            </OneTwo>
+          ))}
+        </Row>
+      </div>
     )
   }
 }
